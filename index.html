@@ -49,7 +49,7 @@ function onPause() {
 }
 
 if (localStorage.getItem("test")!==null) {
-	document.getElementById("score").innerHTML = localStorage.getItem("test");
+	document.getElementById("score").innerHTML += localStorage.getItem("test");
 }
 </script>
 
