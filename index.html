@@ -1,0 +1,53 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>  
+	<title>I Pasticcini</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Carter+One'); //font-family: 'Carter One', cursive;
+	@import url('https://fonts.googleapis.com/css?family=Skranji:700'); //font-family: 'Skranji', cursive;
+	@import url('https://fonts.googleapis.com/css?family=Averia+Sans+Libre:300i'); //font-family: 'Averia Sans Libre', cursive;
+    </style> 
+</head>
+<body style="background-image:url(img/bg.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+<div id="logo"><img src="img/logo.png" /></div>
+<div class="button green">
+   <img src="img/btn_green.png" />
+   <div class="centered">Play</div>
+</div>
+
+<!--<p style="font-family: 'Carter One', cursive; font-size: 48px; -webkit-text-stroke: 2px green;">TEST</p>
+<p style="font-family: 'Skranji', cursive; font-size: 48px">TEST</p>
+<p style="font-family: 'Averia Sans Libre', cursive; font-size: 48px">TEST</p>-->
+
+<script>
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    navigator.globalization.getPreferredLanguage(
+        function (language) { 
+		    if (language.value == "it-IT") {
+				    window.localStorage.setItem("deflang","ita");
+					var script= document.createElement('script');
+                    script.type= 'text/javascript';
+                    script.src= 'js/' + window.localStorage.getItem("deflang") + '.js';
+                    document.body.appendChild(script);
+				} else {
+					window.localStorage.setItem("deflang","eng");
+				} 
+			},
+        function () {window.localStorage.setItem("deflang","eng");}
+    );
+	
+}
+
+
+</script>
+
+<script>
+var src = 'js/' + window.localStorage.getItem("deflang") + '.js';
+var script = jQuery('<script/>').attr('src', src).appendTo('head');
+</script>
+</body>
+</html>
