@@ -13,11 +13,32 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body style="background-image:url(img/bg.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
-<div id="logo"><img src="img/logo.png" /></div>
-<div class="button green">
-   <img src="img/btn_green.png" />
-   <div class="centered" id="play" onclick="location.href='game.html'">Play</div>
-</div>
+
+<p id="score">0</p>
+<a onclick="test()">salva</a>
+<a onclick="canc()">cancella</a>
+<script>
+function test() {
+	localStorage.setItem("money_save",start);
+	console.log(localStorage.getItem("money_save"));
+}
+function canc() {
+	localStorage.removeItem("money_save");
+}
+
+var start = (localStorage.getItem("money_save")!==null) ? parseInt(localStorage.getItem("money_save")) : 999;
+var speed = 1;
+$(document).ready(function () {
+    go();
+    setInterval(function () {
+        go();
+    }, speed);
+});
+function go() {
+    $("#score").html(start.toLocaleString());
+    start += 1;
+}
+</script>
 
 <!--<p style="font-family: 'Carter One', cursive; font-size: 48px; -webkit-text-stroke: 2px green;">TEST</p>
 <p style="font-family: 'Skranji', cursive; font-size: 48px">TEST</p>
@@ -26,22 +47,11 @@
 <script>
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
-	document.addEventListener("pause", onPause, false);
-    navigator.globalization.getPreferredLanguage(
-        function (language) { 
-		    if (language.value == "it-IT") {
-				    window.localStorage.setItem("deflang","ita");
-					var script= document.createElement('script');
-                    script.type= 'text/javascript';
-                    script.src= 'js/' + window.localStorage.getItem("deflang") + '.js';
-                    document.body.appendChild(script);
-				} else {
-					window.localStorage.setItem("deflang","eng");
-				} 
-			},
-        function () {window.localStorage.setItem("deflang","eng");}
-    );
-	
+	document.addEventListener("pause", onPause, false);	
+}
+
+function onPause() {
+	localStorage.setItem("money_save",start);
 }
 </script>
 
