@@ -53,13 +53,13 @@ function onDeviceReady() {
 function onPause() {
 	localStorage.setItem("money_save",start);
 }
-window.onunload = function () {
+document.onunload = function () {
 	localStorage.setItem("money_save",start);
 }
 </script>
 
 <script>
-var src = 'js/' + window.localStorage.getItem("deflang") + '.js';
+var src = 'js/' + localStorage.getItem("deflang") + '.js';
 var script = jQuery('<script/>').attr('src', src).appendTo('head');
 </script>
 </body>
