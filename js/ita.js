@@ -1,4 +1,4 @@
-if (document.getElementById("tabB") !== null) { document.getElementById("tabB").innerHTML = 'Profili'; }
+if (document.getElementById("play") !== null) { document.getElementById("play").innerHTML = 'Gioca'; }
 if (document.getElementById("opzioni") !== null){ document.getElementById("opzioni").innerHTML = 'Opzioni';}
 if (document.getElementById("unitmisura") !== null){ document.getElementById("unitmisura").innerHTML = 'Unità di misura:';}
 if (document.getElementById("saveopt") !== null){ document.getElementById("saveopt").value = 'Salva';}

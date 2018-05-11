@@ -1,4 +1,4 @@
-if (document.getElementById("tabB") !== null) { document.getElementById("tabB").innerHTML = 'Profiles'; }
+if (document.getElementById("play") !== null) { document.getElementById("play").innerHTML = 'Play'; }
 if (document.getElementById("opzioni") !== null){document.getElementById("opzioni").innerHTML = 'Options'; }
 if (document.getElementById("unitmisura") !== null){document.getElementById("unitmisura").innerHTML = 'Unit of measure'; }
 if (document.getElementById("saveopt") !== null){document.getElementById("saveopt").value = 'Save'; }
