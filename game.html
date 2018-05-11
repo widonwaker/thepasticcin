@@ -53,6 +53,9 @@ function onDeviceReady() {
 function onPause() {
 	localStorage.setItem("money_save",start);
 }
+window.onunload = function () {
+	localStorage.setItem("money_save",start);
+}
 </script>
 
 <script>
