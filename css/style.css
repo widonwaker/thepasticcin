@@ -1,4 +1,11 @@
 /* CSS Document */
+/* latin */
+@font-face {
+  font-family: 'Skranji';
+  font-style: normal;
+  font-weight: 700;
+  src: url(fonts/OZpGg_dtriVFNerMW4eBhlvHwQ.woff2) format('woff2');
+}
 html,body {
    height: 100%;
    margin: 0;
@@ -19,7 +26,7 @@ html,body {
 .button {
     position: relative;
     text-align: center;
-	font-family: 'Carter One', cursive; 
+	font-family: 'Carter One', cursive !important; 
 	color: white;	
 	font-size: 32px;
 }
@@ -47,7 +54,7 @@ html,body {
 .moneybar {
 	position: relative;
     text-align: center;
-	font-family: 'Skranji';
+	font-family: 'Skranji', cursive !important; 
 	color: white;	
 	/*font-size: 24px;*/
 	width: 50%;
