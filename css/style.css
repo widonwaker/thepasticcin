@@ -4,7 +4,8 @@
   font-family: 'Skranji';
   font-style: normal;
   font-weight: 700;
-  src: url('/css/fonts/OZpGg_dtriVFNerMW4eBhlvHwQ.woff2') format('woff2');
+  src: url('fonts/skranji-bold.ttf') format('truetype'),
+  url('fonts/OZpGg_dtriVFNerMW4eBhlvHwQ.woff2') format('woff2');
 }
 /* latin */
 @font-face {
