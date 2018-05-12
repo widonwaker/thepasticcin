@@ -19,7 +19,7 @@ html,body {
 .button {
     position: relative;
     text-align: center;
-	font-family: 'Carter One', cursive !important; 
+	font-family: 'Carter One', cursive; 
 	color: white;	
 	font-size: 32px;
 }
@@ -47,7 +47,7 @@ html,body {
 .moneybar {
 	position: relative;
     text-align: center;
-	font-family: 'Skranji', cursive !important; 
+	font-family: 'Skranji';
 	color: white;	
 	/*font-size: 24px;*/
 	width: 50%;
