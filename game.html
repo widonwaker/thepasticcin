@@ -14,9 +14,15 @@
 </head>
 <body style="background-image:url(img/bg.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
 
-<p id="score">0</p>
-<a onclick="test()">salva</a>
-<a onclick="canc()">cancella</a>
+<div class="moneybar">
+   <img class="top-left-bar" src="img/money_base.png" />
+   <img class="top-left-bar" src="img/money_inside.png" />
+   <img class="top-left-bar" src="img/money_add.png" />
+   <img class="empty" src="img/empty.png" />
+   <div class="moneyscore brown" id="score">0</div>
+</div>
+
+<!--<a onclick="canc()">cancella</a>-->
 <script>
 function test() {
 	localStorage.setItem("money_save",start);
@@ -26,8 +32,8 @@ function canc() {
 	localStorage.removeItem("money_save");
 }
 
-var start = (localStorage.getItem("money_save")!==null) ? parseInt(localStorage.getItem("money_save")) : 999;
-var speed = 1;
+var start = (localStorage.getItem("money_save")!==null) ? parseInt(localStorage.getItem("money_save")) : 1;
+var speed = 1000;
 $(document).ready(function () {
     go();
     setInterval(function () {
@@ -61,6 +67,23 @@ document.onunload = function () {
 <script>
 var src = 'js/' + localStorage.getItem("deflang") + '.js';
 var script = jQuery('<script/>').attr('src', src).appendTo('head');
+</script>
+
+<script>
+flexFont = function () {
+    var divs = document.getElementsByClassName("moneybar");
+    for(var i = 0; i < divs.length; i++) {
+        var relFontsize = divs[i].offsetWidth*0.09;
+        divs[i].style.fontSize = relFontsize+'px';
+    }
+};
+
+window.onload = function(event) {
+    flexFont();
+};
+window.onresize = function(event) {
+    flexFont();
+};
 </script>
 </body>
 </html>

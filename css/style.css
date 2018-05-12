@@ -13,6 +13,9 @@ html,body {
 	margin-left:auto;
 	margin-right:auto;
 }
+.none {
+	display: none;
+}
 .button {
     position: relative;
     text-align: center;
@@ -23,9 +26,35 @@ html,body {
 .green {
 	text-shadow: 3px 0 0 #157506, -3px 0 0 #157506, 0 3px 0 #157506, 0 -3px 0 #157506, 2px 2px #157506, -2px -2px 0 #157506, 2px -2px 0 #157506, -2px 2px 0 #157506;
 }
+.brown {
+	text-shadow: 3px 0 0 #442204, -3px 0 0 #442204, 0 3px 0 #442204, 0 -3px 0 #442204, 2px 2px #442204, -2px -2px 0 #442204, 2px -2px 0 #442204, -2px 2px 0 #442204;
+}
 .centered {
     position: absolute;
     top: 45%;
     left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+}
+.top-left-bar {
+    position: absolute;
+    left: 2%;
+    top: 2%;
+	width: 100%;
+}
+.empty { 
+    width: 100%;
+}
+.moneybar {
+	position: relative;
+    text-align: center;
+	font-family: 'Skranji', cursive; 
+	color: white;	
+	/*font-size: 24px;*/
+	width: 40%;
+}
+.moneyscore {
+    position: absolute;
+    top: 60%;
+    right: 15%;
     -webkit-transform: translate(-50%, -50%);
 }
