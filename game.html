@@ -17,7 +17,6 @@
 <div class="moneybar">
    <img class="top-left-bar" src="img/money_base.png" />
    <img class="top-left-bar" src="img/money_inside.png" />
-   <img class="top-left-bar" src="img/money_add.png" />
    <img class="empty" src="img/empty.png" />
    <div class="moneyscore brown" id="score">0</div>
 </div>
@@ -32,7 +31,7 @@ function canc() {
 	localStorage.removeItem("money_save");
 }
 
-var start = (localStorage.getItem("money_save")!==null) ? parseInt(localStorage.getItem("money_save")) : 1;
+var start = (localStorage.getItem("money_save")!==null) ? parseInt(localStorage.getItem("money_save")) : 999999999;
 var speed = 1000;
 $(document).ready(function () {
     go();
@@ -41,6 +40,15 @@ $(document).ready(function () {
     }, speed);
 });
 function go() {
+	if (start>9) $('.moneyscore').css("right", "1%");
+	if (start>99) $('.moneyscore').css("right", "-1%");
+	if (start>999) $('.moneyscore').css("right", "-4%");
+	if (start>9999) $('.moneyscore').css("right", "-7%");
+	if (start>99999) $('.moneyscore').css("right", "-10%");
+	if (start>999999) $('.moneyscore').css("right", "-13%");
+	if (start>9999999) $('.moneyscore').css("right", "-16%");
+	if (start>99999999) $('.moneyscore').css("right", "-19%");
+	if (start>999999999) $('.moneyscore').css("right", "-27%");
     $("#score").html(start.toLocaleString());
     start += 1;
 }

@@ -50,11 +50,11 @@ html,body {
 	font-family: 'Skranji', cursive; 
 	color: white;	
 	/*font-size: 24px;*/
-	width: 40%;
+	width: 50%;
 }
 .moneyscore {
     position: absolute;
-    top: 60%;
-    right: 15%;
+    top: 70%;
+    right: 2%;
     -webkit-transform: translate(-50%, -50%);
 }
