@@ -4,21 +4,21 @@
   font-family: 'Skranji';
   font-style: normal;
   font-weight: 700;
-  src: url(fonts/OZpGg_dtriVFNerMW4eBhlvHwQ.woff2) format('woff2');
+  src: url('/css/fonts/OZpGg_dtriVFNerMW4eBhlvHwQ.woff2') format('woff2');
 }
 /* latin */
 @font-face {
   font-family: 'Carter One';
   font-style: normal;
   font-weight: 400;
-  src: url(fonts/q5uCsoe5IOB2-pXv9UcNExN8hA.woff2) format('woff2');
+  src: url('/css/fonts/q5uCsoe5IOB2-pXv9UcNExN8hA.woff2') format('woff2');
 }
 /* latin */
 @font-face {
   font-family: 'Averia Sans Libre';
   font-style: italic;
   font-weight: 300;
-  src: url(fonts/ga6caxZG_G5OvCf_rt7FH3B6BHLMEdVLKisSH5DdKg.woff2) format('woff2');
+  src: url('/css/fonts/ga6caxZG_G5OvCf_rt7FH3B6BHLMEdVLKisSH5DdKg.woff2') format('woff2');
 }
 
 html,body {
