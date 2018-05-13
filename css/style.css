@@ -35,6 +35,8 @@ html,body {
 }
 @media only screen and (min-height: 800px) {
     #game {
+	width: 1600px;
+	height: 1600px;    
 	background-size:cover;
     }
 }
