@@ -23,7 +23,7 @@
   src: url('fonts/ga6caxZG_G5OvCf_rt7FH3B6BHLMEdVLKisSH5DdKg.woff2') format('woff2');
 }
 
-body {
+html,body {
    padding: 0;
    margin: 0;
 }
@@ -31,6 +31,7 @@ body {
 	width: 800px;
 	height: 800px;
 	background-image:url(../img/test.jpg); 
+	background-repeat: no-repeat;
 }
 #logo {
 	width: 100%;
@@ -73,7 +74,7 @@ body {
     width: 100%;
 }
 .moneybar {
-	position: relative;
+	position: fixed;
     text-align: center;
 	font-family: 'Skranji', cursive !important; 
 	color: white;	
