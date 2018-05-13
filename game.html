@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
-<body style="background-image:url(img/bg.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+<body>
+<div id="game">
 
 <div class="moneybar">
    <img class="top-left-bar" src="img/money_base.png" />
@@ -16,6 +17,7 @@
    <div class="moneyscore brown" id="score">0</div>
 </div>
 
+</div>
 <!--<a onclick="canc()">cancella</a>-->
 <script>
 function test() {
@@ -26,7 +28,7 @@ function canc() {
 	localStorage.removeItem("money_save");
 }
 
-var start = (localStorage.getItem("money_save")!==null) ? parseInt(localStorage.getItem("money_save")) : 1564654;
+var start = (localStorage.getItem("money_save")!==null) ? parseInt(localStorage.getItem("money_save")) : 1;
 var speed = 1000;
 $(document).ready(function () {
     go();

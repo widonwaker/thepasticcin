@@ -28,6 +28,13 @@ html,body {
    margin: 0;
    overflow: hidden;
 }
+#game {
+	width: 100%;
+	height: 100%;
+	background-image:url(../img/test.jpg); 
+	background-size: 1000px 1000px; 
+	background-repeat: no-repeat;
+}
 #logo {
 	width: 100%;
 }
