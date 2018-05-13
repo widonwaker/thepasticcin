@@ -26,12 +26,14 @@
 html,body {
    padding: 0;
    margin: 0;
+   overflow: hidden;
 }
 #game {
 	width: 800px;
 	height: 800px;
 	background-image:url(../img/test.jpg); 
 	background-repeat: no-repeat;
+	overflow: scroll;
 }
 @media only screen and (min-height: 800px) {
     #game {
