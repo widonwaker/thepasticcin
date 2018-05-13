@@ -32,17 +32,6 @@ body {
 	height: 800px;
 	background-image:url(../img/test.jpg); 
 }
-@media only screen and (min-height: 800px) {
-    #game {
-	   width: 1600px;
-	   height: 1600px;    
-	   background-size:cover;
-    }
-	.factory {
-	   top: 360px;
-	   left: 460px;
-    }
-}
 #logo {
 	width: 100%;
 }
@@ -101,4 +90,15 @@ body {
 	position: absolute;
 	top: 180px;
 	left: 230px;
+}
+@media only screen and (min-height: 800px) {
+    #game {
+	   width: 1600px;
+	   height: 1600px;    
+	   background-size:cover;
+    }
+	.factory {
+	   top: 360px;
+	   left: 460px;
+    }
 }
