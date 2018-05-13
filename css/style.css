@@ -23,10 +23,9 @@
   src: url('fonts/ga6caxZG_G5OvCf_rt7FH3B6BHLMEdVLKisSH5DdKg.woff2') format('woff2');
 }
 
-html,body {
-   height: 100%;
+body {
+   padding: 0;
    margin: 0;
-   overflow: hidden;
 }
 #game {
 	width: 800px;
