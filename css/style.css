@@ -23,7 +23,7 @@
   src: url('fonts/ga6caxZG_G5OvCf_rt7FH3B6BHLMEdVLKisSH5DdKg.woff2') format('woff2');
 }
 
-html,body {
+body {
    padding: 0;
    margin: 0;
 }
@@ -31,7 +31,6 @@ html,body {
 	width: 800px;
 	height: 800px;
 	background-image:url(../img/test.jpg); 
-	background-repeat: no-repeat;
 }
 @media only screen and (min-height: 800px) {
     #game {
