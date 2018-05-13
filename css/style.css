@@ -30,10 +30,16 @@ html,body {
    overflow-y: hidden;
 }
 #game {
-	width: 2000px;
-	height: 2000px;
+	width: 800px;
+	height: 800px;
 	background-image:url(../img/test.jpg); 
 	background-repeat: no-repeat;
+}
+@media only screen and (min-height: 800px) {
+    #game {
+        width: 1600px;
+	height: 1600px;
+    }
 }
 #logo {
 	width: 100%;
