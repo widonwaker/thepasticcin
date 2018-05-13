@@ -31,8 +31,6 @@ body {
 	width: 800px;
 	height: 800px;
 	background-image:url(../img/test.jpg); 
-	background-attachment: scroll;
-	background-repeat: no-repeat;
 }
 #logo {
 	width: 100%;
