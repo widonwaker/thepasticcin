@@ -90,6 +90,8 @@ body {
 	position: absolute;
 	top: 180px;
 	left: 230px;
+	width: 270px;
+	height: 270px;
 }
 @media only screen and (min-height: 800px) {
     #game {
@@ -100,5 +102,7 @@ body {
 	.factory {
 	   top: 360px;
 	   left: 460px;
+	   width: 540px;
+	   height: 540px;
     }
 }
