@@ -55,8 +55,17 @@ body {
 .green {
 	text-shadow: 3px 0 0 #157506, -3px 0 0 #157506, 0 3px 0 #157506, 0 -3px 0 #157506, 2px 2px #157506, -2px -2px 0 #157506, 2px -2px 0 #157506, -2px 2px 0 #157506;
 }
+.green-soft {
+	text-shadow: 2px 2px #157506, -2px -2px 0 #157506, 2px -2px 0 #157506, -2px 2px 0 #157506;
+}
 .brown {
 	text-shadow: 3px 0 0 #442204, -3px 0 0 #442204, 0 3px 0 #442204, 0 -3px 0 #442204, 2px 2px #442204, -2px -2px 0 #442204, 2px -2px 0 #442204, -2px 2px 0 #442204;
+}
+.brown-soft {
+	text-shadow: 2px 2px #442204, -2px -2px 0 #442204, 2px -2px 0 #442204, -2px 2px 0 #442204;
+}
+.grey {
+	text-shadow: 3px 0 0 #8b8b8b, -3px 0 0 #8b8b8b, 0 3px 0 #8b8b8b, 0 -3px 0 #8b8b8b, 2px 2px #8b8b8b, -2px -2px 0 #8b8b8b, 2px -2px 0 #8b8b8b, -2px 2px 0 #8b8b8b;
 }
 .centered {
     position: absolute;
@@ -110,9 +119,9 @@ body {
 }*/
 .panel {
 	width: 85%;
-	height: 65%;
+	height: 73%;
 	position: fixed;
-	top: 55%;
+	top: 57%;
 	left: 50%;
 	-webkit-transform: translate(-50%, -50%);
 	background-image:url(../img/panel/panel.png); 
@@ -164,6 +173,39 @@ body {
 	height: 12%;
 	top: 70%;
 	left: 28%;
+}
+.panel .upgrade {
+	bottom: 4%;
+	left: 50%;
+	-webkit-transform: translate(-50%);
+	position: absolute;
+	width: 100%;
+}
+.panel .btn-upgrade {
+	top: 55%;
+	left: 52%;
+	width: 100%;
+}
+.panel .container .btn-buy {
+	position: fixed;
+	width: 25%;
+	height: 30%;
+	top: 50%;
+	right: 4%;
+}
+.btn-buy img {
+	width:100%;
+}
+.panel .btn-cost {
+	top: 50%;
+	left: 65%;
+	width: 100%;
+}
+.panel-close {
+    width: 10%;
+    position: absolute;
+    right: 0;
+    top: 5%;
 }
 	
 @media only screen and (min-height: 800px) {
