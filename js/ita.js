@@ -1,2 +1,4 @@
 if (document.getElementById("play") !== null) { document.getElementById("play").innerHTML = 'Gioca'; }
-if ($('.ribbon').attr('src') !== null) { $('.ribbon').attr('src', 'img/panel/alloggi_ita.png'); }
+function loadRibbon() {
+   $('.ribbon').attr('src', 'img/panel/alloggi_ita.png'); 
+}
