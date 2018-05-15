@@ -6,11 +6,17 @@
 	<title>I Pasticcini</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+	// DA RIMUOVERE
+	//localStorage.setItem("deflang","ita");
+	</script>
 </head>
 <body>
 <div id="game">
 
-<img class="factory" src="img/factory_max.png" onClick=""/>
+<img class="fabbrica" src="img/edifici/fabbrica5.png" onClick="FactoryUpgrade()"/>
+<img class="alloggi" src="img/edifici/alloggi5.png" onClick=""/>
+<!--<img class="trasporti" src="img/edifici/trasporto5.png" onClick=""/>-->
 
 <div class="moneybar">
    <img class="top-left-bar" src="img/money_base.png" />
@@ -19,7 +25,15 @@
    <div class="moneyscore brown" id="score">0</div>
 </div>
 
+</div>
 
+<div id="factory-upgrade" class="panel" style="display:none;">
+    <img class="ribbon" src="img/panel/alloggi_" />
+    <div class="container">
+       <div class="title brown">Coins</div>
+       <div class="desc">25% more qwefqwev</div>
+       <img class="skills" src="img/panel/skills_0.png" />
+    </div>
 </div>
 <!--<a onclick="canc()">cancella</a>-->
 <script>
@@ -34,10 +48,12 @@ function canc() {
 var start = (localStorage.getItem("money_save")!==null) ? parseInt(localStorage.getItem("money_save")) : 1;
 var speed = 1000;
 $(document).ready(function () {
+	if (start < 10) {
     go();
     setInterval(function () {
         go();
     }, speed);
+	}
 });
 function go() {
 	if (start>9) $('.moneyscore').css("right", "1%");
@@ -79,20 +95,39 @@ var script = jQuery('<script/>').attr('src', src).appendTo('head');
 </script>
 
 <script>
-flexFont = function () {
+function fontSize () {
     var divs = document.getElementsByClassName("moneybar");
     for(var i = 0; i < divs.length; i++) {
+		console.log('bar: '+divs[i].offsetWidth);
         var relFontsize = divs[i].offsetWidth*0.09;
         divs[i].style.fontSize = relFontsize+'px';
+	}
+		
+	var divs = document.getElementsByClassName("title");
+    for(var i = 0; i < divs.length; i++) {
+		console.log('title: '+divs[i].offsetWidth);
+        var relFontsize = divs[i].offsetHeight*1.09;
+        divs[i].style.fontSize = relFontsize+'px';	
+    }
+	
+	var divs = document.getElementsByClassName("desc");
+    for(var i = 0; i < divs.length; i++) {
+		console.log('title: '+divs[i].offsetWidth);
+        var relFontsize = divs[i].offsetHeight*1.09;
+        divs[i].style.fontSize = relFontsize+'px';	
     }
 };
 
 window.onload = function(event) {
-    flexFont();
+    fontSize();
 };
 window.onresize = function(event) {
-    flexFont();
+    fontSize();
 };
+
+function FactoryUpgrade() {
+	$("#factory-upgrade").show();
+}
 </script>
 </body>
 </html>
