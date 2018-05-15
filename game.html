@@ -27,7 +27,7 @@
 
 </div>
 
-<div id="factory-upgrade" class="panel" style="display:none;">
+<div id="factory-upgrade" class="panel" >
     <img id="alloggi-rib" class="ribbon" />
     <div class="container">
        <div class="title brown">Coins</div>
@@ -117,6 +117,7 @@ function fontSize () {
 
 window.onload = function(event) {
     fontSize();
+	loadRibbon();
 };
 window.onresize = function(event) {
     fontSize();
