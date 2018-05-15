@@ -1,2 +1,2 @@
 if (document.getElementById("play") !== null) { document.getElementById("play").innerHTML = 'Play'; }
-$('.ribbon').attr('src', 'img/panel/alloggi_eng.png');
+if ($('.ribbon').attr('src') !== null) { $('.ribbon').attr('src', 'img/panel/alloggi_eng.png'); }
