@@ -28,7 +28,7 @@
 </div>
 
 <div id="factory-upgrade" class="panel" style="display:none;">
-    <img class="ribbon" src="img/panel/alloggi_" />
+    <img id="alloggi-rib" class="ribbon" src="img/panel/alloggi_" />
     <div class="container">
        <div class="title brown">Coins</div>
        <div class="desc">25% more qwefqwev</div>
@@ -98,21 +98,18 @@ var script = jQuery('<script/>').attr('src', src).appendTo('head');
 function fontSize () {
     var divs = document.getElementsByClassName("moneybar");
     for(var i = 0; i < divs.length; i++) {
-		console.log('bar: '+divs[i].offsetWidth);
         var relFontsize = divs[i].offsetWidth*0.09;
         divs[i].style.fontSize = relFontsize+'px';
 	}
 		
 	var divs = document.getElementsByClassName("title");
     for(var i = 0; i < divs.length; i++) {
-		console.log('title: '+divs[i].offsetWidth);
         var relFontsize = divs[i].offsetHeight*1.09;
         divs[i].style.fontSize = relFontsize+'px';	
     }
 	
 	var divs = document.getElementsByClassName("desc");
     for(var i = 0; i < divs.length; i++) {
-		console.log('title: '+divs[i].offsetWidth);
         var relFontsize = divs[i].offsetHeight*1.09;
         divs[i].style.fontSize = relFontsize+'px';	
     }
