@@ -142,8 +142,8 @@ body {
 	position: relative;
 	left: 50%;
 	-webkit-transform: translate(-50%, -50%);
-	top: 15%;
-	width: 80%;
+	top: 10%;
+	width: 82%;
 	height: 18%;
 	margin-bottom: 3%;
 }
@@ -152,27 +152,27 @@ body {
     text-align: left;
 	font-family: 'Carter One', cursive; 
 	color: white;	
-	left: 28%;
-	top: 10%;
-	width: 80%;
-	height: 20%;
+	left: 22%;
+	margin-top: 5%;
+	width: 31%;
+	height: 30%;
 }
 .panel .container .desc {
 	position: relative;
-	top: 23%;
+	margin-top: 2%;
     text-align: left;
 	font-family: 'Averia Sans Libre', cursive; 
 	color: #3a230a;	
-	left: 28%;
-	width: 80%;
-	height: 15%;
+	left: 22%;
+	width: 41%;
+	height: 13%;
 }
 .panel .skills {
 	position: fixed;
-	width: 35%;
-	height: 12%;
+	width: 31%;
+	height: 15%;
 	top: 70%;
-	left: 28%;
+	left: 22%;
 }
 .panel .upgrade {
 	bottom: 4%;
@@ -188,23 +188,21 @@ body {
 }
 .panel .container .btn-buy {
 	position: fixed;
-	width: 25%;
-	height: 30%;
-	top: 50%;
-	right: 4%;
-}
-.btn-buy img {
-	width:100%;
+    width: 26.8%;
+    height: 39%;
+    top: 45%;
+    right: 4%;
+    background-image: url('../img/panel/btn_buy.png');
+    background-size: 100% 100%;
 }
 .panel .btn-cost {
-	top: 50%;
+	width: 90%;
 	left: 65%;
-	width: 100%;
 }
 .panel-close {
-    width: 10%;
+    width: 11%;
     position: absolute;
-    right: 0;
+    right: -3%;
     top: 5%;
 }
 	

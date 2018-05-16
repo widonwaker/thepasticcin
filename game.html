@@ -32,11 +32,18 @@
     <img class="panel-close" src="img/panel/decline.png" onClick='$("#factory-upgrade").hide();' />
     <div class="container">
        <div class="title brown-soft">Bramiti</div>
-       <div class="desc">25% more bramiti</div>
+       <div class="desc">5% more bramiti</div>
        <img class="skills" src="img/panel/skills_0.png" />
        <div class="btn-buy button green-soft">
-           <img src="img/panel/btn_buy.png" />
-           <div class="btn-cost centered" onclick="">50000</div>
+           <div class="btn-cost centered" onclick="">15</div>
+       </div>
+    </div>
+    <div class="container">
+       <div class="title brown-soft">Muggiti</div>
+       <div class="desc">2% meno muggiti</div>
+       <img class="skills" src="img/panel/skills_3.png" />
+       <div class="btn-buy button green-soft">
+           <div class="btn-cost centered" onclick="">123456</div>
        </div>
     </div>
     <div class="container">
@@ -44,17 +51,7 @@
        <div class="desc">25% meno muggiti</div>
        <img class="skills" src="img/panel/skills_3.png" />
        <div class="btn-buy button green-soft">
-           <img src="img/panel/btn_buy.png" />
-           <div class="btn-cost centered" onclick="">50000</div>
-       </div>
-    </div>
-    <div class="container">
-       <div class="title brown-soft">Muggiti</div>
-       <div class="desc">25% meno muggiti</div>
-       <img class="skills" src="img/panel/skills_3.png" />
-       <div class="btn-buy button green-soft">
-           <img src="img/panel/btn_buy.png" />
-           <div class="btn-cost centered" onclick="">50000</div>
+           <div class="btn-cost centered" onclick="">123987</div>
        </div>
     </div>
     <div class="upgrade button grey">
@@ -64,13 +61,12 @@
 </div>
 <!--<a onclick="canc()">cancella</a>-->
 <script>
-function test() {
+/*function test() {
 	localStorage.setItem("money_save",start);
-	console.log(localStorage.getItem("money_save"));
 }
 function canc() {
 	localStorage.removeItem("money_save");
-}
+}*/
 
 var start = (localStorage.getItem("money_save")!==null) ? parseInt(localStorage.getItem("money_save")) : 1;
 var speed = 1000;
@@ -127,19 +123,18 @@ function fontSize () {
 		
 	var divs = document.getElementsByClassName("title");
     for(var i = 0; i < divs.length; i++) {
-        var relFontsize = divs[i].offsetHeight*1.09;
+        var relFontsize = divs[i].offsetHeight*1.00;
         divs[i].style.fontSize = relFontsize+'px';	
     }
 	
 	var divs = document.getElementsByClassName("desc");
     for(var i = 0; i < divs.length; i++) {
-        var relFontsize = divs[i].offsetHeight*1.09;
-        divs[i].style.fontSize = relFontsize+'px';	
+        var relFontsize = divs[i].offsetHeight*0.90;
+        //divs[i].style.fontSize = relFontsize+'px';	
     }
 	
-	var divs = document.getElementsByClassName("btn-cost");
+	var divs = document.getElementsByClassName("btn-buy");
     for(var i = 0; i < divs.length; i++) {
-		console.log(divs[i].offsetWidth);
         var relFontsize = divs[i].offsetWidth*0.15;
         divs[i].style.fontSize = relFontsize+'px';	
     }
