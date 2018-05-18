@@ -71,6 +71,7 @@ function canc() {
 var start = (localStorage.getItem("money_save")!==null) ? parseInt(localStorage.getItem("money_save")) : 1;
 var speed = 1000;
 $(document).ready(function () {
+	alert(localStorage.getItem("deflang"));
 	if (start < 10) {
     go();
     setInterval(function () {
