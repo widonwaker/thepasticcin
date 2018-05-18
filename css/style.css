@@ -159,19 +159,20 @@ body {
 }
 .panel .container .desc {
 	position: relative;
-	margin-top: 2%;
+	margin-top: 3%;
     text-align: left;
 	font-family: 'Averia Sans Libre', cursive; 
 	color: #3a230a;	
 	left: 22%;
 	width: 41%;
 	height: 13%;
+	line-height: 70%;
 }
 .panel .skills {
 	position: fixed;
 	width: 31%;
 	height: 15%;
-	top: 70%;
+	top: 75%;
 	left: 22%;
 }
 .panel .upgrade {
@@ -188,8 +189,8 @@ body {
 }
 .panel .container .btn-buy {
 	position: fixed;
-    width: 26.8%;
-    height: 39%;
+    width: 26.82%;
+    height: 39.65%;
     top: 45%;
     right: 4%;
     background-image: url('../img/panel/btn_buy.png');
@@ -225,4 +226,15 @@ body {
 	   width: 540px;
 	   height: 540px;
     }
+}
+@media only screen and (max-height: 480px) {
+    .brown {
+	    text-shadow: none;
+    }
+    .brown-soft {
+	    text-shadow: none;
+    }
+	.green-soft {
+		text-shadow: none;
+	}
 }
