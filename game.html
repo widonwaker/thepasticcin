@@ -156,10 +156,14 @@ window.onresize = function(event) {
 function FactoryUpgrade() {
 	$("#factory-upgrade").show();
 	fontSize();
+	alert(localStorage.getItem("deflang"));
 	if (localStorage.getItem("deflang") == "eng") {
+		
 	    $('#alloggi-rib').attr('src', 'img/panel/alloggi_eng.png'); 
+		alert('inglese: '+$('#alloggi-rib').attr('src'));
 	} else if (localStorage.getItem("deflang") == "ita") {
 		$('#alloggi-rib').attr('src', 'img/panel/alloggi_ita.png'); 
+		alert('italiano: '+$('#alloggi-rib').attr('src'));
 	}
 }
 </script>
