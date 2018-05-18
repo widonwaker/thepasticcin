@@ -32,7 +32,7 @@
     <img class="panel-close" src="img/panel/decline.png" onClick='$("#factory-upgrade").hide();' />
     <div class="container">
        <div class="title brown-soft">Bramiti</div>
-       <div class="desc">5% more bramiti</div>
+       <div class="desc">+25% more bramits </div>
        <img class="skills" src="img/panel/skills_0.png" />
        <div class="btn-buy button green-soft">
            <div class="btn-cost centered" onclick="">15</div>
@@ -40,7 +40,7 @@
     </div>
     <div class="container">
        <div class="title brown-soft">Muggiti</div>
-       <div class="desc">2% meno muggiti</div>
+       <div class="desc">+240% mura rinforzate</div>
        <img class="skills" src="img/panel/skills_3.png" />
        <div class="btn-buy button green-soft">
            <div class="btn-cost centered" onclick="">123456</div>
@@ -48,7 +48,7 @@
     </div>
     <div class="container">
        <div class="title brown-soft">Muggiti</div>
-       <div class="desc">25% meno muggiti</div>
+       <div class="desc">+10%</div>
        <img class="skills" src="img/panel/skills_3.png" />
        <div class="btn-buy button green-soft">
            <div class="btn-cost centered" onclick="">123987</div>
@@ -71,7 +71,6 @@ function canc() {
 var start = (localStorage.getItem("money_save")!==null) ? parseInt(localStorage.getItem("money_save")) : 1;
 var speed = 1000;
 $(document).ready(function () {
-	alert(localStorage.getItem("deflang"));
 	if (start < 10) {
     go();
     setInterval(function () {
@@ -124,7 +123,7 @@ function fontSize () {
 		
 	var divs = document.getElementsByClassName("title");
     for(var i = 0; i < divs.length; i++) {
-        var relFontsize = divs[i].offsetHeight*1.00;
+        var relFontsize = divs[i].offsetHeight*0.95;
         divs[i].style.fontSize = relFontsize+'px';	
     }
 	
@@ -157,14 +156,10 @@ window.onresize = function(event) {
 function FactoryUpgrade() {
 	$("#factory-upgrade").show();
 	fontSize();
-	alert(localStorage.getItem("deflang"));
 	if (localStorage.getItem("deflang") == "eng") {
-		
 	    $('#alloggi-rib').attr('src', 'img/panel/alloggi_eng.png'); 
-		alert('inglese: '+$('#alloggi-rib').attr('src'));
 	} else if (localStorage.getItem("deflang") == "ita") {
 		$('#alloggi-rib').attr('src', 'img/panel/alloggi_ita.png'); 
-		alert('italiano: '+$('#alloggi-rib').attr('src'));
 	}
 }
 </script>
