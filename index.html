@@ -7,41 +7,36 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
-<body style="background-image:url(img/bg.jpg); background-size: 100% 100%; background-repeat: no-repeat;">
+<body style="background-image:url(img/bg.jpg); background-size: 100% 100%; background-repeat: no-repeat; overflow: hidden !important;">
 <div id="logo"><img src="img/logo.png" /></div>
 <div class="button green">
    <img src="img/btn_green.png" />
    <div class="centered" id="play" onclick="location.href='game.html'">Play</div>
 </div>
 
-<!--<p style="font-family: 'Carter One', cursive; font-size: 48px; -webkit-text-stroke: 2px green;">TEST</p>
-<p style="font-family: 'Skranji', cursive; font-size: 48px">TEST</p>
-<p style="font-family: 'Averia Sans Libre', cursive; font-size: 48px">TEST</p>-->
-
 <script>
 document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
-	document.addEventListener("pause", onPause, false);
     navigator.globalization.getPreferredLanguage(
         function (language) { 
 		    if (language.value == "it-IT") {
-				    window.localStorage.setItem("deflang","ita");
+				    localStorage.setItem("deflang","ita");
 					var script= document.createElement('script');
                     script.type= 'text/javascript';
-                    script.src= 'js/' + window.localStorage.getItem("deflang") + '.js';
+                    script.src= 'js/' + localStorage.getItem("deflang") + '.js';
                     document.body.appendChild(script);
 				} else {
-					window.localStorage.setItem("deflang","eng");
+					localStorage.setItem("deflang","eng");
 				} 
 			},
-        function () {window.localStorage.setItem("deflang","eng");}
+        function () {localStorage.setItem("deflang","eng");}
     );
 	
 }
 </script>
 
 <script>
-var src = 'js/' + window.localStorage.getItem("deflang") + '.js';
+var src = 'js/' + localStorage.getItem("deflang") + '.js';
 var script = jQuery('<script/>').attr('src', src).appendTo('head');
 </script>
 </body>
