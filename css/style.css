@@ -28,6 +28,9 @@ body {
    padding: 0;
    margin: 0;
 }
+a {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* rimuovi rettangolo grigio on touch su iOS */
+}
 #game {
 	width: 800px;
 	height: 800px;
@@ -66,6 +69,9 @@ body {
 }
 .grey {
 	text-shadow: 3px 0 0 #8b8b8b, -3px 0 0 #8b8b8b, 0 3px 0 #8b8b8b, 0 -3px 0 #8b8b8b, 2px 2px #8b8b8b, -2px -2px 0 #8b8b8b, 2px -2px 0 #8b8b8b, -2px 2px 0 #8b8b8b;
+}
+.grey-soft {
+	text-shadow: 2px 2px #8b8b8b, -2px -2px 0 #8b8b8b, 2px -2px 0 #8b8b8b, -2px 2px 0 #8b8b8b;
 }
 .centered {
     position: absolute;
@@ -206,6 +212,12 @@ body {
     right: -3%;
     top: 5%;
 }
+.icon {
+	position: absolute;
+    left: -2%;
+	top: 10%;
+    height: 80%;
+}
 	
 @media only screen and (min-height: 800px) {
     #game {
@@ -228,13 +240,10 @@ body {
     }
 }
 @media only screen and (max-height: 480px) {
-    .brown {
-	    text-shadow: none;
-    }
-    .brown-soft {
-	    text-shadow: none;
-    }
 	.green-soft {
+		text-shadow: none;
+	}
+	.grey-soft {
 		text-shadow: none;
 	}
 }

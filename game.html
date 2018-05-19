@@ -5,16 +5,16 @@
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>  
 	<title>I Pasticcini</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script>
 	// DA RIMUOVERE
-	//localStorage.setItem("deflang","ita");
+	localStorage.setItem("deflang","ita");
 	</script>
 </head>
 <body>
 <div id="game">
 
-<img class="fabbrica" src="img/edifici/fabbrica5.png" onClick="FactoryUpgrade()"/>
+<img class="fabbrica" src="img/edifici/fabbrica5.png" onClick="FactoryPanel()"/>
 <img class="alloggi" src="img/edifici/alloggi5.png" onClick=""/>
 <!--<img class="trasporti" src="img/edifici/trasporto5.png" onClick=""/>-->
 
@@ -27,13 +27,48 @@
 
 </div>
 
-<div id="factory-upgrade" class="panel" style="display:none;">
+<div id="factory-panel" class="panel" style="display:none;">
+    <img id="factory-rib" class="ribbon" />
+    <img class="panel-close" src="img/panel/decline.png" onClick="$('#factory-panel').hide();" />
+    <div id="power" class="container">
+       <img class="icon" src="img/power.png"/>
+       <div class="title brown"></div>
+       <div class="desc"></div>
+       <img class="skills" />
+       <div class="btn-buy button green-soft">
+           <div class="btn-cost centered" onclick="SingleUpgrade(this)">15</div>
+       </div>
+    </div>
+    <div id="machinery" class="container">
+       <div class="title brown">Macchinari</div>
+       <div class="desc">+240% efficiency</div>
+       <img class="skills" src="img/panel/skills_5.png" />
+       <div class="btn-buy button green-soft">
+           <div class="btn-cost centered" onclick="">1500</div>
+       </div>
+    </div>
+    <div class="container">
+       <div class="title brown">ND</div>
+       <div class="desc">NaN</div>
+       <img class="skills" src="img/panel/skills_5.png" />
+       <div class="btn-buy button green-soft">
+           <div class="btn-cost centered" onclick="">0</div>
+       </div>
+    </div>
+    <div class="upgrade button grey">
+       <img src="img/panel/btn_locked.png" style="width:60%;"/>
+       <div class="btn-upgrade centered" onclick="FactoryNext()"></div>
+    </div>
+</div>
+
+
+<div id="alloggi-upgrade" class="panel" style="display:none;">
     <img id="alloggi-rib" class="ribbon" />
-    <img class="panel-close" src="img/panel/decline.png" onClick='$("#factory-upgrade").hide();' />
+    <img class="panel-close" src="img/panel/decline.png" onClick='$("#alloggi-upgrade").hide();' />
     <div class="container">
        <div class="title brown-soft">Bramiti</div>
        <div class="desc">+25% more bramits </div>
-       <img class="skills" src="img/panel/skills_0.png" />
+       <img class="skills" src="img/panel/skills_5.png" />
        <div class="btn-buy button green-soft">
            <div class="btn-cost centered" onclick="">15</div>
        </div>
@@ -41,7 +76,7 @@
     <div class="container">
        <div class="title brown-soft">Muggiti</div>
        <div class="desc">+240% mura rinforzate</div>
-       <img class="skills" src="img/panel/skills_3.png" />
+       <img class="skills" src="img/panel/skills_4.png" />
        <div class="btn-buy button green-soft">
            <div class="btn-cost centered" onclick="">123456</div>
        </div>
@@ -49,34 +84,35 @@
     <div class="container">
        <div class="title brown-soft">Muggiti</div>
        <div class="desc">+10%</div>
-       <img class="skills" src="img/panel/skills_3.png" />
+       <img class="skills" src="img/panel/skills_5.png" />
        <div class="btn-buy button green-soft">
            <div class="btn-cost centered" onclick="">123987</div>
        </div>
     </div>
     <div class="upgrade button grey">
        <img src="img/panel/btn_locked.png" style="width:60%;"/>
-       <div class="btn-upgrade centered" onclick="">Upgrade</div>
+       <div class="btn-upgrade centered" onclick="AlloggiNext()">Upgrade</div>
     </div>
 </div>
-<!--<a onclick="canc()">cancella</a>-->
+<a onclick="canc()" style="position:fixed; left: 50%; top: 50%;">cancella</a>
 <script>
-/*function test() {
-	localStorage.setItem("money_save",start);
-}
 function canc() {
-	localStorage.removeItem("money_save");
-}*/
+	localStorage.clear();
+}
+if (localStorage.getItem("money_save")===null) localStorage.setItem("money_save",1);
+if (localStorage.getItem("pasticcino")===null) localStorage.setItem("pasticcino",1);
+if (localStorage.getItem("fabbrica")===null) localStorage.setItem("fabbrica",1000);
+if (localStorage.getItem("orsettini")===null) localStorage.setItem("orsettini",1);
+if (localStorage.getItem("powerskills")===null) localStorage.setItem("powerskills",0);
 
-var start = (localStorage.getItem("money_save")!==null) ? parseInt(localStorage.getItem("money_save")) : 1;
-var speed = 1000;
+var start = parseInt(localStorage.getItem("money_save"));
+var speed = (parseInt(localStorage.getItem("fabbrica"))-parseInt(localStorage.getItem("orsettini")) )*0.59*0.99*0.99;
+console.log(speed);
 $(document).ready(function () {
-	if (start < 10) {
     go();
     setInterval(function () {
         go();
     }, speed);
-	}
 });
 function go() {
 	if (start>9) $('.moneyscore').css("right", "1%");
@@ -87,9 +123,9 @@ function go() {
 	if (start>999999) $('.moneyscore').css("right", "-13%");
 	if (start>9999999) $('.moneyscore').css("right", "-16%");
 	if (start>99999999) $('.moneyscore').css("right", "-19%");
-	if (start>999999999) $('.moneyscore').css("right", "-25%");
+	if (start>999999999) start = 999999999;
     $("#score").html(start.toLocaleString());
-    start += 1;
+    start += parseInt(localStorage.getItem("pasticcino"));
 }
 </script>
 
@@ -123,7 +159,7 @@ function fontSize () {
 		
 	var divs = document.getElementsByClassName("title");
     for(var i = 0; i < divs.length; i++) {
-        var relFontsize = divs[i].offsetHeight*0.95;
+        var relFontsize = divs[i].offsetHeight*0.93;
         divs[i].style.fontSize = relFontsize+'px';	
     }
 	
@@ -152,16 +188,7 @@ window.onload = function(event) {
 window.onresize = function(event) {
     fontSize();
 };
-
-function FactoryUpgrade() {
-	$("#factory-upgrade").show();
-	fontSize();
-	if (localStorage.getItem("deflang") == "eng") {
-	    $('#alloggi-rib').attr('src', 'img/panel/alloggi_eng.png'); 
-	} else if (localStorage.getItem("deflang") == "ita") {
-		$('#alloggi-rib').attr('src', 'img/panel/alloggi_ita.png'); 
-	}
-}
 </script>
+<script src="js/functions.js"></script>
 </body>
 </html>

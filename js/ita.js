@@ -1,5 +1,4 @@
 if (document.getElementById("play") !== null) { document.getElementById("play").innerHTML = 'Gioca'; }
-function loadRibbon() {
-   $('.ribbon').attr('src', 'img/panel/alloggi_ita.png'); 
-   alert('x');
-}
+var power_title = 'Corrente';
+var power_desc = 'corrente';
+var btn_upgrade = 'Potenzia';
