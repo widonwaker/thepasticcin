@@ -149,7 +149,7 @@ a {
 	left: 50%;
 	-webkit-transform: translate(-50%, -50%);
 	top: 10%;
-	width: 82%;
+	width: 82.65%;
 	height: 18%;
 	margin-bottom: 3%;
 }
@@ -196,7 +196,7 @@ a {
 .panel .container .btn-buy {
 	position: fixed;
     width: 26.82%;
-    height: 39.65%;
+    height: 36%;
     top: 45%;
     right: 4%;
     background-image: url('../img/panel/btn_buy.png');
