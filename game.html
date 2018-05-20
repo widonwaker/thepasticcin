@@ -14,8 +14,8 @@
 <body>
 <div id="game">
 
-<img class="fabbrica" src="img/edifici/fabbrica5.png" onClick="FactoryPanel()"/>
-<img class="alloggi" src="img/edifici/alloggi5.png" onClick=""/>
+<img class="fabbrica" src="img/edifici/fabbrica1.png" onClick="FactoryPanel()"/>
+<img class="alloggi" src="img/edifici/alloggi1.png" onClick=""/>
 <!--<img class="trasporti" src="img/edifici/trasporto5.png" onClick=""/>-->
 
 <div class="moneybar">
@@ -29,14 +29,14 @@
 
 <div id="factory-panel" class="panel" style="display:none;">
     <img id="factory-rib" class="ribbon" />
-    <img class="panel-close" src="img/panel/decline.png" onClick="$('#factory-panel').hide();" />
+    <img class="panel-close" src="img/panel/decline.png" onClick="$('#factory-panel').fadeOut();" />
     <div id="power" class="container">
        <img class="icon" src="img/power.png"/>
        <div class="title brown"></div>
        <div class="desc"></div>
        <img class="skills" />
        <div class="btn-buy button green-soft">
-           <div class="btn-cost centered" onclick="SingleUpgrade(this)">15</div>
+           <div class="btn-cost centered" onclick="SingleUpgrade(this, 'energy')"></div>
        </div>
     </div>
     <div id="machinery" class="container">
@@ -44,7 +44,7 @@
        <div class="desc">+240% efficiency</div>
        <img class="skills" src="img/panel/skills_5.png" />
        <div class="btn-buy button green-soft">
-           <div class="btn-cost centered" onclick="">1500</div>
+           <div class="btn-cost centered" onclick="">794106</div>
        </div>
     </div>
     <div class="container">
@@ -99,22 +99,41 @@
 function canc() {
 	localStorage.clear();
 }
-if (localStorage.getItem("money_save")===null) localStorage.setItem("money_save",1);
+if (localStorage.getItem("money_save")===null || localStorage.getItem("money_save")=="NaN") localStorage.setItem("money_save",1);
 if (localStorage.getItem("pasticcino")===null) localStorage.setItem("pasticcino",1);
 if (localStorage.getItem("fabbrica")===null) localStorage.setItem("fabbrica",1000);
 if (localStorage.getItem("orsettini")===null) localStorage.setItem("orsettini",1);
 if (localStorage.getItem("powerskills")===null) localStorage.setItem("powerskills",0);
+if (localStorage.getItem("energy")===null) localStorage.setItem("energy",2);	
+if (localStorage.getItem("energy_val")===null) localStorage.setItem("energy_val",30);
+
+var factorydivs = document.getElementById("factory-panel").getElementsByClassName("btn-cost");
+
+var energy = parseInt(localStorage.getItem("energy")) / 100;
 
 var start = parseInt(localStorage.getItem("money_save"));
-var speed = (parseInt(localStorage.getItem("fabbrica"))-parseInt(localStorage.getItem("orsettini")) )*0.59*0.99*0.99;
-console.log(speed);
+var speed = (parseInt(localStorage.getItem("fabbrica"))-parseInt(localStorage.getItem("orsettini")) )*(1-energy)*(1-0.1)*(1-0.1);
+
 $(document).ready(function () {
-    go();
     setInterval(function () {
-        go();
-    }, speed);
-});
-function go() {
+        for(var i = 0; i < factorydivs.length; i++) {
+	        CheckSingleUpgrade(factorydivs[i]);
+	    }
+    }, 2000);
+	  go();
+      timer = setInterval(function(p) {
+          go(p);
+          }, speed, speed);
+      });
+	  
+function go(p) {
+	if(p && p != speed) {
+        clearInterval(timer);
+        timer = setInterval(function(p) {
+           go(p);
+        }, speed, speed);
+    }
+	
 	if (start>9) $('.moneyscore').css("right", "1%");
 	if (start>99) $('.moneyscore').css("right", "-1%");
 	if (start>999) $('.moneyscore').css("right", "-4%");
@@ -139,7 +158,7 @@ function onDeviceReady() {
 function onPause() {
 	localStorage.setItem("money_save",start);
 }
-document.onunload = function () {
+window.onunload = function () {
 	localStorage.setItem("money_save",start);
 }
 </script>
