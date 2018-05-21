@@ -14,7 +14,7 @@
 <body>
 <div id="game">
 
-<img class="fabbrica" src="img/edifici/fabbrica1.png" onClick="FactoryPanel()"/>
+<img id="factory" class="fabbrica" onClick="FactoryPanel()"/>
 <img class="alloggi" src="img/edifici/alloggi1.png" onClick=""/>
 <!--<img class="trasporti" src="img/edifici/trasporto5.png" onClick=""/>-->
 
@@ -40,11 +40,11 @@
        </div>
     </div>
     <div id="machinery" class="container">
-       <div class="title brown">Macchinari</div>
-       <div class="desc">+240% efficiency</div>
-       <img class="skills" src="img/panel/skills_5.png" />
+       <div class="title brown"></div>
+       <div class="desc"></div>
+       <img class="skills" />
        <div class="btn-buy button green-soft">
-           <div class="btn-cost centered" onclick="">794106</div>
+           <div class="btn-cost centered" onclick="SingleUpgrade(this, 'machinery')"></div>
        </div>
     </div>
     <div class="container">
@@ -57,7 +57,7 @@
     </div>
     <div class="upgrade button grey">
        <img src="img/panel/btn_locked.png" style="width:60%;"/>
-       <div class="btn-upgrade centered" onclick="FactoryNext()"></div>
+       <div class="btn-upgrade centered" onclick="FactoryNext(this)"></div>
     </div>
 </div>
 
@@ -99,32 +99,39 @@
 function canc() {
 	localStorage.clear();
 }
-if (localStorage.getItem("money_save")===null || localStorage.getItem("money_save")=="NaN") localStorage.setItem("money_save",1);
+if (localStorage.getItem("factory")===null) localStorage.setItem("factory","img/edifici/fabbrica1.png");
+if (localStorage.getItem("money_save")===null || localStorage.getItem("money_save")=="NaN") localStorage.setItem("money_save",3000);
 if (localStorage.getItem("pasticcino")===null) localStorage.setItem("pasticcino",1);
 if (localStorage.getItem("fabbrica")===null) localStorage.setItem("fabbrica",1000);
 if (localStorage.getItem("orsettini")===null) localStorage.setItem("orsettini",1);
-if (localStorage.getItem("powerskills")===null) localStorage.setItem("powerskills",0);
-if (localStorage.getItem("energy")===null) localStorage.setItem("energy",2);	
+if (localStorage.getItem("energyskills")===null) localStorage.setItem("energyskills",0);
+if (localStorage.getItem("machineryskills")===null) localStorage.setItem("machineryskills",0);
+if (localStorage.getItem("energy")===null) localStorage.setItem("energy",0);	
 if (localStorage.getItem("energy_val")===null) localStorage.setItem("energy_val",30);
+if (localStorage.getItem("machinery")===null) localStorage.setItem("machinery",0);	
+if (localStorage.getItem("machinery_val")===null) localStorage.setItem("machinery_val",20);
 
 var factorydivs = document.getElementById("factory-panel").getElementsByClassName("btn-cost");
 
 var energy = parseInt(localStorage.getItem("energy")) / 100;
+var machinery = parseInt(localStorage.getItem("machinery")) / 100;
 
 var start = parseInt(localStorage.getItem("money_save"));
-var speed = (parseInt(localStorage.getItem("fabbrica"))-parseInt(localStorage.getItem("orsettini")) )*(1-energy)*(1-0.1)*(1-0.1);
+var speed = (parseInt(localStorage.getItem("fabbrica"))-parseInt(localStorage.getItem("orsettini")) )*(1-energy)*(1-machinery)*(1);
 
 $(document).ready(function () {
-    setInterval(function () {
-        for(var i = 0; i < factorydivs.length; i++) {
-	        CheckSingleUpgrade(factorydivs[i]);
-	    }
-    }, 2000);
+	document.getElementById("factory").src = localStorage.getItem("factory");
 	  go();
       timer = setInterval(function(p) {
           go(p);
           }, speed, speed);
       });
+	  
+    setInterval(function () {
+        for(var i = 0; i < factorydivs.length; i++) {
+	        CheckSingleUpgrade(factorydivs[i]);
+	    }
+    }, 2000);	  
 	  
 function go(p) {
 	if(p && p != speed) {

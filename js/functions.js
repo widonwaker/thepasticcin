@@ -11,8 +11,10 @@ function CheckUpgradeAvailable(panel) {
 			id.getElementsByClassName("upgrade")[0].classList.add("green");
 			id.getElementsByClassName("btn-upgrade")[0].style.top="45%";
 			id.getElementsByClassName("btn-upgrade")[0].style.left="50%";
+			return true;
 		}
     }
+	return false;
 }
 
 
@@ -26,7 +28,7 @@ function CheckSingleUpgrade(elem) {
 		elem.parentElement.classList.add("green-soft");
 		elem.parentElement.classList.remove("grey-soft");
 	}
-	CheckUpgradeAvailable("factory-panel");
+	CheckUpgradeAvailable(elem.parentElement.parentElement.parentElement.id);
 }
 
 
@@ -43,8 +45,14 @@ function FactoryPanel() {
 	//CheckUpgradeAvailable("factory-panel");
 	document.getElementById("power").getElementsByClassName("title")[0].innerHTML = power_title;
 	document.getElementById("power").getElementsByClassName("desc")[0].innerHTML = '+'+localStorage.getItem("energy")+'% '+power_desc;
-	document.getElementById("power").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("powerskills")+'.png';
+	document.getElementById("power").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("energyskills")+'.png';
 	document.getElementById("power").getElementsByClassName("btn-cost")[0].innerHTML = localStorage.getItem("energy_val");
+	
+	document.getElementById("machinery").getElementsByClassName("title")[0].innerHTML = machinery_title;
+	document.getElementById("machinery").getElementsByClassName("desc")[0].innerHTML = '+'+localStorage.getItem("machinery")+'% '+machinery_desc;
+	document.getElementById("machinery").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("machineryskills")+'.png';
+	document.getElementById("machinery").getElementsByClassName("btn-cost")[0].innerHTML = localStorage.getItem("machinery_val");
+	
 	document.getElementsByClassName("btn-upgrade")[0].innerHTML = btn_upgrade;
 	var divs = document.getElementById("factory-panel").getElementsByClassName("btn-cost");
 	for(var i = 0; i < divs.length; i++) {
@@ -57,22 +65,28 @@ function FactoryPanel() {
 function SingleUpgrade(elem, skill) {
 	if (parseInt(elem.innerHTML) < start && elem.parentElement.parentElement.getElementsByClassName("skills")[0].src.indexOf('skills_5') === -1) {
 		var current = parseInt(localStorage.getItem(skill+"_val"));
-		start = start - current;
-		localStorage.setItem(skill+"_val", current*1.5);
-		var up = parseInt(localStorage.getItem("powerskills"))+1;
-		localStorage.setItem("powerskills",up);
-		elem.innerHTML = parseInt(localStorage.getItem(skill+"_val"));
+		start = start - current; // scala costo upgrade
+		localStorage.setItem(skill+"_val", current*1.5); // setta nuovo costo upgrade
+		var up = parseInt(localStorage.getItem(skill+"skills"))+1;
+		localStorage.setItem(skill+"skills",up); // aggiungi skill in skillbar
+		elem.innerHTML = parseInt(localStorage.getItem(skill+"_val")); 
 		elem.parentElement.parentElement.getElementsByClassName("skills")[0].src = 'img/panel/skills_'+up+'.png';
 		var perc = parseInt(localStorage.getItem(skill));
-		localStorage.setItem(skill,perc+2);
+		localStorage.setItem(skill,perc+2); // setta nuovo valore upgrade
 		var desc = elem.parentElement.parentElement.getElementsByClassName("desc")[0];
 		desc.innerHTML = '+'+localStorage.getItem(skill)+'% '+power_desc;
-        speed = (parseInt(localStorage.getItem("fabbrica"))-parseInt(localStorage.getItem("orsettini")) )*(1-(parseInt(localStorage.getItem("energy")) / 100))*(1-0.1)*(1-0.1);
+        speed = (parseInt(localStorage.getItem("fabbrica"))-parseInt(localStorage.getItem("orsettini")) )*(1-(parseInt(localStorage.getItem("energy")) / 100))*(1-(parseInt(localStorage.getItem("machinery")) / 100))*(1);
 	}
 	CheckSingleUpgrade(elem);
 }
 
 
-function FactoryNext() {
-	//FactoryCheckUpgradeAvailable();
+function FactoryNext(elem) {
+	var num = document.getElementById("factory").src.match(/\d+/g).map(Number);
+	console.log(num[0]);
+	if(CheckUpgradeAvailable(elem.parentElement.parentElement.id)===true && num[0]!==5) {    
+	    num = num[0]+1;
+		localStorage.setItem("factory","img/edifici/fabbrica"+num+".png");
+	    document.getElementById("factory").src ="img/edifici/fabbrica"+num+".png";
+	}
 }
