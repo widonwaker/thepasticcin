@@ -14,13 +14,17 @@
 <body>
 <div id="game">
 
-<img id="factory" class="fabbrica" onClick="FactoryPanel()"/>
+<audio id="bgmusic" src="sound/bgmusic.mp3" loop></audio>
+<audio id="levelup" src="sound/Powerup.wav" ></audio>
+<audio id="skillup" src="sound/Skillup.wav" ></audio>
+
+<img id="factory" class="fabbrica" onClick="FactoryPanel()"/> <img id="factorylevelup" src="img/levelup.png" style="display:none;"/>
 <img class="alloggi" src="img/edifici/alloggi1.png" onClick=""/>
 <!--<img class="trasporti" src="img/edifici/trasporto5.png" onClick=""/>-->
 
 <div class="moneybar">
-   <img class="top-left-bar" src="img/money_base.png" />
-   <img class="top-left-bar" src="img/money_inside.png" />
+   <img class="top-left-bar" src="img/gold_base.png" />
+   <img class="top-left-bar" src="img/gold_inside.png" />
    <img class="empty" src="img/empty.png" />
    <div class="moneyscore brown" id="score">0</div>
 </div>
@@ -57,7 +61,7 @@
     </div>
     <div class="upgrade button grey">
        <img src="img/panel/btn_locked.png" style="width:60%;"/>
-       <div class="btn-upgrade centered" onclick="FactoryNext(this)"></div>
+       <div class="btn-upgrade centered" onclick="BuildingNext(this)"></div>
     </div>
 </div>
 
@@ -99,7 +103,8 @@
 function canc() {
 	localStorage.clear();
 }
-if (localStorage.getItem("factory")===null) localStorage.setItem("factory","img/edifici/fabbrica1.png");
+
+if (localStorage.getItem("factory")===null) localStorage.setItem("factory","img/edifici/factory1.png");
 if (localStorage.getItem("money_save")===null || localStorage.getItem("money_save")=="NaN") localStorage.setItem("money_save",3000);
 if (localStorage.getItem("pasticcino")===null) localStorage.setItem("pasticcino",1);
 if (localStorage.getItem("fabbrica")===null) localStorage.setItem("fabbrica",1000);
@@ -121,6 +126,7 @@ var speed = (parseInt(localStorage.getItem("fabbrica"))-parseInt(localStorage.ge
 
 $(document).ready(function () {
 	document.getElementById("factory").src = localStorage.getItem("factory");
+	document.getElementById("bgmusic").play();
 	  go();
       timer = setInterval(function(p) {
           go(p);
