@@ -100,9 +100,7 @@ function SingleUpgrade(elem, skill) {
 function BuildingNext(elem) {
 	var mainid = elem.parentElement.parentElement.id;
 	var matches = mainid.match(/\S+(?=-)/g);
-	alert(document.getElementById(matches).src);
 	var num = document.getElementById(matches).src.match(/\d+/g).map(Number);
-	alert(num[num.length-1]);
 	if(CheckUpgradeAvailable(elem.parentElement.parentElement.id)===true && num[0]!==5) {    
 	    num = (num[num.length-1]+1).toString();
 		localStorage.setItem(matches,"img/edifici/"+matches+num+".png");
