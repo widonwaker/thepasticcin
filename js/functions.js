@@ -101,12 +101,12 @@ function BuildingNext(elem) {
 	var mainid = elem.parentElement.parentElement.id;
 	var matches = mainid.match(/\S+(?=-)/g);
 	var num = document.getElementById(matches).src.match(/\d+/g).map(Number);
+	alert(num);
 	if(CheckUpgradeAvailable(elem.parentElement.parentElement.id)===true && num[0]!==5) {    
-	    num = num[0]+1;
+	    num = (num[0]+1).toString();
 		localStorage.setItem(matches,"img/edifici/"+matches+num+".png");
 		alert("img/edifici/"+matches+num+".png");
 	    document.getElementById(matches).src ="img/edifici/"+matches+num+".png";
-		alert(document.getElementById(matches).src);
 		document.getElementById("levelup").play();
 		ClearUpgrade(elem);
 		$('#'+mainid).hide();
