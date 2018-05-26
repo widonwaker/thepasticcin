@@ -6,6 +6,7 @@
 	<title>I Pasticcini</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery.min.js"></script>
+    <script src="js/settings.js"></script>
     <script>
 	// DA RIMUOVERE
 	localStorage.setItem("deflang","ita");
@@ -27,6 +28,17 @@
    <img class="top-left-bar" src="img/gold_inside.png" />
    <img class="empty" src="img/empty.png" />
    <div class="moneyscore brown" id="score">0</div>
+</div>
+
+<div class="gemsbar">
+   <img class="top-right-bar" src="img/gem_base.png" />
+   <img class="top-right-bar" src="img/gem_inside.png" />
+   <img class="empty" src="img/empty.png" />
+   <div class="gems brown" id="gems">0</div>
+</div>
+
+<div id="right-screen" style="position:fixed; display:block; top: 10%; right: 1%;">
+   <!-- append here -->
 </div>
 
 </div>
@@ -104,18 +116,6 @@ function canc() {
 	localStorage.clear();
 }
 
-if (localStorage.getItem("factory")===null) localStorage.setItem("factory","img/edifici/factory1.png");
-if (localStorage.getItem("money_save")===null || localStorage.getItem("money_save")=="NaN") localStorage.setItem("money_save",3000);
-if (localStorage.getItem("pasticcino")===null) localStorage.setItem("pasticcino",1);
-if (localStorage.getItem("fabbrica")===null) localStorage.setItem("fabbrica",1000);
-if (localStorage.getItem("orsettini")===null) localStorage.setItem("orsettini",1);
-if (localStorage.getItem("energyskills")===null) localStorage.setItem("energyskills",0);
-if (localStorage.getItem("machineryskills")===null) localStorage.setItem("machineryskills",0);
-if (localStorage.getItem("energy")===null) localStorage.setItem("energy",0);	
-if (localStorage.getItem("energy_val")===null) localStorage.setItem("energy_val",30);
-if (localStorage.getItem("machinery")===null) localStorage.setItem("machinery",0);	
-if (localStorage.getItem("machinery_val")===null) localStorage.setItem("machinery_val",20);
-
 var factorydivs = document.getElementById("factory-panel").getElementsByClassName("btn-cost");
 
 var energy = parseInt(localStorage.getItem("energy")) / 100;
@@ -126,7 +126,7 @@ var speed = (parseInt(localStorage.getItem("fabbrica"))-parseInt(localStorage.ge
 
 $(document).ready(function () {
 	document.getElementById("factory").src = localStorage.getItem("factory");
-	document.getElementById("bgmusic").play();
+	checkBgmusic();
 	  go();
       timer = setInterval(function(p) {
           go(p);
@@ -188,6 +188,12 @@ function fontSize () {
         var relFontsize = divs[i].offsetWidth*0.09;
         divs[i].style.fontSize = relFontsize+'px';
 	}
+	
+	var divs = document.getElementsByClassName("gemsbar");
+    for(var i = 0; i < divs.length; i++) {
+        var relFontsize = divs[i].offsetWidth*0.12;
+        divs[i].style.fontSize = relFontsize+'px';
+	}
 		
 	var divs = document.getElementsByClassName("title");
     for(var i = 0; i < divs.length; i++) {
@@ -216,6 +222,7 @@ function fontSize () {
 
 window.onload = function(event) {
     fontSize();
+	$('#right-screen').append('<img src="img/play.png" class="right-icon" />');
 };
 window.onresize = function(event) {
     fontSize();

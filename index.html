@@ -5,13 +5,31 @@
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>  
 	<title>I Pasticcini</title>
     <link rel="stylesheet" href="css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/jquery.min.js"></script>
 </head>
-<body style="background-image:url(img/bg.jpg); background-size: 100% 100%; background-repeat: no-repeat; overflow: hidden !important;">
+<body style="height: 100%; width: 100%; background-image:url(img/bg.jpg); background-size: 100% 100%; background-repeat: no-repeat; overflow: hidden !important;">
 <div id="logo"><img src="img/logo.png" /></div>
-<div class="button green">
-   <img src="img/btn_green.png" />
+<div class="button green" style="width: 50%; left: 50%; -webkit-transform: translate(-50%);">
+   <img src="img/btn_green.png" style="width: 100%;"/>
    <div class="centered" id="play" onclick="location.href='game.html'">Play</div>
+</div>
+<div id="settings">
+  <div id="pre-inner" class="pre-inner">
+    <div id="settings_inner" class="settings_inner none">
+       <img src="img/settings_base.png" style="position: absolute; width: 15%; height: 40%; bottom: 0;">   
+       <img id="bgmusic" class="options" src="img/bgmusic.png" onClick="setMusic(this)">
+       <img id="sound" class="options" src="img/sound.png" onClick="setMusic(this)">
+       <img class="options" src="img/info.png" onClick="showInfo()">
+    </div>
+  </div>
+   <img src="img/empty_circle_button.png" style="position:absolute; left: 0; bottom: 0; width: 15%">
+   <img id="ingranaggio" src="img/settings.png"> 
+</div>
+<div class="option_info none">
+   <span class="brown"></span>
+</div>
+<div class="panel_info none">
+   <span class="brown"></span>
 </div>
 
 <script>
@@ -33,6 +51,98 @@ function onDeviceReady() {
     );
 	
 }
+	
+function fontSize() {
+	
+	var divs = document.getElementsByClassName("button");
+    for(var i = 0; i < divs.length; i++) {
+        var relFontsize = divs[i].offsetWidth*0.15;
+        divs[i].style.fontSize = relFontsize+'px';	
+    }
+	
+	var divs = document.getElementsByClassName("option_info");
+    for(var i = 0; i < divs.length; i++) {
+        var relFontsize = divs[i].offsetHeight*0.15;
+        divs[i].style.fontSize = relFontsize+'px';	
+    }
+	
+	var divs = document.getElementsByClassName("panel_info");
+    for(var i = 0; i < divs.length; i++) {
+        var relFontsize = divs[i].offsetWidth*0.08;
+        divs[i].style.fontSize = relFontsize+'px';	
+    }
+}
+	
+function showInfo() {
+	$('.panel_info').show();
+		$(".panel_info > span").text("Developed by Stefano Iodice<br>asd");
+		fontSize();
+	// contatti, email, sviluppatore, versione gioco
+}
+	
+function setMusic(elem) {
+	if (localStorage.getItem(elem.id) == "On") {
+        localStorage.setItem(elem.id,"Off");
+		elem.src ="img/"+elem.id+"_ban.png";
+		var text ="";
+		if (elem.id == "bgmusic") text = musicOff;
+		if (elem.id == "sound") text = soundOff;
+		$('.option_info').show();
+		$(".option_info > span").text(text);
+		fontSize();
+	        setTimeout(function() {
+                $('.option_info').fadeOut();
+            }, 1000);
+	} else {
+	    localStorage.setItem(elem.id,"On");
+		elem.src ="img/"+elem.id+".png";
+		var text ="";
+		if (elem.id == "bgmusic") text = musicOn;
+		if (elem.id == "sound") text = soundOn;
+		$('.option_info').show();
+		$(".option_info > span").text(text);
+		fontSize();
+	        setTimeout(function() {
+                $('.option_info').fadeOut();
+            }, 1000);
+	}
+}
+
+function checkOptions() {
+	if (localStorage.getItem("bgmusic") == "Off") {
+		document.getElementById("settings_inner").getElementsByClassName("options")[0].src ="img/bgmusic_ban.png";
+	} else {
+		document.getElementById("settings_inner").getElementsByClassName("options")[0].src ="img/bgmusic.png";		
+	}
+	if (localStorage.getItem("sound") == "Off") {
+		document.getElementById("settings_inner").getElementsByClassName("options")[1].src ="img/sound_ban.png";
+	} else {
+		document.getElementById("settings_inner").getElementsByClassName("options")[1].src ="img/sound.png";
+	}
+}
+
+    $('#ingranaggio').click(function(){
+       $('#ingranaggio').toggleClass('rotateOn');
+	   if($('#settings_inner').hasClass('slide-down') === false && $('#settings_inner').hasClass('none') === false) {
+		   $('#settings_inner').removeClass('slide-up');
+	       $('#settings_inner').addClass('slide-down');
+	       setTimeout(function() {
+                    $('#settings_inner').addClass('none');
+                }, 400);
+	   } else {
+	       $('#settings_inner').removeClass('none');
+		   $('#settings_inner').removeClass('slide-down');
+	       $('#settings_inner').addClass('slide-up');
+	   }
+	   checkOptions();
+    });
+	
+window.onload = function(event) {
+    fontSize();
+};
+window.onresize = function(event) {
+    fontSize();
+};	
 </script>
 
 <script>
