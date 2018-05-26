@@ -12,14 +12,14 @@
 <div id="logo"><img src="img/logo.png" /></div>
 <div class="button green" style="width: 50%; left: 50%; -webkit-transform: translate(-50%);">
    <img src="img/btn_green.png" style="width: 100%;"/>
-   <div class="centered" id="play" onclick="location.href='game.html'">Play</div>
+   <div class="centered" id="play" onclick="location.href='game.html'"></div>
 </div>
 <div id="settings">
   <div id="pre-inner" class="pre-inner">
     <div id="settings_inner" class="settings_inner none">
        <img src="img/settings_base.png" style="position: absolute; width: 100%; height: 40%; bottom: 0;">   
        <img id="bgmusic" class="options" onClick="setMusic(this)">
-       <img id="sound" class="options" onClick="setMusic(this)">
+       <img src="img/sound_ban.png" class="options" id="sound" onClick="setMusic(this)">
        <img class="options" src="img/info.png" onClick="showInfo()">
     </div>
   </div>
@@ -46,6 +46,10 @@ function onDeviceReady() {
                     document.body.appendChild(script);
 				} else {
 					localStorage.setItem("deflang","eng");
+					var script= document.createElement('script');
+                    script.type= 'text/javascript';
+                    script.src= 'js/' + localStorage.getItem("deflang") + '.js';
+                    document.body.appendChild(script);
 				} 
 			},
         function () {localStorage.setItem("deflang","eng");}
@@ -140,6 +144,7 @@ function checkOptions() {
 	
 window.onload = function(event) {
     fontSize();
+	alert(musicOn);
 };
 window.onresize = function(event) {
     fontSize();

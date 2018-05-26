@@ -91,7 +91,7 @@ function SingleUpgrade(elem, skill) {
 		var desc = elem.parentElement.parentElement.getElementsByClassName("desc")[0];
 		desc.innerHTML = '+'+localStorage.getItem(skill)+'% '+window[skill+'_desc'];
         speed = (parseInt(localStorage.getItem("fabbrica"))-parseInt(localStorage.getItem("orsettini")) )*(1-(parseInt(localStorage.getItem("energy")) / 100))*(1-(parseInt(localStorage.getItem("machinery")) / 100))*(1);
-		document.getElementById("skillup").play();
+		checkSound("skillup");
 	}
 	CheckSingleUpgrade(elem);
 }
@@ -105,7 +105,7 @@ function BuildingNext(elem) {
 	    num = (num[num.length-1]+1).toString();
 		localStorage.setItem(matches,"img/edifici/"+matches+num+".png");
 	    document.getElementById(matches).src ="img/edifici/"+matches+num+".png";
-		document.getElementById("levelup").play();
+		checkSound("levelup");
 		ClearUpgrade(elem);
 		$('#'+mainid).hide();
 		$('#'+matches+'levelup').show();
@@ -113,4 +113,11 @@ function BuildingNext(elem) {
                 $('#'+matches+'levelup').fadeOut();
             }, 1000);
 	    }
+}
+
+function checkBgmusic () {
+	if (localStorage.getItem("bgmusic") != "Off") document.getElementById("bgmusic").play();
+}
+function checkSound (sound) {
+	if (localStorage.getItem("sound") != "Off") document.getElementById(sound).play();
 }
