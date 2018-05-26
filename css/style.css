@@ -69,7 +69,124 @@ input
     text-align: center;
 	font-family: 'Carter One', cursive; 
 	color: white;	
-	font-size: 32px;
+	/*font-size: 32px;*/
+}
+#settings {
+	position:absolute; 
+	bottom: 5%; 
+	left: 5%; 
+	width: 100%;
+}
+.pre-inner {
+	width: 100%;
+    height: 90vh;
+    bottom: 30%;
+    overflow: hidden;
+    position: absolute;
+}
+.settings_inner {
+	position: absolute;
+    width: 100%;
+    height: 90vh;
+    bottom: 0;
+	z-index: 0;
+}
+.slide-up {
+	animation: slide-up 0.5s;
+}
+.slide-down {
+	animation: slide-down 0.9s;
+}
+@keyframes slide-up {
+	from {
+		bottom: -40vh;
+	} to {
+		bottom: 0;
+	}
+}
+@keyframes slide-down {
+	from {
+		bottom: 0;
+	} to {
+		bottom: -40vh;
+	}
+}
+.options {
+	position: relative; 
+	width: 11%; 
+	display: block;
+	left: 2%;
+	margin-bottom: 4%;
+	top: 56vh;
+}
+.option_info {
+	position: absolute;
+	background-image: url(../img/panel/panel_info.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	width: 75%;
+	height: 25%;
+	text-align: center;
+	z-index: 9;
+}
+.panel_info {
+	position: absolute;
+	background-image: url(../img/panel/panel.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	left: 50%;
+	top: 40%;
+	-webkit-transform: translate(-50%, -50%);
+	width: 75%;
+	height: 55%;
+	text-align: center;
+	z-index: 9;
+}
+.option_info span {
+	z-index: 9;
+	font-family: 'Carter One', cursive !important; 
+	color: white;	
+	position: absolute;
+	left: 50%;
+	top: 40%;
+	-webkit-transform: translate(-50%, -50%);
+	width: 90%;
+}
+.panel_info span {
+	z-index: 9;
+	font-family: 'Carter One', cursive !important; 
+	color: white;	
+	position: absolute;
+	left: 50%;
+	top: 20%;
+	-webkit-transform: translate(-50%, -50%);
+	width: 90%;
+}
+#ingranaggio {
+	position: relative; 
+	width: 15%; 
+	bottom: 0;
+	-webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+    -webkit-transition: all 0.4s ease-in;
+    -moz-transition: all 0.4s ease-in;
+    -o-transition: all 0.4s ease-in;
+    transition: all 0.4s ease-in;
+}
+.rotateOn{
+	-webkit-transform: rotate(90deg)!important;
+    -moz-transform: rotate(90deg)!important;
+    -ms-transform: rotate(90deg)!important;
+    transform: rotate(90deg)!important;
+    -webkit-transition: all 0.4s ease-in;
+    -moz-transition: all 0.4s ease-in;
+    -o-transition: all 0.4s ease-in;
+    transition: all 0.4s ease-in;
 }
 .green {
 	text-shadow: 3px 0 0 #157506, -3px 0 0 #157506, 0 3px 0 #157506, 0 -3px 0 #157506, 2px 2px #157506, -2px -2px 0 #157506, 2px -2px 0 #157506, -2px 2px 0 #157506;
@@ -101,6 +218,27 @@ input
     top: 4%;
 	width: 100%;
 }
+.top-right-bar {
+    position: absolute;
+    right: 2%;
+    top: 11%;
+	width: 100%;
+}
+.right-icon {
+	position: relative; 
+	display: block; 
+	width: 30%; 
+	left: 65%; 
+	margin-bottom: 10%;
+	animation: slide-in 3s;
+}
+@keyframes slide-in {
+	from {
+		top: 100vh;
+	} to {
+		top: 0;
+	}
+}
 .empty { 
     width: 100%;
 }
@@ -116,6 +254,20 @@ input
     position: absolute;
     top: 70%;
     right: 2%;
+    -webkit-transform: translate(-50%, -50%);
+}
+.gemsbar {
+	position: fixed;
+    text-align: center;
+	font-family: 'Skranji', cursive !important; 
+	color: white;	
+	width: 40%;
+	right: 0;
+}
+.gems {
+	position: absolute;
+    top: 87%;
+    right: 5%;
     -webkit-transform: translate(-50%, -50%);
 }
 .alloggi {
@@ -245,6 +397,10 @@ input
 	   width: 1600px;
 	   height: 1600px;    
 	   background-size:cover;
+    }
+	#factorylevelup {
+	   top: 260px;
+	   left: 600px;
     }
 	.alloggi {
 	   top: 630px;
