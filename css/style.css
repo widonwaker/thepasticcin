@@ -78,7 +78,7 @@ input
 	width: 100%;
 }
 .pre-inner {
-	width: 100%;
+	width: 15%;
     height: 90vh;
     bottom: 30%;
     overflow: hidden;
@@ -129,10 +129,10 @@ input
 }
 .options {
 	position: relative; 
-	width: 11%; 
+	width: 72%; 
 	display: block;
-	left: 2%;
-	margin-bottom: 4%;
+	left: 14%;
+	margin-bottom: 20%;
 	top: 56vh;
 }
 .option_info {
@@ -247,8 +247,16 @@ input
 	left: 65%; 
 	margin-bottom: 10%;
 	animation: slide-in 3s;
+	-webkit-animation: slide-in 3s;
 }
 @keyframes slide-in {
+	from {
+		top: 100vh;
+	} to {
+		top: 0;
+	}
+}
+@-webkit-keyframes slide-in {
 	from {
 		top: 100vh;
 	} to {
