@@ -30,7 +30,7 @@ document.addEventListener('deviceready', function () {
   Appodeal.disableLocationPermissionCheck();
   Appodeal.initialize(appKey, Appodeal.REWARDED_VIDEO | Appodeal.INTERSTITIAL | Appodeal.BANNER);
   Appodeal.muteVideosIfCallsMuted(true);
-  Appodeal.setTesting(true);
-  Appodeal.show(Appodeal.BANNER_TOP); 
+  //Appodeal.setTesting(true);
+  //Appodeal.show(Appodeal.BANNER_TOP); 
   
 }, false);
