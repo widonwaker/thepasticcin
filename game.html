@@ -133,12 +133,8 @@ var speed = (parseInt(localStorage.getItem("fabbrica"))-parseInt(localStorage.ge
 
 $(document).ready(function () {
 Appodeal.isLoaded(Appodeal.REWARDED_VIDEO, function(result){
-    if (result===true) alert('caricato video');
-	if (result===false) alert('errore video');
-});	
-Appodeal.isLoaded(Appodeal.BANNER_TOP, function(result){
-    if (result===true) alert('caricato video');
-	if (result===false) alert('errore video');
+    if (result===true) { alert('caricato video'); }
+	if (result===false) { alert('errore video'); }
 });	
 	
 	document.getElementById("factory").src = localStorage.getItem("factory");
