@@ -138,11 +138,10 @@ function videoReward (elem) {
 function dismiss(elem) {
 	$('#'+elem.parentElement.id).hide();
 	$('#'+rewardType.id).remove();
-          Appodeal.show(Appodeal.BANNER_BOTTOM);
 }
 
 function startReward() {
-          Appodeal.show(Appodeal.REWARDED_VIDEO | Appodeal.INTERSTITIAL);
+          Appodeal.show(Appodeal.REWARDED_VIDEO);
 }
 
 
@@ -159,11 +158,11 @@ Appodeal.setRewardedVideoCallbacks( function(container) {
             // your code
        } else if (container.event == 'onFinished') {
             // container also returns "name" and "amount" variables with reward amount and currency name you have set for your application
-            alert( "Appodeal. Rewarded. " + container.event + ", amount: " + container.amount + ", name: " + container.name);
-            // your code
+            //alert( "Appodeal. Rewarded. " + container.event + ", amount: " + container.amount + ", name: " + container.name);
+            alert('finito);
        } else if (container.event == 'onClosed') {
             // container also returns "finished" variable with boolean value for indicating if video was finished
-            alert("Appodeal. Rewarded. " + container.event + ", finished: " + container.finished);
-            // your code
+            //alert("Appodeal. Rewarded. " + container.event + ", finished: " + container.finished);
+            alert('chiuso');
        }
 });
