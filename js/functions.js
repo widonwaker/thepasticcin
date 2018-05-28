@@ -138,17 +138,11 @@ function videoReward (elem) {
 function dismiss(elem) {
 	$('#'+elem.parentElement.id).hide();
 	$('#'+rewardType.id).remove();
-	    setTimeout(
-        function() {
           Appodeal.show(Appodeal.BANNER_BOTTOM);
-         }, 3000);
 }
 
 function startReward() {
-	    setTimeout(
-        function() {
           Appodeal.show(Appodeal.REWARDED_VIDEO | Appodeal.INTERSTITIAL);
-         }, 3000);
 }
 
 
