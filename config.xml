@@ -52,6 +52,7 @@
 	
 	<!-- <plugin name="onesignal-cordova-plugin" spec="^2.1.1" source="npm" />
 	   <plugin spec="https://github.com/appodeal/appodeal-cordova-plugin.git" source="git"/>-->
+	 <plugin name="cordova-plugin-multidex" source="npm" />
 	 <plugin name="cordova-android-play-services-gradle-release" source="npm" />
 	 <plugin name="com.appodeal.plugin" source="npm" />
 
