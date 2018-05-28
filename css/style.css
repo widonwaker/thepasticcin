@@ -69,6 +69,9 @@ input
     text-align: center;
 	font-family: 'Carter One', cursive; 
 	color: white;	
+	width: 50%; 
+	left: 50%; 
+	-webkit-transform: translate(-50%);
 	/*font-size: 32px;*/
 }
 #settings {
@@ -136,7 +139,7 @@ input
 	top: 56vh;
 }
 .option_info {
-	position: absolute;
+	position: fixed;
 	background-image: url(../img/panel/panel_info.png);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
@@ -149,7 +152,7 @@ input
 	z-index: 9;
 }
 .panel_info {
-	position: absolute;
+	position: fixed;
 	background-image: url(../img/panel/panel.png);
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
@@ -243,11 +246,11 @@ input
 .right-icon {
 	position: relative; 
 	display: block; 
-	width: 30%; 
-	left: 65%; 
+	width: 37%; 
+	left: 60%; 
 	margin-bottom: 10%;
-	animation: slide-in 3s;
-	-webkit-animation: slide-in 3s;
+	animation: slide-in 1.5s;
+	-webkit-animation: slide-in 1.5s;
 }
 @keyframes slide-in {
 	from {
@@ -415,7 +418,18 @@ input
 	top: 130px;
 	left: 300px;
 }
-	
+.decline {
+	position: absolute;
+	bottom: 0;
+	left: 20%;
+	width: 20%;
+}
+.accept {
+	position: absolute;
+	bottom: 0;
+	right: 20%;
+	width: 20%;
+}
 @media only screen and (min-height: 800px) {
     #game {
 	   width: 1600px;
