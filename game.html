@@ -113,7 +113,7 @@
 
 <div id="askreward" class="option_info none">
    <span class="brown"></span>
-   <img class="decline" src="img/panel/decline.png" onClick="dismiss(this)" />
+   <img class="decline" src="img/panel/decline.png" onClick="Appodeal.show(Appodeal.BANNER_TOP); " />
    <img class="accept" src="img/panel/accept.png" onClick="startReward()" />
 </div>
 
@@ -132,10 +132,6 @@ var start = parseInt(localStorage.getItem("money_save"));
 var speed = (parseInt(localStorage.getItem("fabbrica"))-parseInt(localStorage.getItem("orsettini")) )*(1-energy)*(1-machinery)*(1);
 
 $(document).ready(function () {
-Appodeal.isLoaded(Appodeal.REWARDED_VIDEO, function(result){
-    if (result===true) { alert('caricato video'); }
-	if (result===false) { alert('errore video'); }
-});	
 	
 	document.getElementById("factory").src = localStorage.getItem("factory");
 	checkBgmusic();
