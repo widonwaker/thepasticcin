@@ -138,6 +138,7 @@ function videoReward (elem) {
 function dismiss(elem) {
 	$('#'+elem.parentElement.id).hide();
 	$('#'+rewardType.id).remove();
+	Appodeal.show(Appodeal.BANNER_TOP);
 }
 
 function startReward() {
