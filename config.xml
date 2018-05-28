@@ -15,7 +15,7 @@
         Stefano Iodice
     </author>
     
-	 <preference name="phonegap-version" value="cli-6.3.0" /> 
+	 <preference name="phonegap-version" value="cli-6.5.0" /> 
 	
 	<preference name="permissions"                value="none"/>
 
@@ -40,7 +40,7 @@
 	<preference name="android-minSdkVersion"      value="15" />
 	<preference name="DisallowOverscroll"         value="true"/>
 
-	<plugin name="cordova-plugin-android-support-v4" source="npm" />
+
 	<plugin name="cordova-plugin-splashscreen" source="npm"/>
 	<plugin name="cordova-plugin-dialogs" source="npm"/>
 	<plugin name="cordova-plugin-device" source="npm"/>
