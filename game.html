@@ -3,13 +3,14 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>  
+    <script type="text/javascript" src="js/index.js"></script>
 	<title>I Pasticcini</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/settings.js"></script>
     <script>
 	// DA RIMUOVERE
-	//localStorage.setItem("deflang","ita");
+	localStorage.setItem("deflang","ita");
 	</script>
 </head>
 <body>
@@ -110,6 +111,13 @@
        <div class="btn-upgrade centered" onclick="AlloggiNext()">Upgrade</div>
     </div>
 </div>
+
+<div id="askreward" class="option_info none">
+   <span class="brown"></span>
+   <img class="decline" src="img/panel/decline.png" onClick="dismiss(this)" />
+   <img class="accept" src="img/panel/accept.png" onClick="startReward()" />
+</div>
+
 <a onclick="canc()" style="position:fixed; left: 50%; top: 50%;">cancella</a>
 <script>
 function canc() {
@@ -138,6 +146,12 @@ $(document).ready(function () {
 	        CheckSingleUpgrade(factorydivs[i]);
 	    }
     }, 2000);	  
+	
+	setInterval(function () {
+		if ($('#gemsreward').length === 0) {
+		    $('#right-screen').append('<img src="img/play.png" id="gemsreward" class="right-icon" onClick="videoReward(this)" />');
+		}
+	}, 6000);
 	  
 function go(p) {
 	if(p && p != speed) {
@@ -222,7 +236,6 @@ function fontSize () {
 
 window.onload = function(event) {
     fontSize();
-	$('#right-screen').append('<img src="img/play.png" class="right-icon" />');
 };
 window.onresize = function(event) {
     fontSize();
