@@ -154,8 +154,7 @@ Appodeal.getRewardParameters( function(result) {
    alert("Appodeal Reward Currency:" + result.currency);
 });
 
-Appodeal.setRewardedVideoCallbacks( function(container) {
-	
+Appodeal.setRewardedVideoCallbacks( function(container) {	
        if (container.event == 'onLoaded') {
             alert('caricato');
        } else if (container.event == 'onFailedToLoad') {
@@ -164,11 +163,11 @@ Appodeal.setRewardedVideoCallbacks( function(container) {
             // your code
        } else if (container.event == 'onFinished') {
             // container also returns "name" and "amount" variables with reward amount and currency name you have set for your application
-            alert( "Appodeal. Rewarded. " + container.event + ", amount: " + container.amount + ", name: " + container.name);
+            //alert( "Appodeal. Rewarded. " + container.event + ", amount: " + container.amount + ", name: " + container.name);
             $('#qwe').show();
        } else if (container.event == 'onClosed') {
             // container also returns "finished" variable with boolean value for indicating if video was finished
-            alert("Appodeal. Rewarded. " + container.event + ", finished: " + container.finished);
+            //alert("Appodeal. Rewarded. " + container.event + ", finished: " + container.finished);
             $('#qwe').show();
        } 
 });
