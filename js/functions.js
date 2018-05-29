@@ -170,7 +170,5 @@ Appodeal.setRewardedVideoCallbacks( function(container) {
             // container also returns "finished" variable with boolean value for indicating if video was finished
             alert("Appodeal. Rewarded. " + container.event + ", finished: " + container.finished);
             $('#qwe').show();
-       } else if (container.finished === true) {
-	       alert('ktm');
-       }
+       } 
 });
