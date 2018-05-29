@@ -15,11 +15,7 @@
 </head>
 <body>
 	<script>
-			function startReward() {
-	        Appodeal.show(Appodeal.REWARDED_VIDEO);
-        });
-			
-    function registerAdv() {
+		    function registerAdv() {
         Appodeal.setRewardedVideoCallbacks(function(container){
             if(container.event == 'onClosed')
                 document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", finished: " + container.finished;
@@ -29,6 +25,13 @@
                 document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event;
         });
     }
+		
+			function startReward() {
+	        Appodeal.show(Appodeal.REWARDED_VIDEO);
+				registerAdv();
+        });
+			
+
 
 	</script>
 <div id="game">
