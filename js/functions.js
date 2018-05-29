@@ -140,9 +140,6 @@ function dismiss(elem) {
 	$('#'+rewardType.id).remove();
 }
 
-function startReward() {
-	Appodeal.show(Appodeal.REWARDED_VIDEO);
-}
 
 
 
