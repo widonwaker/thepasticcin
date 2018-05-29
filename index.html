@@ -3,7 +3,6 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>  
-	<script type="text/javascript" src="js/index.js"></script>
 	<title>I Pasticcini</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery.min.js"></script>
@@ -11,9 +10,9 @@
 </head>
 <body style="height: 100%; width: 100%; background-image:url(img/bg.jpg); background-size: 100% 100%; background-repeat: no-repeat; overflow: hidden !important;">
 <div id="logo"><img src="img/logo.png" /></div>
-<div class="button green" style="width: 50%; left: 50%; -webkit-transform: translate(-50%);">
+<div class="button green">
    <img src="img/btn_green.png" style="width: 100%;"/>
-   <div class="centered" id="play" onclick="location.href='game.html'">Qwe</div>
+   <div class="centered" id="play" onclick="location.href='game.html'"></div>
 </div>
 <div id="settings">
   <div id="pre-inner" class="pre-inner">
@@ -35,7 +34,28 @@
 </div>
 
 <script>
-
+document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
+    navigator.globalization.getPreferredLanguage(
+        function (language) { 
+		    if (language.value == "it-IT") {
+				    localStorage.setItem("deflang","ita");
+					var script= document.createElement('script');
+                    script.type= 'text/javascript';
+                    script.src= 'js/' + localStorage.getItem("deflang") + '.js';
+                    document.body.appendChild(script);
+				} else {
+					localStorage.setItem("deflang","eng");
+					var script= document.createElement('script');
+                    script.type= 'text/javascript';
+                    script.src= 'js/' + localStorage.getItem("deflang") + '.js';
+                    document.body.appendChild(script);
+				} 
+			},
+        function () {localStorage.setItem("deflang","eng");}
+    );
+	
+}
 	
 function fontSize() {
 	
