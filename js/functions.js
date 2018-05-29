@@ -143,6 +143,13 @@ function dismiss(elem) {
 
 /* APPODEAL */ 
 function qweks () {
+Appodeal.setInterstitialCallbacks(function(container){
+            if(container.event == 'onLoaded')
+                document.getElementById("callbackContainer").innerHTML = "Appodeal. Interstitial. " + container.event + ", isPrecache: " + container.isPrecache;
+            else
+                document.getElementById("callbackContainer").innerHTML = "Appodeal. Interstitial. " + container.event + ", isPrecache: " + container.isPrecache;
+            });
+	
 Appodeal.setRewardedVideoCallbacks( function(container) {
        if (container.event == 'onLoaded') {
             alert('caricato');
