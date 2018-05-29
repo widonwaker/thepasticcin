@@ -179,6 +179,7 @@ function startReward() {
                 Appodeal.cache(Appodeal.REWARDED_VIDEO);
             }
         });
+	$('#askreward').hide();
 }
 
 function rewardwqe() {
@@ -191,6 +192,7 @@ function rewardwqe() {
                 Appodeal.cache(Appodeal.INTERSTITIAL);
             }
         });
+	$('#askreward').hide();
 }
 
 	
