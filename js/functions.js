@@ -155,7 +155,7 @@ function startReward() {
             if (result) { // returns true or false 
                 Appodeal.show(Appodeal.REWARDED_VIDEO);
             } else {
-                Appodeal.cache(Appodeal.REWARDED_VIDEO);
+                alert('non pronto');
             }
         });
 }
