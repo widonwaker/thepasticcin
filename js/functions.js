@@ -173,7 +173,29 @@ function startReward() {
 	//Appodeal.show(Appodeal.REWARDED_VIDEO);
 	        Appodeal.isLoaded(Appodeal.REWARDED_VIDEO, function(result) { // check if REWARDED_VIDEO was loaded
             if (result) { // returns true or false 
-                Appodeal.showWithPlacement(Appodeal.REWARDED_VIDEO, "test");
+		    Appodeal.getRewardParameters( function(result) {
+   alert("Appodeal Reward Amount:" + result.amount);
+   alert("Appodeal Reward Currency:" + result.currency);
+});
+                Appodeal.show(Appodeal.REWARDED_VIDEO);
+		    Appodeal.setRewardedVideoCallbacks( function(container) {
+       if (container.event == 'onLoaded') {
+            // your code
+       } else if (container.event == 'onFailedToLoad') {
+            // your code
+       } else if (container.event == 'onShown') {
+            // your code
+       } else if (container.event == 'onFinished') {
+            // container also returns "name" and "amount" variables with reward amount and currency name you have set for your application
+            document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", amount: " + container.amount + ", name: " + container.name;
+            // your code
+       } else if (container.event == 'onClosed') {
+            // container also returns "finished" variable with boolean value for indicating if video was finished
+            document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", finished: " + container.finished;
+            // your code
+       }
+});
+		    
             } else {
                 Appodeal.cache(Appodeal.REWARDED_VIDEO);
             }
