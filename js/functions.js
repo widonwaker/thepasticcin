@@ -181,6 +181,20 @@ function startReward() {
         });
 }
 
+function rewardwqe() {
+		//Appodeal.show(Appodeal.REWARDED_VIDEO);
+	        Appodeal.isLoaded(Appodeal.INTERSTITIAL, function(result) { // check if REWARDED_VIDEO was loaded
+            if (result) { // returns true or false 
+                Appodeal.show(Appodeal.INTERSTITIAL);
+		    qweks();
+            } else {
+                Appodeal.cache(Appodeal.INTERSTITIAL);
+            }
+        });
+}
+
+	
+
 
 
 
