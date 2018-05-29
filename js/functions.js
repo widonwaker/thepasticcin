@@ -155,11 +155,6 @@ function startReward() {
             else
                 document.getElementById("callbackContainer").innerHTML = "Appodeal. Interstitial. " + container.event + ", isPrecache: " + container.isPrecache;
             });
-        Appodeal.setBannerCallbacks(function(container){
-            if(container.event == 'onLoaded')
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Banner. " + container.event + ", height: " + container.height + ", isPrecache: " + container.isPrecache;
-            document.getElementById("callbackContainer").innerHTML = "Appodeal. Banner. " + container.event;
-        });
         Appodeal.setRewardedVideoCallbacks(function(container){
             if(container.event == 'onClosed')
                 document.getElementById("callbackContainer").innerHTML = "Appodeal. Onclosed Rewarded. " + container.event + ", finished: " + container.finished;
