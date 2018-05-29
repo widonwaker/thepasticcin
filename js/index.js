@@ -31,7 +31,7 @@ document.addEventListener('deviceready', function () {
   Appodeal.initialize(appKey, Appodeal.REWARDED_VIDEO | Appodeal.INTERSTITIAL | Appodeal.BANNER);
   Appodeal.muteVideosIfCallsMuted(true);
 	
-	
+ registerAdv();	
 
 	
 	
