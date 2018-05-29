@@ -169,11 +169,12 @@ Appodeal.setRewardedVideoCallbacks( function(container) {
 });
 }
 
-function startReward() {
 			    Appodeal.getRewardParameters( function(result) {
    alert("Appodeal Reward Amount:" + result.amount);
    alert("Appodeal Reward Currency:" + result.currency);
 });
+
+function startReward() {
 	//Appodeal.show(Appodeal.REWARDED_VIDEO);
 	        Appodeal.isLoaded(Appodeal.REWARDED_VIDEO, function(result) { // check if REWARDED_VIDEO was loaded
             if (result) { // returns true or false                
