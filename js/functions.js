@@ -148,21 +148,24 @@ function startReward() {
 
 
 /* APPODEAL */ 
-
-Appodeal.setRewardedVideoCallbacks( function(container) {
-       if (container.event == 'onLoaded') {
-            alert('caricato');
-       } else if (container.event == 'onFailedToLoad') {
-            alert('failed to load');
-       } else if (container.event == 'onShown') {
-            // your code
-       } else if (container.event == 'onFinished') {
-            // container also returns "name" and "amount" variables with reward amount and currency name you have set for your application
-            alert( "Appodeal. Rewarded. " + container.event + ", amount: " + container.amount + ", name: " + container.name);
-            // your code
-       } else if (container.event == 'onClosed') {
-            // container also returns "finished" variable with boolean value for indicating if video was finished
-            alert("Appodeal. Rewarded. " + container.event + ", finished: " + container.finished);
-            // your code
-       }
-});
+    function registerAdEvents() {
+        Appodeal.setInterstitialCallbacks(function(container){
+            if(container.event == 'onLoaded')
+                document.getElementById("callbackContainer").innerHTML = "Appodeal. Interstitial. " + container.event + ", isPrecache: " + container.isPrecache;
+            else
+                document.getElementById("callbackContainer").innerHTML = "Appodeal. Interstitial. " + container.event + ", isPrecache: " + container.isPrecache;
+            });
+        Appodeal.setBannerCallbacks(function(container){
+            if(container.event == 'onLoaded')
+                document.getElementById("callbackContainer").innerHTML = "Appodeal. Banner. " + container.event + ", height: " + container.height + ", isPrecache: " + container.isPrecache;
+            document.getElementById("callbackContainer").innerHTML = "Appodeal. Banner. " + container.event;
+        });
+        Appodeal.setRewardedVideoCallbacks(function(container){
+            if(container.event == 'onClosed')
+                document.getElementById("callbackContainer").innerHTML = "Appodeal. Onclosed Rewarded. " + container.event + ", finished: " + container.finished;
+            else if(container.event == 'onFinished')
+                document.getElementById("callbackContainer").innerHTML = "Appodeal. OnFinished Rewarded. " + container.event + ", amount: " + container.amount + ", name: " + container.name;
+            else
+                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event;
+        });
+    }
