@@ -140,16 +140,15 @@ function dismiss(elem) {
 	$('#'+rewardType.id).remove();
 }
 
+function startReward() {
+	Appodeal.show(Appodeal.REWARDED_VIDEO);
+}
+
+
+
 
 /* APPODEAL */ 
-function qweks () {
-Appodeal.setInterstitialCallbacks(function(container){
-            if(container.event == 'onLoaded')
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Interstitial. " + container.event + ", isPrecache: " + container.isPrecache;
-            else
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Interstitial. " + container.event + ", isPrecache: " + container.isPrecache;
-            });
-	
+
 Appodeal.setRewardedVideoCallbacks( function(container) {
        if (container.event == 'onLoaded') {
             alert('caricato');
@@ -167,46 +166,3 @@ Appodeal.setRewardedVideoCallbacks( function(container) {
             // your code
        }
 });
-}
-
-			    Appodeal.getRewardParameters( function(result) {
-   alert("Appodeal Reward Amount:" + result.amount);
-   alert("Appodeal Reward Currency:" + result.currency);
-});
-
-function startReward() {
-	//Appodeal.show(Appodeal.REWARDED_VIDEO);
-	        Appodeal.isLoaded(Appodeal.REWARDED_VIDEO, function(result) { // check if REWARDED_VIDEO was loaded
-            if (result) { // returns true or false                
-		    
-            } else {
-                Appodeal.cache(Appodeal.REWARDED_VIDEO);
-            }
-        });
-	$('#askreward').hide();
-}
-
-Appodeal.show(Appodeal.REWARDED_VIDEO);
-		    Appodeal.setRewardedVideoCallbacks( function(container) {
-       if (container.event == 'onLoaded') {
-            // your code
-       } else if (container.event == 'onFailedToLoad') {
-            // your code
-       } else if (container.event == 'onShown') {
-            // your code
-       } else if (container.event == 'onFinished') {
-            // container also returns "name" and "amount" variables with reward amount and currency name you have set for your application
-            document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", amount: " + container.amount + ", name: " + container.name;
-            // your code
-       } else if (container.event == 'onClosed') {
-            // container also returns "finished" variable with boolean value for indicating if video was finished
-            document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", finished: " + container.finished;
-            // your code
-       }
-});
-	
-
-
-
-
-
