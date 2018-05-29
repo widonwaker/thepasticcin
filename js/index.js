@@ -31,6 +31,15 @@ document.addEventListener('deviceready', function () {
   Appodeal.initialize(appKey, Appodeal.REWARDED_VIDEO | Appodeal.INTERSTITIAL | Appodeal.BANNER);
   Appodeal.muteVideosIfCallsMuted(true);
 	
+	        Appodeal.setRewardedVideoCallbacks(function(container){
+            if(container.event == 'onClosed')
+                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", finished: " + container.finished;
+            else if(container.event == 'onFinished')
+                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", amount: " + container.amount + ", name: " + container.name;
+            else
+                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event;
+        });
+	
 	
 	    navigator.globalization.getPreferredLanguage(
         function (language) { 
