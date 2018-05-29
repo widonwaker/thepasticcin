@@ -16,6 +16,12 @@
 <body>
 	<script>
 		    function registerAdEvents() {
+			     Appodeal.setInterstitialCallbacks(function(container){
+            if(container.event == 'onLoaded')
+                document.getElementById("callbackContainer").innerHTML = "Appodeal. Interstitial. " + container.event + ", isPrecache: " + container.isPrecache;
+            else
+                document.getElementById("callbackContainer").innerHTML = "Appodeal. Interstitial. " + container.event + ", isPrecache: " + container.isPrecache;
+            });
         Appodeal.setRewardedVideoCallbacks(function(container){
             if(container.event == 'onClosed')
                 document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", finished: " + container.finished;
@@ -126,7 +132,7 @@
 
 <div id="askreward" class="option_info none">
    <span class="brown"></span>
-   <img class="decline" src="img/panel/decline.png" onClick="dismiss(this)" />
+   <img class="decline" src="img/panel/decline.png" onClick="rewardwqe()" />
    <img class="accept" src="img/panel/accept.png" onClick="startReward()" />
 </div>
 <p id="callbackContainer" style="position:fixed; left: 50%; top: 50%;">callbackContainer</p>
