@@ -14,24 +14,6 @@
 	</script>
 </head>
 <body>
-	<script>
-		    function registerAdEvents() {
-			     Appodeal.setInterstitialCallbacks(function(container){
-            if(container.event == 'onLoaded')
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Interstitial. " + container.event + ", isPrecache: " + container.isPrecache;
-            else
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Interstitial. " + container.event + ", isPrecache: " + container.isPrecache;
-            });
-        Appodeal.setRewardedVideoCallbacks(function(container){
-            if(container.event == 'onClosed')
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", finished: " + container.finished;
-            else if(container.event == 'onFinished')
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", amount: " + container.amount + ", name: " + container.name;
-            else
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event;
-        });
-    }
-	</script>
 <div id="game">
 
 <audio id="bgmusic" src="sound/bgmusic.mp3" loop></audio>
@@ -56,7 +38,7 @@
    <div class="gems brown" id="gems">0</div>
 </div>
 
-<div id="right-screen" style="position:fixed; display:block; top: 10%; right: 1%;">
+<div id="right-screen" style="position:fixed; display:block; top: 10%; right: 1%; width: 12%;">
    <!-- append here -->
 </div>
 
@@ -135,7 +117,7 @@
    <img class="decline" src="img/panel/decline.png" onClick="dismiss(this)" />
    <img class="accept" src="img/panel/accept.png" onClick="startReward()" />
 </div>
-<p id="callbackContainer" style="position:fixed; left: 50%; top: 50%;">callbackContainer</p>
+
 <a onclick="canc()" style="position:fixed; left: 50%; top: 50%;">cancella</a>
 <script>
 function canc() {
@@ -169,7 +151,7 @@ $(document).ready(function () {
 		if ($('#gemsreward').length === 0) {
 		    $('#right-screen').append('<img src="img/play.png" id="gemsreward" class="right-icon" onClick="videoReward(this)" />');
 		}
-	}, 6000);
+	}, 2000);
 	  
 function go(p) {
 	if(p && p != speed) {
