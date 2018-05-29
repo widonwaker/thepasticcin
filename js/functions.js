@@ -141,7 +141,14 @@ function dismiss(elem) {
 }
 
 function startReward() {
-	Appodeal.show(Appodeal.REWARDED_VIDEO);
+	//Appodeal.show(Appodeal.REWARDED_VIDEO);
+	        Appodeal.isLoaded(Appodeal.REWARDED_VIDEO, function(result) { // check if REWARDED_VIDEO was loaded
+            if (result) { // returns true or false 
+                Appodeal.show(Appodeal.REWARDED_VIDEO);
+            } else {
+                Appodeal.cache(Appodeal.REWARDED_VIDEO);
+            }
+        });
 }
 
 
