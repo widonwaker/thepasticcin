@@ -149,20 +149,3 @@ function startReward() {
 
 /* APPODEAL */ 
 
-Appodeal.setRewardedVideoCallbacks( function(container) {
-       if (container.event == 'onLoaded') {
-            alert('caricato');
-       } else if (container.event == 'onFailedToLoad') {
-            alert('failed to load');
-       } else if (container.event == 'onShown') {
-            // your code
-       } else if (container.event == 'onFinished') {
-            // container also returns "name" and "amount" variables with reward amount and currency name you have set for your application
-            alert( "Appodeal. Rewarded. " + container.event + ", amount: " + container.amount + ", name: " + container.name);
-            // your code
-       } else if (container.event == 'onClosed') {
-            // container also returns "finished" variable with boolean value for indicating if video was finished
-            alert("Appodeal. Rewarded. " + container.event + ", finished: " + container.finished);
-            // your code
-       }
-});
