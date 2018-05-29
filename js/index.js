@@ -32,4 +32,23 @@ document.addEventListener('deviceready', function () {
   Appodeal.muteVideosIfCallsMuted(true);
   //Appodeal.setTesting(true);
   
+      navigator.globalization.getPreferredLanguage(
+        function (language) { 
+		    if (language.value == "it-IT") {
+				    localStorage.setItem("deflang","ita");
+					var script= document.createElement('script');
+                    script.type= 'text/javascript';
+                    script.src= 'js/' + localStorage.getItem("deflang") + '.js';
+                    document.body.appendChild(script);
+				} else {
+					localStorage.setItem("deflang","eng");
+					var script= document.createElement('script');
+                    script.type= 'text/javascript';
+                    script.src= 'js/' + localStorage.getItem("deflang") + '.js';
+                    document.body.appendChild(script);
+				} 
+			},
+        function () {localStorage.setItem("deflang","eng");}
+    );
+	
 }, false);
