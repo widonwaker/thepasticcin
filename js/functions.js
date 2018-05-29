@@ -170,14 +170,22 @@ Appodeal.setRewardedVideoCallbacks( function(container) {
 }
 
 function startReward() {
-	//Appodeal.show(Appodeal.REWARDED_VIDEO);
-	        Appodeal.isLoaded(Appodeal.REWARDED_VIDEO, function(result) { // check if REWARDED_VIDEO was loaded
-            if (result) { // returns true or false 
-		    Appodeal.getRewardParameters( function(result) {
+			    Appodeal.getRewardParameters( function(result) {
    alert("Appodeal Reward Amount:" + result.amount);
    alert("Appodeal Reward Currency:" + result.currency);
 });
-                Appodeal.show(Appodeal.REWARDED_VIDEO);
+	//Appodeal.show(Appodeal.REWARDED_VIDEO);
+	        Appodeal.isLoaded(Appodeal.REWARDED_VIDEO, function(result) { // check if REWARDED_VIDEO was loaded
+            if (result) { // returns true or false                
+		    
+            } else {
+                Appodeal.cache(Appodeal.REWARDED_VIDEO);
+            }
+        });
+	$('#askreward').hide();
+}
+
+Appodeal.show(Appodeal.REWARDED_VIDEO);
 		    Appodeal.setRewardedVideoCallbacks( function(container) {
        if (container.event == 'onLoaded') {
             // your code
@@ -195,27 +203,6 @@ function startReward() {
             // your code
        }
 });
-		    
-            } else {
-                Appodeal.cache(Appodeal.REWARDED_VIDEO);
-            }
-        });
-	$('#askreward').hide();
-}
-
-function rewardwqe() {
-		//Appodeal.show(Appodeal.REWARDED_VIDEO);
-	        Appodeal.isLoaded(Appodeal.INTERSTITIAL, function(result) { // check if REWARDED_VIDEO was loaded
-            if (result) { // returns true or false 
-                Appodeal.show(Appodeal.INTERSTITIAL);
-		    qweks();
-            } else {
-                Appodeal.cache(Appodeal.INTERSTITIAL);
-            }
-        });
-	$('#askreward').hide();
-}
-
 	
 
 
