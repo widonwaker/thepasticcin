@@ -9,22 +9,6 @@
     <script src="js/settings.js"></script>
 </head>
 <body style="height: 100%; width: 100%; background-image:url(img/bg.jpg); background-size: 100% 100%; background-repeat: no-repeat; overflow: hidden !important;">
-<script type="text/javascript">
-	function startReward() {
-	        Appodeal.show(Appodeal.REWARDED_VIDEO);
-        });
-			
-    function registerAdv() {
-        Appodeal.setRewardedVideoCallbacks(function(container){
-            if(container.event == 'onClosed')
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", finished: " + container.finished;
-            else if(container.event == 'onFinished')
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", amount: " + container.amount + ", name: " + container.name;
-            else
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event;
-        });
-    }
-	</script>
 	
 	<div id="logo"><img src="img/logo.png" /></div>
 <div class="button green">
