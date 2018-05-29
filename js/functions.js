@@ -140,22 +140,9 @@ function dismiss(elem) {
 	$('#'+rewardType.id).remove();
 }
 
-function startReward() {
-	//Appodeal.show(Appodeal.REWARDED_VIDEO);
-	        Appodeal.isLoaded(Appodeal.REWARDED_VIDEO, function(result) { // check if REWARDED_VIDEO was loaded
-            if (result) { // returns true or false 
-                Appodeal.show(Appodeal.REWARDED_VIDEO);
-            } else {
-                Appodeal.cache(Appodeal.REWARDED_VIDEO);
-            }
-        });
-}
-
-
-
 
 /* APPODEAL */ 
-
+function qweks () {
 Appodeal.setRewardedVideoCallbacks( function(container) {
        if (container.event == 'onLoaded') {
             alert('caricato');
@@ -173,3 +160,21 @@ Appodeal.setRewardedVideoCallbacks( function(container) {
             // your code
        }
 });
+}
+
+function startReward() {
+	//Appodeal.show(Appodeal.REWARDED_VIDEO);
+	        Appodeal.isLoaded(Appodeal.REWARDED_VIDEO, function(result) { // check if REWARDED_VIDEO was loaded
+            if (result) { // returns true or false 
+                Appodeal.show(Appodeal.REWARDED_VIDEO);
+		    qweks();
+            } else {
+                Appodeal.cache(Appodeal.REWARDED_VIDEO);
+            }
+        });
+}
+
+
+
+
+
