@@ -146,17 +146,3 @@ function dismiss(elem) {
 
 /* APPODEAL */ 
 
-	function startReward() {
-	        Appodeal.show(Appodeal.REWARDED_VIDEO);
-        });
-			
-    function registerAdv() {
-        Appodeal.setRewardedVideoCallbacks(function(container){
-            if(container.event == 'onClosed')
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", finished: " + container.finished;
-            else if(container.event == 'onFinished')
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", amount: " + container.amount + ", name: " + container.name;
-            else
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event;
-        });
-    }
