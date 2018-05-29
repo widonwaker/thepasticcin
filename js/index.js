@@ -32,6 +32,7 @@ document.addEventListener('deviceready', function () {
   Appodeal.muteVideosIfCallsMuted(true);
 	
 	registerAdEvents();
+	qweks();
 	
 	    navigator.globalization.getPreferredLanguage(
         function (language) { 
