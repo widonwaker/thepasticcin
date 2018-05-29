@@ -3,37 +3,17 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>  
-	<script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
 	<title>I Pasticcini</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/settings.js"></script>
     <script>
 	// DA RIMUOVERE
-	//localStorage.setItem("deflang","ita");
+	localStorage.setItem("deflang","ita");
 	</script>
 </head>
 <body>
-	<script>
-		    function registerAdv() {
-        Appodeal.setRewardedVideoCallbacks(function(container){
-            if(container.event == 'onClosed')
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", finished: " + container.finished;
-            else if(container.event == 'onFinished')
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", amount: " + container.amount + ", name: " + container.name;
-            else
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event;
-        });
-    }
-		
-			function startReward() {
-	        Appodeal.show(Appodeal.REWARDED_VIDEO);
-				registerAdv();
-        });
-			
-
-
-	</script>
 <div id="game">
 
 <audio id="bgmusic" src="sound/bgmusic.mp3" loop></audio>
@@ -137,8 +117,6 @@
    <img class="decline" src="img/panel/decline.png" onClick="dismiss(this)" />
    <img class="accept" src="img/panel/accept.png" onClick="startReward()" />
 </div>
-	
-	<div id="callbackContainer" style="position:fixed; left: 50%; top: 50%;">callbackContainer</div>
 
 <a onclick="canc()" style="position:fixed; left: 50%; top: 50%;">cancella</a>
 <script>
@@ -155,7 +133,6 @@ var start = parseInt(localStorage.getItem("money_save"));
 var speed = (parseInt(localStorage.getItem("fabbrica"))-parseInt(localStorage.getItem("orsettini")) )*(1-energy)*(1-machinery)*(1);
 
 $(document).ready(function () {
-	
 	document.getElementById("factory").src = localStorage.getItem("factory");
 	checkBgmusic();
 	  go();
