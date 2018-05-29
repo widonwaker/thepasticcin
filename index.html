@@ -10,22 +10,12 @@
 </head>
 <body style="height: 100%; width: 100%; background-image:url(img/bg.jpg); background-size: 100% 100%; background-repeat: no-repeat; overflow: hidden !important;">
 <script type="text/javascript">
-    function initialize() {
 	function startReward() {
-	        Appodeal.getRewardParameters(function(result) {
-            console.log("Appodeal Reward Amount:" + result.amount);
-            console.log("Appodeal Reward Currency:" + result.currency);
+	        Appodeal.show(Appodeal.REWARDED_VIDEO);
         });
-        Appodeal.isLoaded(Appodeal.REWARDED_VIDEO, function(result) { // check if REWARDED_VIDEO was loaded
-            if (result) { // returns true or false 
-                Appodeal.show(Appodeal.REWARDED_VIDEO);
-            } else {
-                alert('non pronto');
-            }
-        });
-}
-	
-	        Appodeal.setRewardedVideoCallbacks(function(container){
+			
+    function registerAdv() {
+        Appodeal.setRewardedVideoCallbacks(function(container){
             if(container.event == 'onClosed')
                 document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", finished: " + container.finished;
             else if(container.event == 'onFinished')
