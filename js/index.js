@@ -31,6 +31,21 @@ document.addEventListener('deviceready', function () {
   Appodeal.initialize(appKey, Appodeal.REWARDED_VIDEO | Appodeal.INTERSTITIAL | Appodeal.BANNER);
   Appodeal.muteVideosIfCallsMuted(true);
 	
+	
+function startReward() {
+	        Appodeal.getRewardParameters(function(result) {
+            console.log("Appodeal Reward Amount:" + result.amount);
+            console.log("Appodeal Reward Currency:" + result.currency);
+        });
+        Appodeal.isLoaded(Appodeal.REWARDED_VIDEO, function(result) { // check if REWARDED_VIDEO was loaded
+            if (result) { // returns true or false 
+                Appodeal.show(Appodeal.REWARDED_VIDEO);
+            } else {
+                Appodeal.cache(Appodeal.REWARDED_VIDEO);
+            }
+        });
+}
+	
 	        Appodeal.setRewardedVideoCallbacks(function(container){
             if(container.event == 'onClosed')
                 document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event + ", finished: " + container.finished;
