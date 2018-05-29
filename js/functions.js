@@ -155,8 +155,8 @@ Appodeal.getRewardParameters( function(result) {
 });
 
 Appodeal.setRewardedVideoCallbacks( function(container) {
-	if (container.finished === true) { alert('finitooo') };
-	if (container.closed === true) { alert('chiusoOSoo') };
+	if (container.finished === true) { alert('finitooo'); }
+	if (container.closed === true) { alert('chiusoOSoo'); }
        if (container.event == 'onLoaded') {
             alert('caricato');
        } else if (container.event == 'onFailedToLoad') {
