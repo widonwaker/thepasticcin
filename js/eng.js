@@ -8,3 +8,4 @@ var musicOn = 'Music On';
 var musicOff = 'Music Off';
 var soundOn = 'Sounds On';
 var soundOff = 'Sounds Off';
+var rewardMessage = 'Watch this video to earn';

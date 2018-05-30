@@ -8,3 +8,4 @@ var musicOn = 'Musica Attivata';
 var musicOff = 'Musica Disattivata';
 var soundOn = 'Suoni Attivati';
 var soundOff = 'Suoni Disattivati';
+var rewardMessage = 'Guarda questo video e guadagna';

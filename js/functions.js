@@ -2,7 +2,6 @@
 function CheckUpgradeAvailable(panel) {
 	var matches = panel.match(/\S+(?=-)/g);
 	if (document.getElementById(matches).src.indexOf(matches+'5') === -1) {
-	console.log(panel);	
 	var divs = document.getElementById(panel).getElementsByClassName("skills");
 	var id = document.getElementById(panel);
 	var newimg = id.getElementsByClassName("upgrade")[0].querySelector('img');
@@ -48,7 +47,7 @@ function CheckSingleUpgrade(elem) {
 		elem.parentElement.classList.remove("grey-soft");
 	}
 	CheckUpgradeAvailable(elem.parentElement.parentElement.parentElement.id);
-	localStorage.setItem("money_save",start);
+	localStorage.setItem("coins_save",start);
 }
 
 
@@ -130,9 +129,10 @@ function checkSound (sound) {
 var rewardType;
 
 function videoReward (elem) {
-	rewardType = elem;
+	rewardType = elem.id.match(/\S+(?=-)/g);
+	var newReward = parseInt(localStorage.getItem(rewardType+"_save"));
 	$('.option_info').show();
-	$(".option_info > span").text("Watch this video and earn X gems");
+	$(".option_info > span").html(rewardMessage+': '+plus+' <img src="img/'+rewardType+'_icon.png" height="25%" />');
 	var divs = document.getElementsByClassName("option_info");
     for(var i = 0; i < divs.length; i++) {
         var relFontsize = divs[i].offsetHeight*0.11;
@@ -142,14 +142,28 @@ function videoReward (elem) {
 
 function dismiss(elem) {
 	$('#'+elem.parentElement.id).hide();
-	$('#'+rewardType.id).remove();
+	$('#'+rewardType+'-reward').remove();
 }
 
 function startReward() {
 	Appodeal.show(Appodeal.REWARDED_VIDEO);
 }
 
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
+function assignReward() {
+	if (rewardType == "gems")  {
+	    var plus = getRandomInt(10, 50);
+	}
+	else if (rewardType == "coins") {
+	    var plus = getRandomInt(1000, 5000);
+		start = start + plus;
+	}
+	localStorage.setItem(rewardType+"_save",newReward+plus);
+	$('#'+rewardType).html(parseInt(localStorage.getItem(rewardType+"_save")).toLocaleString());
+}
 
 
 /* APPODEAL */ 
@@ -162,9 +176,11 @@ function startReward() {
             });
         Appodeal.setRewardedVideoCallbacks(function(container){
             if(container.event == 'onClosed')
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Onclosed Rewarded. " + container.event + ", finished: " + container.finished;
+                //document.getElementById("callbackContainer").innerHTML = "Appodeal. Onclosed Rewarded. " + container.event + ", finished: " + container.finished;
+				assignReward();
             else if(container.event == 'onFinished')
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. OnFinished Rewarded. " + container.event + ", amount: " + container.amount + ", name: " + container.name;
+                //document.getElementById("callbackContainer").innerHTML = "Appodeal. OnFinished Rewarded. " + container.event + ", amount: " + container.amount + ", name: " + container.name;
+				assignReward();
             else
                 document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event;
         });
