@@ -10,7 +10,7 @@
     <script src="js/settings.js"></script>
     <script>
 	// DA RIMUOVERE
-	localStorage.setItem("deflang","ita");
+	//localStorage.setItem("deflang","ita");
 	</script>
 </head>
 <body>
@@ -28,7 +28,7 @@
    <img class="top-left-bar" src="img/gold_base.png" />
    <img class="top-left-bar" src="img/gold_inside.png" />
    <img class="empty" src="img/empty.png" />
-   <div class="moneyscore brown" id="score">0</div>
+   <div class="moneyscore brown" id="coins">0</div>
 </div>
 
 <div class="gemsbar">
@@ -118,7 +118,7 @@
    <img class="accept" src="img/panel/accept.png" onClick="startReward()" />
 </div>
 
-<a onclick="canc()" style="position:fixed; left: 50%; top: 50%;">cancella</a>
+<a onclick="canc()" style="position:fixed; left: 10%; top: 50%;">cancella</a>
 <script>
 function canc() {
 	localStorage.clear();
@@ -129,7 +129,7 @@ var factorydivs = document.getElementById("factory-panel").getElementsByClassNam
 var energy = parseInt(localStorage.getItem("energy")) / 100;
 var machinery = parseInt(localStorage.getItem("machinery")) / 100;
 
-var start = parseInt(localStorage.getItem("money_save"));
+var start = parseInt(localStorage.getItem("coins_save"));
 var speed = (parseInt(localStorage.getItem("fabbrica"))-parseInt(localStorage.getItem("orsettini")) )*(1-energy)*(1-machinery)*(1);
 
 $(document).ready(function () {
@@ -148,10 +148,14 @@ $(document).ready(function () {
     }, 2000);	  
 	
 	setInterval(function () {
-		if ($('#gemsreward').length === 0) {
-		    $('#right-screen').append('<img src="img/play.png" id="gemsreward" class="right-icon" onClick="videoReward(this)" />');
+		var randNum = getRandomInt(0, 1);
+		if ($('.right-icon').length === 0) {
+			if (randNum === 0)
+		    $('#right-screen').append('<img src="img/play.png" id="gems-reward" class="right-icon" onClick="videoReward(this)" />');
+			else if (randNum === 1)
+			$('#right-screen').append('<img src="img/play.png" id="coins-reward" class="right-icon" onClick="videoReward(this)" />');
 		}
-	}, 2000);
+	}, 2000); // minuti in ms
 	  
 function go(p) {
 	if(p && p != speed) {
@@ -170,7 +174,7 @@ function go(p) {
 	if (start>9999999) $('.moneyscore').css("right", "-16%");
 	if (start>99999999) $('.moneyscore').css("right", "-19%");
 	if (start>999999999) start = 999999999;
-    $("#score").html(start.toLocaleString());
+    $("#coins").html(start.toLocaleString());
     start += parseInt(localStorage.getItem("pasticcino"));
 }
 </script>
@@ -183,10 +187,10 @@ function onDeviceReady() {
 }
 
 function onPause() {
-	localStorage.setItem("money_save",start);
+	localStorage.setItem("coins_save",start);
 }
 window.onunload = function () {
-	localStorage.setItem("money_save",start);
+	localStorage.setItem("coins_save",start);
 }
 </script>
 
@@ -235,6 +239,7 @@ function fontSize () {
 };
 
 window.onload = function(event) {
+	document.getElementById('gems').innerHTML = localStorage.getItem("gems_save");
     fontSize();
 };
 window.onresize = function(event) {
