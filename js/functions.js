@@ -130,7 +130,12 @@ var rewardType;
 
 function videoReward (elem) {
 	rewardType = elem.id.match(/\S+(?=-)/g);
-	var newReward = parseInt(localStorage.getItem(rewardType+"_save"));
+	if (rewardType == "gems")  {
+	    var plus = getRandomInt(10, 50);
+	}
+	else if (rewardType == "coins") {
+	    var plus = getRandomInt(1000, 5000);
+	}
 	$('.option_info').show();
 	$(".option_info > span").html(rewardMessage+': '+plus+' <img src="img/'+rewardType+'_icon.png" height="25%" />');
 	var divs = document.getElementsByClassName("option_info");
@@ -154,11 +159,8 @@ function getRandomInt(min, max) {
 }
 
 function assignReward() {
-	if (rewardType == "gems")  {
-	    var plus = getRandomInt(10, 50);
-	}
-	else if (rewardType == "coins") {
-	    var plus = getRandomInt(1000, 5000);
+	var newReward = parseInt(localStorage.getItem(rewardType+"_save"));
+	if (rewardType == "coins") {
 		start = start + plus;
 	}
 	localStorage.setItem(rewardType+"_save",newReward+plus);
@@ -176,10 +178,10 @@ function assignReward() {
             });
         Appodeal.setRewardedVideoCallbacks(function(container){
             if(container.event == 'onClosed')
-                //document.getElementById("callbackContainer").innerHTML = "Appodeal. Onclosed Rewarded. " + container.event + ", finished: " + container.finished;
+                document.getElementById("callbackContainer").innerHTML = "Appodeal. Onclosed Rewarded. " + plus + ", finished: " + rewardType;
 				assignReward();
             else if(container.event == 'onFinished')
-                //document.getElementById("callbackContainer").innerHTML = "Appodeal. OnFinished Rewarded. " + container.event + ", amount: " + container.amount + ", name: " + container.name;
+                document.getElementById("callbackContainer").innerHTML = "Appodeal. OnFinished Rewarded. " + plus + ", amount: " + rewardType;
 				assignReward();
             else
                 document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event;
