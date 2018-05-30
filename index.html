@@ -130,7 +130,6 @@ window.onresize = function(event) {
 <script>
 if (localStorage.getItem("deflang")===null) {
 	var userLang = navigator.language || navigator.userLanguage; 
-	alert(userLang);
 	if (userLang == "it-IT") localStorage.setItem("deflang","ita");
 	else localStorage.setItem("deflang","eng"); 
 }
