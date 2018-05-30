@@ -127,14 +127,15 @@ function checkSound (sound) {
 }
 
 var rewardType;
+var plus;
 
 function videoReward (elem) {
 	rewardType = elem.id.match(/\S+(?=-)/g);
 	if (rewardType == "gems")  {
-	    var plus = getRandomInt(10, 50);
+	    plus = getRandomInt(10, 50);
 	}
 	else if (rewardType == "coins") {
-	    var plus = getRandomInt(1000, 5000);
+	    plus = getRandomInt(1000, 5000);
 	}
 	$('.option_info').show();
 	$(".option_info > span").html(rewardMessage+': '+plus+' <img src="img/'+rewardType+'_icon.png" height="25%" />');
