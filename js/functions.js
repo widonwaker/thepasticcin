@@ -1,5 +1,8 @@
 // FUNZIONI upgrades
 function CheckUpgradeAvailable(panel) {
+	var matches = panel.match(/\S+(?=-)/g);
+	if (document.getElementById(matches).src.indexOf(matches+'5') === -1) {
+	console.log(panel);	
 	var divs = document.getElementById(panel).getElementsByClassName("skills");
 	var id = document.getElementById(panel);
 	var newimg = id.getElementsByClassName("upgrade")[0].querySelector('img');
@@ -14,6 +17,8 @@ function CheckUpgradeAvailable(panel) {
 			return true;
 		}
     }
+	
+	}
 	return false;
 }
 
@@ -61,12 +66,12 @@ function FactoryPanel() {
 	document.getElementById("power").getElementsByClassName("title")[0].innerHTML = energy_title;
 	document.getElementById("power").getElementsByClassName("desc")[0].innerHTML = '+'+localStorage.getItem("energy")+'% '+energy_desc;
 	document.getElementById("power").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("energyskills")+'.png';
-	document.getElementById("power").getElementsByClassName("btn-cost")[0].innerHTML = localStorage.getItem("energy_val");
+	document.getElementById("power").getElementsByClassName("btn-cost")[0].innerHTML = parseInt(localStorage.getItem("energy_val"));
 	
 	document.getElementById("machinery").getElementsByClassName("title")[0].innerHTML = machinery_title;
 	document.getElementById("machinery").getElementsByClassName("desc")[0].innerHTML = '+'+localStorage.getItem("machinery")+'% '+machinery_desc;
 	document.getElementById("machinery").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("machineryskills")+'.png';
-	document.getElementById("machinery").getElementsByClassName("btn-cost")[0].innerHTML = localStorage.getItem("machinery_val");
+	document.getElementById("machinery").getElementsByClassName("btn-cost")[0].innerHTML = parseInt(localStorage.getItem("machinery_val"));
 	
 	document.getElementsByClassName("btn-upgrade")[0].innerHTML = btn_upgrade;
 	var divs = document.getElementById("factory-panel").getElementsByClassName("btn-cost");
