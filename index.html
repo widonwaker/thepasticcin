@@ -128,7 +128,12 @@ window.onresize = function(event) {
 </script>
 
 <script>
-if (localStorage.getItem("deflang")===null) localStorage.setItem("deflang","eng");
+if (localStorage.getItem("deflang")===null) {
+	var userLang = navigator.language || navigator.userLanguage; 
+	alert(userLang);
+	if (userLang == "it-IT") localStorage.setItem("deflang","ita");
+	else localStorage.setItem("deflang","eng"); 
+}
 var src = 'js/' + localStorage.getItem("deflang") + '.js';
 var script = jQuery('<script/>').attr('src', src).appendTo('head');
 </script>
