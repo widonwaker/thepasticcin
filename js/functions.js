@@ -177,12 +177,14 @@ function assignReward() {
                 document.getElementById("callbackContainer").innerHTML = "Appodeal. Interstitial. " + container.event + ", isPrecache: " + container.isPrecache;
             });
         Appodeal.setRewardedVideoCallbacks(function(container){
-            if(container.event == 'onClosed')
+            if(container.event == 'onClosed') {
                 document.getElementById("callbackContainer").innerHTML = "Appodeal. Onclosed Rewarded. " + plus + ", finished: " + rewardType;
 				assignReward();
-            else if(container.event == 'onFinished')
+			}
+            else if(container.event == 'onFinished') {
                 document.getElementById("callbackContainer").innerHTML = "Appodeal. OnFinished Rewarded. " + plus + ", amount: " + rewardType;
 				assignReward();
+			}
             else
                 document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event;
         });
