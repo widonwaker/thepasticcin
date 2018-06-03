@@ -19,10 +19,11 @@
 <audio id="bgmusic" src="sound/bgmusic.mp3" loop></audio>
 <audio id="levelup" src="sound/Powerup.wav" ></audio>
 <audio id="skillup" src="sound/Skillup.wav" ></audio>
+<audio id="cashout" src="sound/cashout.mp3" ></audio>
 
 <img id="factory" class="fabbrica" onClick="FactoryPanel()"/> <img id="factorylevelup" src="img/levelup.png" style="display:none;"/>
-<img class="alloggi" src="img/edifici/alloggi1.png" onClick=""/>
-<!--<img class="trasporti" src="img/edifici/trasporto5.png" onClick=""/>-->
+<img id="alloggi" class="alloggi" onClick="AlloggiPanel()"/> <img id="alloggilevelup" src="img/levelup.png" style="display:none;"/>
+<img id="vehicle" class="vehicle" onClick="VehiclePanel()"/> <img id="vehiclelevelup" src="img/levelup.png" style="display:none;"/>
 
 <div class="moneybar">
    <img class="top-left-bar" src="img/gold_base.png" />
@@ -38,6 +39,9 @@
    <div class="gems brown" id="gems">0</div>
 </div>
 
+<div id="pluscoins" class="brown none"><p></p></div>
+<div id="plusgems" class="brown none"><p></p></div>
+
 <div id="right-screen" style="position:fixed; display:block; top: 10%; right: 1%; width: 12%;">
    <!-- append here -->
 </div>
@@ -47,29 +51,30 @@
 <div id="factory-panel" class="panel" style="display:none;">
     <img id="factory-rib" class="ribbon" />
     <img class="panel-close" src="img/panel/decline.png" onClick="$('#factory-panel').fadeOut();" />
-    <div id="power" class="container">
+    <div id="energy" class="container">
        <img class="icon" src="img/power.png"/>
        <div class="title brown"></div>
        <div class="desc"></div>
        <img class="skills" />
        <div class="btn-buy button green-soft">
-           <div class="btn-cost centered" onclick="SingleUpgrade(this, 'energy')"></div>
+           <div class="btn-cost centered" onclick="SingleUpgrade(this, 'energy', '%', 2)"></div>
        </div>
     </div>
     <div id="machinery" class="container">
+       <img class="icon" src="img/machinery.png"/>
        <div class="title brown"></div>
        <div class="desc"></div>
        <img class="skills" />
        <div class="btn-buy button green-soft">
-           <div class="btn-cost centered" onclick="SingleUpgrade(this, 'machinery')"></div>
+           <div class="btn-cost centered" onclick="SingleUpgrade(this, 'machinery', '%', 2)"></div>
        </div>
     </div>
-    <div class="container">
-       <div class="title brown">ND</div>
-       <div class="desc">NaN</div>
+    <div id="capacity" class="container">
+       <div class="title brown"></div>
+       <div class="desc"></div>
        <img class="skills" src="img/panel/skills_5.png" />
        <div class="btn-buy button green-soft">
-           <div class="btn-cost centered" onclick="">0</div>
+           <div class="btn-cost centered" onclick="SingleUpgrade(this, 'capacity', ' ', 4)"></div>
        </div>
     </div>
     <div class="upgrade button grey">
@@ -79,9 +84,35 @@
 </div>
 
 
-<div id="alloggi-upgrade" class="panel" style="display:none;">
+<div id="alloggi-panel" class="panel" style="display:none;">
     <img id="alloggi-rib" class="ribbon" />
-    <img class="panel-close" src="img/panel/decline.png" onClick='$("#alloggi-upgrade").hide();' />
+    <img class="panel-close" src="img/panel/decline.png" onClick='$("#alloggi-panel").fadeOut();' />
+    <div id="comfort" class="container">
+       <img class="icon" src="img/comfort.png"/>
+       <div class="title brown-soft"></div>
+       <div class="desc"></div>
+       <img class="skills" />
+       <div class="btn-buy button green-soft">
+           <div class="btn-cost centered" onclick="SingleUpgrade(this, 'comfort', '%', 2)"></div>
+       </div>
+    </div>
+    <div id="capacity_alloggi" class="container">
+       <div class="title brown"></div>
+       <div class="desc"></div>
+       <img class="skills" />
+       <div class="btn-buy button green-soft">
+           <div class="btn-cost centered" onclick="SingleUpgrade(this, 'capacity_alloggi', ' ', 4)"></div>
+       </div>
+    </div>
+    <div class="upgrade button grey">
+       <img src="img/panel/btn_locked.png" style="width:60%;"/>
+       <div class="btn-upgrade centered" onclick="BuildingNext(this)">A</div>
+    </div>
+</div>
+
+<div id="vehicle-panel" class="panel" style="display:none;">
+    <img id="vehicle-rib" class="ribbon" />
+    <img class="panel-close" src="img/panel/decline.png" onClick='$("#vehicle-panel").fadeOut();' />
     <div class="container">
        <div class="title brown-soft">Bramiti</div>
        <div class="desc">+25% more bramits </div>
@@ -93,32 +124,32 @@
     <div class="container">
        <div class="title brown-soft">Muggiti</div>
        <div class="desc">+240% mura rinforzate</div>
-       <img class="skills" src="img/panel/skills_4.png" />
+       <img class="skills" src="img/panel/skills_5.png" />
        <div class="btn-buy button green-soft">
            <div class="btn-cost centered" onclick="">123456</div>
        </div>
     </div>
-    <div class="container">
-       <div class="title brown-soft">Muggiti</div>
-       <div class="desc">+10%</div>
-       <img class="skills" src="img/panel/skills_5.png" />
+    <div id="capacity_vehicle" class="container">
+       <div class="title brown"></div>
+       <div class="desc"></div>
+       <img class="skills" />
        <div class="btn-buy button green-soft">
-           <div class="btn-cost centered" onclick="">123987</div>
+           <div class="btn-cost centered" onclick="SingleUpgrade(this, 'capacity_vehicle', ' ', 4)"></div>
        </div>
     </div>
     <div class="upgrade button grey">
        <img src="img/panel/btn_locked.png" style="width:60%;"/>
-       <div class="btn-upgrade centered" onclick="AlloggiNext()">Upgrade</div>
+       <div class="btn-upgrade centered" onclick="BuildingNext(this)"></div>
     </div>
 </div>
 
 <div id="askreward" class="option_info none">
    <span class="brown"></span>
    <img class="decline" src="img/panel/decline.png" onClick="dismiss(this)" />
-   <img class="accept" src="img/panel/accept.png" onClick="startReward()" />
+   <img class="accept" src="img/panel/accept.png" onClick="assignReward(1)" />
 </div>
 
-<p id="callbackContainer" style="position:fixed; left: 10%; top: 30%;">CallBack COntainer</p>
+<!--<p id="callbackContainer" style="position:fixed; left: 10%; top: 30%;">CallBack COntainer</p>-->
 <a onclick="canc()" style="position:fixed; left: 10%; top: 50%;">cancella</a>
 <script>
 function canc() {
@@ -129,12 +160,16 @@ var factorydivs = document.getElementById("factory-panel").getElementsByClassNam
 
 var energy = parseInt(localStorage.getItem("energy")) / 100;
 var machinery = parseInt(localStorage.getItem("machinery")) / 100;
+var comfort = parseInt(localStorage.getItem("comfort")) / 100;
 
 var start = parseInt(localStorage.getItem("coins_save"));
-var speed = (parseInt(localStorage.getItem("fabbrica"))-parseInt(localStorage.getItem("orsettini")) )*(1-energy)*(1-machinery)*(1);
+var speed = parseInt(localStorage.getItem("fabbrica"))*(1-energy)*(1-machinery)*(1-comfort);
 
 $(document).ready(function () {
+	document.getElementById('gems').innerHTML = localStorage.getItem("gems_save");
 	document.getElementById("factory").src = localStorage.getItem("factory");
+	document.getElementById("alloggi").src = localStorage.getItem("alloggi");
+	document.getElementById("vehicle").src = localStorage.getItem("vehicle");
 	checkBgmusic();
 	  go();
       timer = setInterval(function(p) {
@@ -176,7 +211,7 @@ function go(p) {
 	if (start>99999999) $('.moneyscore').css("right", "-19%");
 	if (start>999999999) start = 999999999;
     $("#coins").html(start.toLocaleString());
-    start += parseInt(localStorage.getItem("pasticcino"));
+    start += parseInt(localStorage.getItem("pasticcino")) * parseInt(localStorage.getItem("orsettini")) * 2;
 }
 </script>
 
@@ -210,7 +245,7 @@ function fontSize () {
 	
 	var divs = document.getElementsByClassName("gemsbar");
     for(var i = 0; i < divs.length; i++) {
-        var relFontsize = divs[i].offsetWidth*0.12;
+        var relFontsize = divs[i].offsetWidth*0.11;
         divs[i].style.fontSize = relFontsize+'px';
 	}
 		
@@ -222,8 +257,8 @@ function fontSize () {
 	
 	var divs = document.getElementsByClassName("desc");
     for(var i = 0; i < divs.length; i++) {
-        var relFontsize = divs[i].offsetHeight*0.90;
-        //divs[i].style.fontSize = relFontsize+'px';	
+        var relFontsize = divs[i].offsetHeight*1.50;
+        divs[i].style.fontSize = relFontsize+'px';	
     }
 	
 	var divs = document.getElementsByClassName("btn-buy");
@@ -237,10 +272,16 @@ function fontSize () {
         var relFontsize = divs[i].offsetWidth*0.08;
         divs[i].style.fontSize = relFontsize+'px';	
     }
+	
+	var divs = document.getElementsByClassName("plusgems");
+    for(var i = 0; i < divs.length; i++) {
+        var relFontsize = divs[i].offsetWidth*0.11;
+        divs[i].style.fontSize = relFontsize+'px';	
+    }
+	
 };
 
 window.onload = function(event) {
-	document.getElementById('gems').innerHTML = localStorage.getItem("gems_save");
     fontSize();
 };
 window.onresize = function(event) {
