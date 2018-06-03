@@ -17,17 +17,19 @@ function CheckUpgradeAvailable(panel) {
 		}
     }
 	
+	} else {
+		document.getElementsByClassName("btn-upgrade")[0].innerHTML = btn_upgrade_max;
 	}
 	return false;
 }
 
 function ClearUpgrade (id) {
 	var resetskills = id.parentElement.parentElement.getElementsByClassName("skills");
+	var container = id.parentElement.parentElement.getElementsByClassName("container");
 	for(var i = 0; i < resetskills.length; i++) {
 	        resetskills[i].src = 'img/panel/skills_0.png';
+			localStorage.setItem(container[i].id+"skills",0);
 	    }
-	localStorage.setItem("energyskills",0);	
-	localStorage.setItem("machineryskills",0);	
 	id.parentElement.querySelector('img').src="img/panel/btn_locked.png";
 	id.parentElement.classList.remove("green");
 	id.parentElement.classList.add("grey");
@@ -52,7 +54,6 @@ function CheckSingleUpgrade(elem) {
 
 
 function FactoryPanel() {
-	//$("#factory-panel").show();
 	if ( $( "#factory-panel" ).is( ":hidden" ) ) {
         $( "#factory-panel" ).fadeIn( "slow" );
     }
@@ -61,16 +62,20 @@ function FactoryPanel() {
 	} else if (localStorage.getItem("deflang") == "ita") {
 		$('#factory-rib').attr('src', 'img/panel/fabbrica_ita.png'); 
 	}
-	//CheckUpgradeAvailable("factory-panel");
-	document.getElementById("power").getElementsByClassName("title")[0].innerHTML = energy_title;
-	document.getElementById("power").getElementsByClassName("desc")[0].innerHTML = '+'+localStorage.getItem("energy")+'% '+energy_desc;
-	document.getElementById("power").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("energyskills")+'.png';
-	document.getElementById("power").getElementsByClassName("btn-cost")[0].innerHTML = parseInt(localStorage.getItem("energy_val"));
+	document.getElementById("energy").getElementsByClassName("title")[0].innerHTML = energy_title;
+	document.getElementById("energy").getElementsByClassName("desc")[0].innerHTML = '+'+localStorage.getItem("energy")+'% '+energy_desc;
+	document.getElementById("energy").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("energyskills")+'.png';
+	document.getElementById("energy").getElementsByClassName("btn-cost")[0].innerHTML = parseInt(localStorage.getItem("energy_val"));
 	
 	document.getElementById("machinery").getElementsByClassName("title")[0].innerHTML = machinery_title;
 	document.getElementById("machinery").getElementsByClassName("desc")[0].innerHTML = '+'+localStorage.getItem("machinery")+'% '+machinery_desc;
 	document.getElementById("machinery").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("machineryskills")+'.png';
 	document.getElementById("machinery").getElementsByClassName("btn-cost")[0].innerHTML = parseInt(localStorage.getItem("machinery_val"));
+	
+	document.getElementById("capacity").getElementsByClassName("title")[0].innerHTML = capacity_title;
+	document.getElementById("capacity").getElementsByClassName("desc")[0].innerHTML = '+'+localStorage.getItem("capacity")+' '+capacity_desc;
+	document.getElementById("capacity").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("capacityskills")+'.png';
+	document.getElementById("capacity").getElementsByClassName("btn-cost")[0].innerHTML = parseInt(localStorage.getItem("capacity_val"));
 	
 	document.getElementsByClassName("btn-upgrade")[0].innerHTML = btn_upgrade;
 	var divs = document.getElementById("factory-panel").getElementsByClassName("btn-cost");
@@ -80,8 +85,63 @@ function FactoryPanel() {
 	fontSize();
 }
 
+function AlloggiPanel() {
+	//$("#factory-panel").show();
+	if ( $( "#alloggi-panel" ).is( ":hidden" ) ) {
+        $( "#alloggi-panel" ).fadeIn( "slow" );
+    }
+	if (localStorage.getItem("deflang") == "eng") {
+	    $('#alloggi-rib').attr('src', 'img/panel/alloggi_eng.png'); 
+	} else if (localStorage.getItem("deflang") == "ita") {
+		$('#alloggi-rib').attr('src', 'img/panel/alloggi_ita.png'); 
+	}
+	
+	document.getElementById("comfort").getElementsByClassName("title")[0].innerHTML = comfort_title;
+	document.getElementById("comfort").getElementsByClassName("desc")[0].innerHTML = '+'+localStorage.getItem("comfort")+'% '+comfort_desc;
+	document.getElementById("comfort").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("comfortskills")+'.png';
+	document.getElementById("comfort").getElementsByClassName("btn-cost")[0].innerHTML = parseInt(localStorage.getItem("comfort_val"));
+	
+	document.getElementById("capacity_alloggi").getElementsByClassName("title")[0].innerHTML = capacity_title;
+	document.getElementById("capacity_alloggi").getElementsByClassName("desc")[0].innerHTML = '+'+localStorage.getItem("capacity_alloggi")+' '+capacity_alloggi_desc;
+	document.getElementById("capacity_alloggi").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("capacity_alloggiskills")+'.png';
+	document.getElementById("capacity_alloggi").getElementsByClassName("btn-cost")[0].innerHTML = parseInt(localStorage.getItem("capacity_alloggi_val"));
+	
+	document.getElementsByClassName("btn-upgrade")[0].innerHTML = btn_upgrade;
+	console.log(document.getElementsByClassName("btn-upgrade")[0]);
+	console.log(document.getElementsByClassName("btn-upgrade")[0].innerHTML);
+	var divs = document.getElementById("alloggi-panel").getElementsByClassName("btn-cost");
+	for(var i = 0; i < divs.length; i++) {
+	    CheckSingleUpgrade(divs[i]);
+	}
+	fontSize();
+}
 
-function SingleUpgrade(elem, skill) {
+function VehiclePanel() {
+	//$("#factory-panel").show();
+	if ( $( "#vehicle-panel" ).is( ":hidden" ) ) {
+        $( "#vehicle-panel" ).fadeIn( "slow" );
+    }
+	if (localStorage.getItem("deflang") == "eng") {
+	    $('#vehicle-rib').attr('src', 'img/panel/vehicle_eng.png'); 
+	} else if (localStorage.getItem("deflang") == "ita") {
+		$('#vehicle-rib').attr('src', 'img/panel/vehicle_ita.png'); 
+	}
+	
+	document.getElementById("capacity_vehicle").getElementsByClassName("title")[0].innerHTML = capacity_title;
+	document.getElementById("capacity_vehicle").getElementsByClassName("desc")[0].innerHTML = '+'+localStorage.getItem("capacity_vehicle")+' '+capacity_vehicle_desc;
+	document.getElementById("capacity_vehicle").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("capacity_vehicleskills")+'.png';
+	document.getElementById("capacity_vehicle").getElementsByClassName("btn-cost")[0].innerHTML = parseInt(localStorage.getItem("capacity_vehicle_val"));
+	
+	document.getElementsByClassName("btn-upgrade")[0].innerHTML = btn_upgrade;
+	var divs = document.getElementById("vehicle-panel").getElementsByClassName("btn-cost");
+	for(var i = 0; i < divs.length; i++) {
+	    CheckSingleUpgrade(divs[i]);
+	}
+	fontSize();
+}
+
+
+function SingleUpgrade(elem, skill, type, amount) {
 	if (parseInt(elem.innerHTML) < start && elem.parentElement.parentElement.getElementsByClassName("skills")[0].src.indexOf('skills_5') === -1) {
 		var current = parseInt(localStorage.getItem(skill+"_val"));
 		start = start - current; // scala costo upgrade
@@ -91,11 +151,11 @@ function SingleUpgrade(elem, skill) {
 		elem.innerHTML = parseInt(localStorage.getItem(skill+"_val")); 
 		elem.parentElement.parentElement.getElementsByClassName("skills")[0].src = 'img/panel/skills_'+up+'.png';
 		var perc = parseInt(localStorage.getItem(skill));
-		localStorage.setItem(skill,perc+2); // setta nuovo valore upgrade
+		localStorage.setItem(skill,perc+amount); // setta nuovo valore upgrade
 		var desc = elem.parentElement.parentElement.getElementsByClassName("desc")[0];
-		desc.innerHTML = '+'+localStorage.getItem(skill)+'% '+window[skill+'_desc'];
-        speed = (parseInt(localStorage.getItem("fabbrica"))-parseInt(localStorage.getItem("orsettini")) )*(1-(parseInt(localStorage.getItem("energy")) / 100))*(1-(parseInt(localStorage.getItem("machinery")) / 100))*(1);
+		desc.innerHTML = '+'+localStorage.getItem(skill)+type+' '+window[skill+'_desc'];
 		checkSound("skillup");
+        speed = parseInt(localStorage.getItem("fabbrica"))*(1-(parseInt(localStorage.getItem("energy")) / 100))*(1-(parseInt(localStorage.getItem("machinery")) / 100))*(1-(parseInt(localStorage.getItem("comfort")) / 100));
 	}
 	CheckSingleUpgrade(elem);
 }
@@ -159,34 +219,43 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function assignReward() {
+function assignReward(divisor) {
 	var newReward = parseInt(localStorage.getItem(rewardType+"_save"));
+	plus = parseInt(plus / divisor);
 	if (rewardType == "coins") {
 		start = start + plus;
 	}
 	localStorage.setItem(rewardType+"_save",newReward+plus);
 	$('#'+rewardType).html(parseInt(localStorage.getItem(rewardType+"_save")).toLocaleString());
+	checkSound("cashout");
+	$('#askreward').hide();
+	$('#'+rewardType+'-reward').remove();
+	$('#plus'+rewardType).show();
+	$('#plus'+rewardType+' > p').text('+ '+plus);
+	        setTimeout(function() {
+                $('#plus'+rewardType).fadeOut();
+            }, 1000);
 }
 
 
 /* APPODEAL */ 
     function registerAdEvents() {
         Appodeal.setInterstitialCallbacks(function(container){
-            if(container.event == 'onLoaded')
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Interstitial. " + container.event + ", isPrecache: " + container.isPrecache;
-            else
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Interstitial. " + container.event + ", isPrecache: " + container.isPrecache;
+                if (container.event == 'onClosed') {
+                    assignReward(3);
+                }
             });
         Appodeal.setRewardedVideoCallbacks(function(container){
             if(container.event == 'onClosed') {
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Onclosed Rewarded. " + plus + ", finished: " + rewardType;
-				assignReward();
+                //document.getElementById("callbackContainer").innerHTML = "Appodeal. Onclosed Rewarded. " + plus + ", finished: " + rewardType;
+				assignReward(1);
 			}
             else if(container.event == 'onFinished') {
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. OnFinished Rewarded. " + plus + ", amount: " + rewardType;
-				assignReward();
+                //document.getElementById("callbackContainer").innerHTML = "Appodeal. OnFinished Rewarded. " + plus + ", amount: " + rewardType;
+				assignReward(1);
 			}
-            else
-                document.getElementById("callbackContainer").innerHTML = "Appodeal. Rewarded. " + container.event;
+            else {
+                Appodeal.show(Appodeal.INTERSTITIAL);
+			}
         });
     }
