@@ -308,6 +308,34 @@ input
     right: 5%;
     -webkit-transform: translate(-50%, -50%);
 }
+#plusgems {
+	position: fixed;
+	font-family: 'Skranji', cursive !important; 
+	color: white;	
+	width: 45%;
+	height: 10%;
+	top: 5%;
+	right: 0;
+}
+#plusgems p {
+	position:absolute;
+	top: 5%;
+	right: 20%;
+}
+#pluscoins {
+	position: fixed;
+	font-family: 'Skranji', cursive !important; 
+	color: white;	
+	width: 45%;
+	height: 10%;
+	top: 5%;
+	left: 0;
+}
+#pluscoins p {
+	position:absolute;
+	top: 5%;
+	left: 20%;
+}
 .alloggi {
 	position: absolute;
 	top: 315px;
@@ -322,13 +350,12 @@ input
 	width: 270px;
 	height: 270px;
 }
-/*.trasporti {
+.vehicle {
 	position: absolute;
-	top: 350px;
-	left: 70px;
-	width: 250px;
-	height: 250px;
-}*/
+	top: 360px;
+	left: 50px;
+	width: 200px;
+}
 .panel {
 	width: 85%;
 	height: 73%;
@@ -378,7 +405,7 @@ input
 	left: 22%;
 	width: 41%;
 	height: 13%;
-	line-height: 70%;
+	line-height: 75%;
 }
 .panel .skills {
 	position: fixed;
@@ -401,7 +428,7 @@ input
 }
 .panel .container .btn-buy {
 	position: fixed;
-    width: 26.82%;
+    width: 30%; /*26.82%;*/
     height: 36%;
     top: 45%;
     right: 4%;
@@ -420,14 +447,24 @@ input
 }
 .icon {
 	position: absolute;
-    left: -2%;
-	top: 10%;
-    height: 80%;
+    left: -5%;
+	top: 12%;
+    height: 75%;
 }
 #factorylevelup {
 	position: absolute;
 	top: 130px;
 	left: 300px;
+}
+#alloggilevelup {
+	position: absolute;
+	top: 300px;
+	left: 600px;
+}
+#vehiclelevelup {
+	position: absolute;
+	top: 320px;
+	left: 50px;
 }
 .decline {
 	position: absolute;
@@ -450,6 +487,10 @@ input
 	#factorylevelup {
 	   top: 260px;
 	   left: 600px;
+    }
+	#alloggilevelup {
+	   top: 600px;
+	   left: 1200px;
     }
 	.alloggi {
 	   top: 630px;
