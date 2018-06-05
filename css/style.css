@@ -162,6 +162,19 @@ input
 	text-align: center;
 	z-index: 9;
 }
+.warning_info {
+	position: fixed;
+	background-image: url(../img/panel/panel_info.png);
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	left: 50%;
+	top: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	width: 75%;
+	height: 30%;
+	text-align: center;
+	z-index: 8;
+}
 .panel_info {
 	position: fixed;
 	background-image: url(../img/panel/panel.png);
@@ -176,6 +189,16 @@ input
 	z-index: 9;
 }
 .option_info span {
+	z-index: 9;
+	font-family: 'Carter One', cursive !important; 
+	color: white;	
+	position: absolute;
+	left: 50%;
+	top: 40%;
+	-webkit-transform: translate(-50%, -50%);
+	width: 90%;
+}
+.warning_info span {
 	z-index: 9;
 	font-family: 'Carter One', cursive !important; 
 	color: white;	
