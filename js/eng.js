@@ -15,3 +15,4 @@ var musicOff = 'Music Off';
 var soundOn = 'Sounds On';
 var soundOff = 'Sounds Off';
 var rewardMessage = 'Watch this video to earn';
+var capacityWarning = 'You must upgrade apartments capacity first!';

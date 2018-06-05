@@ -70,6 +70,7 @@
        </div>
     </div>
     <div id="capacity" class="container">
+       <img class="icon" src="img/bear.png"/>
        <div class="title brown"></div>
        <div class="desc"></div>
        <img class="skills" src="img/panel/skills_5.png" />
@@ -97,6 +98,7 @@
        </div>
     </div>
     <div id="capacity_alloggi" class="container">
+       <img class="icon" src="img/bear.png"/>
        <div class="title brown"></div>
        <div class="desc"></div>
        <img class="skills" />
@@ -143,10 +145,15 @@
     </div>
 </div>
 
+<div id="warning-info" class="warning_info none">
+   <span class="brown">ewqe</span>
+   <img class="accept" src="img/panel/accept.png" onClick="dismiss(this)" />
+</div>
+
 <div id="askreward" class="option_info none">
    <span class="brown"></span>
    <img class="decline" src="img/panel/decline.png" onClick="dismiss(this)" />
-   <img class="accept" src="img/panel/accept.png" onClick="assignReward(1)" />
+   <img class="accept" src="img/panel/accept.png" onClick="startReward()" />
 </div>
 
 <!--<p id="callbackContainer" style="position:fixed; left: 10%; top: 30%;">CallBack COntainer</p>-->
@@ -176,16 +183,10 @@ $(document).ready(function () {
           go(p);
           }, speed, speed);
       });
-	  
-    setInterval(function () {
-        for(var i = 0; i < factorydivs.length; i++) {
-	        CheckSingleUpgrade(factorydivs[i]);
-	    }
-    }, 2000);	  
 	
 	setInterval(function () {
 		var randNum = getRandomInt(0, 1);
-		if ($('.right-icon').length === 0) {
+		if ($('#gems-reward').length === 0 && $('#coins-reward').length === 0) {
 			if (randNum === 0)
 		    $('#right-screen').append('<img src="img/play.png" id="gems-reward" class="right-icon" onClick="videoReward(this)" />');
 			else if (randNum === 1)
@@ -270,12 +271,6 @@ function fontSize () {
 	var divs = document.getElementsByClassName("btn-upgrade");
     for(var i = 0; i < divs.length; i++) {
         var relFontsize = divs[i].offsetWidth*0.08;
-        divs[i].style.fontSize = relFontsize+'px';	
-    }
-	
-	var divs = document.getElementsByClassName("plusgems");
-    for(var i = 0; i < divs.length; i++) {
-        var relFontsize = divs[i].offsetWidth*0.11;
         divs[i].style.fontSize = relFontsize+'px';	
     }
 	

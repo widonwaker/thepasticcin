@@ -18,7 +18,7 @@ function CheckUpgradeAvailable(panel) {
     }
 	
 	} else {
-		document.getElementsByClassName("btn-upgrade")[0].innerHTML = btn_upgrade_max;
+		$('.btn-upgrade').html(btn_upgrade_max);
 	}
 	return false;
 }
@@ -47,6 +47,9 @@ function CheckSingleUpgrade(elem) {
 		elem.parentElement.style.backgroundImage = "url('img/panel/btn_buy.png')";
 		elem.parentElement.classList.add("green-soft");
 		elem.parentElement.classList.remove("grey-soft");
+	}
+	if (elem.parentElement.parentElement.getElementsByClassName("skills")[0].src.indexOf('skills_5') !== -1) {
+		elem.innerHTML = 'Max';
 	}
 	CheckUpgradeAvailable(elem.parentElement.parentElement.parentElement.id);
 	localStorage.setItem("coins_save",start);
@@ -105,10 +108,8 @@ function AlloggiPanel() {
 	document.getElementById("capacity_alloggi").getElementsByClassName("desc")[0].innerHTML = '+'+localStorage.getItem("capacity_alloggi")+' '+capacity_alloggi_desc;
 	document.getElementById("capacity_alloggi").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("capacity_alloggiskills")+'.png';
 	document.getElementById("capacity_alloggi").getElementsByClassName("btn-cost")[0].innerHTML = parseInt(localStorage.getItem("capacity_alloggi_val"));
-	
-	document.getElementsByClassName("btn-upgrade")[0].innerHTML = btn_upgrade;
-	console.log(document.getElementsByClassName("btn-upgrade")[0]);
-	console.log(document.getElementsByClassName("btn-upgrade")[0].innerHTML);
+
+	$('.btn-upgrade').html(btn_upgrade);
 	var divs = document.getElementById("alloggi-panel").getElementsByClassName("btn-cost");
 	for(var i = 0; i < divs.length; i++) {
 	    CheckSingleUpgrade(divs[i]);
@@ -132,7 +133,7 @@ function VehiclePanel() {
 	document.getElementById("capacity_vehicle").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("capacity_vehicleskills")+'.png';
 	document.getElementById("capacity_vehicle").getElementsByClassName("btn-cost")[0].innerHTML = parseInt(localStorage.getItem("capacity_vehicle_val"));
 	
-	document.getElementsByClassName("btn-upgrade")[0].innerHTML = btn_upgrade;
+	$('.btn-upgrade').html(btn_upgrade);
 	var divs = document.getElementById("vehicle-panel").getElementsByClassName("btn-cost");
 	for(var i = 0; i < divs.length; i++) {
 	    CheckSingleUpgrade(divs[i]);
@@ -140,8 +141,26 @@ function VehiclePanel() {
 	fontSize();
 }
 
+function warning() {
+	$('#warning-info').show();
+	$("#warning-info > span").html(capacityWarning);
+	var divs = document.getElementsByClassName("warning_info");
+    for(var i = 0; i < divs.length; i++) {
+        var relFontsize = divs[i].offsetHeight*0.11;
+        divs[i].style.fontSize = relFontsize+'px';	
+    }
+}
 
 function SingleUpgrade(elem, skill, type, amount) {
+	if (skill == "capacity") {
+		if (parseInt(localStorage.getItem("capacity")) === parseInt(localStorage.getItem("capacity_alloggi")) ) {
+			$('#factory-panel').fadeOut();
+			if ($('#warning').length === 0) {
+			    $('#right-screen').append('<img src="img/warning.png" id="warning" class="right-icon" onClick="warning()" />');
+			}
+		    return false;
+		}
+	}
 	if (parseInt(elem.innerHTML) < start && elem.parentElement.parentElement.getElementsByClassName("skills")[0].src.indexOf('skills_5') === -1) {
 		var current = parseInt(localStorage.getItem(skill+"_val"));
 		start = start - current; // scala costo upgrade
@@ -195,7 +214,7 @@ function videoReward (elem) {
 	    plus = getRandomInt(10, 50);
 	}
 	else if (rewardType == "coins") {
-	    plus = getRandomInt(1000, 5000);
+	    plus = getRandomInt(100000, 500000);
 	}
 	$('.option_info').show();
 	$(".option_info > span").html(rewardMessage+': '+plus+' <img src="img/'+rewardType+'_icon.png" height="25%" />');
@@ -208,7 +227,8 @@ function videoReward (elem) {
 
 function dismiss(elem) {
 	$('#'+elem.parentElement.id).hide();
-	$('#'+rewardType+'-reward').remove();
+	if (elem.parentElement.id == "askreward") $('#'+rewardType+'-reward').remove();
+	if (elem.parentElement.id == "warning-info") $('#warning').remove();
 }
 
 function startReward() {
@@ -231,7 +251,10 @@ function assignReward(divisor) {
 	$('#askreward').hide();
 	$('#'+rewardType+'-reward').remove();
 	$('#plus'+rewardType).show();
-	$('#plus'+rewardType+' > p').text('+ '+plus);
+	var divs = document.getElementById("plus"+rewardType);
+	$('#plus'+rewardType+' > p').text('+ '+plus);	
+        var relFontsize = divs.offsetWidth*0.11;
+        divs.style.fontSize = relFontsize+'px';	
 	        setTimeout(function() {
                 $('#plus'+rewardType).fadeOut();
             }, 1000);

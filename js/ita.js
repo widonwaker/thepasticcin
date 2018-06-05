@@ -15,3 +15,4 @@ var musicOff = 'Musica Disattivata';
 var soundOn = 'Suoni Attivati';
 var soundOff = 'Suoni Disattivati';
 var rewardMessage = 'Guarda questo video e guadagna';
+var capacityWarning = 'Devi prima aumentare la capienza degli alloggi!';
