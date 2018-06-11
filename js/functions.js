@@ -1,4 +1,4 @@
-// FUNZIONI upgrades
+// FUNZIONI
 function CheckUpgradeAvailable(panel) {
 	var matches = panel.match(/\S+(?=-)/g);
 	if (document.getElementById(matches).src.indexOf(matches+'5') === -1) {
@@ -39,6 +39,22 @@ function ClearUpgrade (id) {
 
 
 function CheckSingleUpgrade(elem) {
+	if (elem.parentElement.parentElement.parentElement.id == "master-container") {
+		var gems = parseInt(localStorage.getItem("gems_save"));
+		if (parseInt(elem.innerHTML) > gems || elem.parentElement.parentElement.getElementsByClassName("skills")[0].src.indexOf('skills_5') !== -1) {
+		    elem.parentElement.style.backgroundImage = "url('img/panel/btn_buy2_off.png')";
+		    elem.parentElement.classList.remove("green-soft");
+		    elem.parentElement.classList.add("grey-soft");
+	    } else {
+		    elem.parentElement.style.backgroundImage = "url('img/panel/btn_buy2.png')";
+		    elem.parentElement.classList.add("green-soft");
+		    elem.parentElement.classList.remove("grey-soft");
+	    }
+	    if (elem.parentElement.parentElement.getElementsByClassName("skills")[0].src.indexOf('skills_5') !== -1) {
+		    elem.innerHTML = 'Max';
+	    }
+		return false;
+	}
 	if (parseInt(elem.innerHTML) > start || elem.parentElement.parentElement.getElementsByClassName("skills")[0].src.indexOf('skills_5') !== -1) {
 		elem.parentElement.style.backgroundImage = "url('img/panel/btn_buy_off.png')";
 		elem.parentElement.classList.remove("green-soft");
@@ -53,6 +69,82 @@ function CheckSingleUpgrade(elem) {
 	}
 	CheckUpgradeAvailable(elem.parentElement.parentElement.parentElement.id);
 	localStorage.setItem("coins_save",start);
+	localStorage.setItem("delivered",del_start);
+}
+
+function rewardChance() {
+	var d = Math.random();
+	var n = parseInt(localStorage.getItem("gems_rewards"))/100;
+	var randNum = getRandomInt(0, 1);
+    if (d < n) {
+		if ($('#gems-reward').length === 0 && $('#coins-reward').length === 0) {
+			if (randNum === 0)
+		    $('#right-screen').append('<img src="img/play.png" id="gems-reward" class="right-icon" onClick="videoReward(this)" />');
+			else if (randNum === 1)
+			$('#right-screen').append('<img src="img/play.png" id="coins-reward" class="right-icon" onClick="videoReward(this)" />');
+		}
+	}
+}
+
+function story() {
+	if ( $( "#story-panel" ).is( ":hidden" ) ) {
+        $( "#story-panel" ).fadeIn( "fast" );
+    }
+	if (localStorage.getItem("deflang") == "eng") {
+	    $('#story-rib').attr('src', 'img/panel/progress_eng.png'); 
+	} else if (localStorage.getItem("deflang") == "ita") {
+		$('#story-rib').attr('src', 'img/panel/progress_ita.png'); 
+	}
+	alsecondo = Math.round(1000/speed*10)/10*orsettini;
+    alminuto = alsecondo*60;
+	var deliveredperc = parseInt(100*del_start/100000);
+	$('#delivered-perc').html(deliveredperc+'%');
+	//$('#alsecondo').html(alsecondo+" pasticcini \/ sec");
+	$('#alminuto').html(parseInt(alminuto)+" pasticcini \/ min");
+	var divs = document.getElementsByClassName("story-font");
+    for(var i = 0; i < divs.length; i++) {
+        var relFontsize = divs[i].offsetWidth*0.08;
+        divs[i].style.fontSize = relFontsize+'px';	
+    }
+	fontSize();
+}
+
+function GemsPanel() {
+	if ( $( "#gems-panel" ).is( ":hidden" ) ) {
+        $( "#gems-panel" ).fadeIn( "fast" );
+    }
+	if (localStorage.getItem("deflang") == "eng") {
+	    $('#gems-rib').attr('src', 'img/panel/gems_eng.png'); 
+	} else if (localStorage.getItem("deflang") == "ita") {
+		$('#gems-rib').attr('src', 'img/panel/gems_ita.png'); 
+	}
+	
+document.getElementById("gems_video1").getElementsByClassName("title")[0].innerHTML = gems_video1_title;
+document.getElementById("gems_video1").getElementsByClassName("desc")[0].innerHTML = '+'+localStorage.getItem("gems_video1")+'% '+gems_video1_desc;
+document.getElementById("gems_video1").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("gems_video1skills")+'.png';
+document.getElementById("gems_video1").getElementsByClassName("btn-cost")[0].innerHTML = parseInt(localStorage.getItem("gems_video1_val"));
+
+document.getElementById("gems_powerups").getElementsByClassName("title")[0].innerHTML = gems_powerups_title;
+document.getElementById("gems_powerups").getElementsByClassName("desc")[0].innerHTML = '-'+localStorage.getItem("gems_powerups")+'% '+gems_powerups_desc;
+document.getElementById("gems_powerups").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("gems_powerupsskills")+'.png';
+document.getElementById("gems_powerups").getElementsByClassName("btn-cost")[0].innerHTML = parseInt(localStorage.getItem("gems_powerups_val"));
+
+document.getElementById("gems_rewards").getElementsByClassName("title")[0].innerHTML = gems_rewards_title;
+document.getElementById("gems_rewards").getElementsByClassName("desc")[0].innerHTML = '-'+localStorage.getItem("gems_rewards")+'% '+gems_rewards_desc;
+document.getElementById("gems_rewards").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("gems_rewardsskills")+'.png';
+document.getElementById("gems_rewards").getElementsByClassName("btn-cost")[0].innerHTML = parseInt(localStorage.getItem("gems_rewards_val"));
+	
+	var divs = document.getElementById("gems-panel").getElementsByClassName("btn-cost");
+	for(var i = 0; i < divs.length; i++) {
+	    CheckSingleUpgrade(divs[i]);
+	}
+	
+	var divs = document.getElementsByClassName("btn-buy2");
+    for(var i = 0; i < divs.length; i++) {
+        var relFontsize = divs[i].offsetWidth*0.18;
+        divs[i].style.fontSize = relFontsize+'px';	
+    }
+	fontSize();
 }
 
 
@@ -141,7 +233,7 @@ function VehiclePanel() {
 	fontSize();
 }
 
-function warning() {
+function attenzione() {
 	$('#warning-info').show();
 	$("#warning-info > span").html(capacityWarning);
 	var divs = document.getElementsByClassName("warning_info");
@@ -151,12 +243,41 @@ function warning() {
     }
 }
 
+function GemsUpgrade(elem, skill, sign, amount) {
+	var gems = parseInt(localStorage.getItem("gems_save"));
+	if (parseInt(elem.innerHTML) < gems && elem.parentElement.parentElement.getElementsByClassName("skills")[0].src.indexOf('skills_5') === -1) {
+		var current = parseInt(localStorage.getItem(skill+"_val"));
+		localStorage.setItem("gems_save",gems - current); // scala costo upgrade
+		document.getElementById('gems').innerHTML = localStorage.getItem("gems_save"); // aggiorna gemme rimanenti
+		localStorage.setItem(skill+"_val", current*2); // setta nuovo costo upgrade
+		var up = parseInt(localStorage.getItem(skill+"skills"))+1;
+		localStorage.setItem(skill+"skills",up); // aggiungi skill in skillbar
+		elem.innerHTML = parseInt(localStorage.getItem(skill+"_val")); 
+		elem.parentElement.parentElement.getElementsByClassName("skills")[0].src = 'img/panel/skills_'+up+'.png';
+		var perc = parseInt(localStorage.getItem(skill));
+		localStorage.setItem(skill,perc+amount); // setta nuovo valore upgrade
+		var desc = elem.parentElement.parentElement.getElementsByClassName("desc")[0];
+		desc.innerHTML = sign+localStorage.getItem(skill)+'% '+window[skill+'_desc'];
+		checkSound("skillup");
+	}
+	if (skill == "gems_powerups") {
+		// loop tutti i locastorage contenenti '_val' tranne contenenti 'gems_'
+        for (i = 0; i < localStorage.length; i++)    {    
+            key = localStorage.key(i);
+			if (key.indexOf('gems_') === -1 && key.indexOf('_val') !== -1) {
+				localStorage.setItem(key,parseInt(parseInt(localStorage.getItem(key))-parseInt(localStorage.getItem(key))*10/100));
+			}
+        }
+	} // fine if skill = gems_powerups
+	CheckSingleUpgrade(elem);
+}
+
 function SingleUpgrade(elem, skill, type, amount) {
 	if (skill == "capacity") {
 		if (parseInt(localStorage.getItem("capacity")) === parseInt(localStorage.getItem("capacity_alloggi")) ) {
 			$('#factory-panel').fadeOut();
 			if ($('#warning').length === 0) {
-			    $('#right-screen').append('<img src="img/warning.png" id="warning" class="right-icon" onClick="warning()" />');
+			    $('#right-screen').append('<img src="img/warning.png" id="warning" class="right-icon" onClick="attenzione()" />');
 			}
 		    return false;
 		}
@@ -174,7 +295,11 @@ function SingleUpgrade(elem, skill, type, amount) {
 		var desc = elem.parentElement.parentElement.getElementsByClassName("desc")[0];
 		desc.innerHTML = '+'+localStorage.getItem(skill)+type+' '+window[skill+'_desc'];
 		checkSound("skillup");
+		rewardChance();
         speed = parseInt(localStorage.getItem("fabbrica"))*(1-(parseInt(localStorage.getItem("energy")) / 100))*(1-(parseInt(localStorage.getItem("machinery")) / 100))*(1-(parseInt(localStorage.getItem("comfort")) / 100));
+	}
+	if (skill == "capacity") {
+		orsettini = parseInt(localStorage.getItem("capacity"));
 	}
 	CheckSingleUpgrade(elem);
 }
@@ -212,9 +337,12 @@ function videoReward (elem) {
 	rewardType = elem.id.match(/\S+(?=-)/g);
 	if (rewardType == "gems")  {
 	    plus = getRandomInt(10, 50);
+		plus = parseInt(plus + plus*parseInt(localStorage.getItem("gems_video1"))/100);
 	}
 	else if (rewardType == "coins") {
-	    plus = getRandomInt(100000, 500000);
+		del_start = parseInt(localStorage.getItem("delivered"));
+	    plus = getRandomInt(del_start, del_start*5);
+		plus = parseInt(plus + plus*parseInt(localStorage.getItem("gems_video1"))/100);
 	}
 	$('.option_info').show();
 	$(".option_info > span").html(rewardMessage+': '+plus+' <img src="img/'+rewardType+'_icon.png" height="25%" />');
@@ -275,7 +403,7 @@ function assignReward(divisor) {
 			}
             else if(container.event == 'onFinished') {
                 //document.getElementById("callbackContainer").innerHTML = "Appodeal. OnFinished Rewarded. " + plus + ", amount: " + rewardType;
-				assignReward(1);
+				//assignReward(1);
 			}
             else {
                 Appodeal.show(Appodeal.INTERSTITIAL);

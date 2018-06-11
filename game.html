@@ -145,8 +145,86 @@
     </div>
 </div>
 
+<div id="story-panel" class="panel" style="display:none;">
+    <img id="story-rib" class="ribbon" />
+    <img class="panel-close" src="img/panel/decline.png" onClick="$('#story-panel').fadeOut();" />
+    <div class="container-empty" >
+       <img src="img/panel/progress_base.png" style="position: absolute; left: 0; width: 100%; height: 40%;"/>
+       <img src="img/panel/progress_inside.png" style="position: absolute; left: 0; width: 100%; height: 40%;"/>
+       <img src="img/panel/progress_bar.png" style="position: absolute; left: 0; width: 100%; height: 40%;" />
+       <div class="title green" id="delivered-perc"></div>
+    </div>
+    <div class="container-empty">
+       <div id="alsecondo" class="story-font brown"></div>
+       <div id="alminuto" class="story-font brown"></div>
+       <div id="delivered-pastries" class="story-font brown"></div>
+    </div>
+    <div class="upgrade button grey">
+       <img src="img/panel/btn_locked.png" style="width:60%;"/>
+       <div class="btn-upgrade centered" onclick="NextLevel()">New Level</div>
+    </div>
+</div>
+
+<div id="gems-panel" class="panel" style="display:none;">
+    <img id="gems-rib" class="ribbon" />
+    <img class="panel-close" src="img/panel/decline.png" onClick='$("#gems-panel").fadeOut();' />
+    <div id="master-container" class="master-container" style="margin-top: 5%; width: 95%; max-height: 68%; overflow: auto;">
+    <div id="gems_video1" class="container large-container">
+       <img class="icon" src="img/play.png"/>
+       <div class="title brown-soft"></div>
+       <div class="desc"></div>
+       <img class="skills" src="img/panel/skills_0.png" />
+       <div class="btn-buy2 button green-soft">
+           <div class="btn-cost centered" onclick="GemsUpgrade(this, 'gems_video1', '+', 15)"></div>
+       </div>
+    </div>
+    <div id="gems_powerups" class="container large-container">
+       <img class="icon" src="img/lab.png"/>
+       <div class="title brown-soft"></div>
+       <div class="desc"></div>
+       <img class="skills" src="img/panel/skills_0.png" />
+       <div class="btn-buy2 button green-soft">
+           <div class="btn-cost centered" onclick="GemsUpgrade(this, 'gems_powerups', '-', 10)"></div>
+       </div>
+    </div>
+    <div id="gems_rewards" class="container large-container">
+       <img class="icon" src="img/score_multiplier.png"/>
+       <div class="title brown-soft"></div>
+       <div class="desc"></div>
+       <img class="skills" src="img/panel/skills_0.png" />
+       <div class="btn-buy2 button green-soft">
+           <div class="btn-cost centered" onclick="GemsUpgrade(this, 'gems_rewards', '+', 5)"></div>
+       </div>
+    </div>
+    <div class="container large-container">
+       <div class="title brown-soft">LevelUp</div>
+       <div class="desc">-50% required value</div>
+       <img class="skills" src="img/panel/skills_5.png" />
+       <div class="btn-buy button green-soft">
+           <div class="btn-cost centered" onclick="">123456</div>
+       </div>
+    </div>
+    <div class="container large-container">
+       <div class="title brown-soft">Muggiti</div>
+       <div class="desc">+240% mura rinforzate</div>
+       <img class="skills" src="img/panel/skills_5.png" />
+       <div class="btn-buy button green-soft">
+           <div class="btn-cost centered" onclick="">123456</div>
+       </div>
+    </div>
+    <div class="container large-container">
+       <div class="title brown-soft">Muggiti</div>
+       <div class="desc">+240% mura rinforzate</div>
+       <img class="skills" src="img/panel/skills_5.png" />
+       <div class="btn-buy button green-soft">
+           <div class="btn-cost centered" onclick="">123456</div>
+       </div>
+    </div>
+    </div> <!-- fine master container -->
+</div>
+
 <div id="warning-info" class="warning_info none">
-   <span class="brown">ewqe</span>
+   <span class="brown"></span>
    <img class="accept" src="img/panel/accept.png" onClick="dismiss(this)" />
 </div>
 
@@ -156,11 +234,17 @@
    <img class="accept" src="img/panel/accept.png" onClick="startReward()" />
 </div>
 
-<!--<p id="callbackContainer" style="position:fixed; left: 10%; top: 30%;">CallBack COntainer</p>-->
+<p id="callbackContainer" onClick="story()" style="position:fixed; left: 10%; top: 30%;">CallBack COntainer</p>
+<p id="aprilegemme" onClick="GemsPanel()" style="position:fixed; left: 10%; top: 40%;">Gems Panel</p>
 <a onclick="canc()" style="position:fixed; left: 10%; top: 50%;">cancella</a>
 <script>
 function canc() {
+	var music = localStorage.getItem("bgmusic");
+	var sound = localStorage.getItem("sound");
 	localStorage.clear();
+	del_start = 0;
+	localStorage.setItem("bgmusic",music);
+	localStorage.setItem("sound",sound);
 }
 
 var factorydivs = document.getElementById("factory-panel").getElementsByClassName("btn-cost");
@@ -169,8 +253,15 @@ var energy = parseInt(localStorage.getItem("energy")) / 100;
 var machinery = parseInt(localStorage.getItem("machinery")) / 100;
 var comfort = parseInt(localStorage.getItem("comfort")) / 100;
 
+var orsettini = parseInt(localStorage.getItem("capacity")) > 0 ? parseInt(localStorage.getItem("capacity")) : parseInt(localStorage.getItem("capacity"))+1;
+
 var start = parseInt(localStorage.getItem("coins_save"));
 var speed = parseInt(localStorage.getItem("fabbrica"))*(1-energy)*(1-machinery)*(1-comfort);
+
+var del_start = parseInt(localStorage.getItem("delivered"));
+var alsecondo = Math.round(1000/speed*10)/10*orsettini;
+var alminuto = alsecondo*60;
+var del_speed = 1000;
 
 $(document).ready(function () {
 	document.getElementById('gems').innerHTML = localStorage.getItem("gems_save");
@@ -182,7 +273,15 @@ $(document).ready(function () {
       timer = setInterval(function(p) {
           go(p);
           }, speed, speed);
-      });
+		  
+	  delivered();
+      del_timer = setInterval(function(n) {
+          delivered(n);
+		  }, del_speed, del_speed);
+		  
+		  	  
+      }); // fine ready function
+	  
 	
 	setInterval(function () {
 		var randNum = getRandomInt(0, 1);
@@ -192,7 +291,7 @@ $(document).ready(function () {
 			else if (randNum === 1)
 			$('#right-screen').append('<img src="img/play.png" id="coins-reward" class="right-icon" onClick="videoReward(this)" />');
 		}
-	}, 2000); // minuti in ms
+	}, 180000); // timer in ms
 	  
 function go(p) {
 	if(p && p != speed) {
@@ -212,7 +311,18 @@ function go(p) {
 	if (start>99999999) $('.moneyscore').css("right", "-19%");
 	if (start>999999999) start = 999999999;
     $("#coins").html(start.toLocaleString());
-    start += parseInt(localStorage.getItem("pasticcino")) * parseInt(localStorage.getItem("orsettini")) * 2;
+    start += parseInt(localStorage.getItem("pasticcino")) * orsettini;
+}
+
+function delivered(n) {
+	if(n && n != del_speed) {
+        clearInterval(del_timer);
+        del_timer = setInterval(function(n) {
+           delivered(n);
+        }, del_speed, del_speed);
+    }
+	$("#delivered-pastries").html(del_start.toLocaleString()+" pasticcini consegnati");
+    del_start += Math.round(1000/speed*10)/10*orsettini;
 }
 </script>
 
@@ -225,9 +335,11 @@ function onDeviceReady() {
 
 function onPause() {
 	localStorage.setItem("coins_save",start);
+	localStorage.setItem("delivered",del_start);
 }
 window.onunload = function () {
 	localStorage.setItem("coins_save",start);
+	localStorage.setItem("delivered",del_start);
 }
 </script>
 

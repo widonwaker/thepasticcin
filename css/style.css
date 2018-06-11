@@ -28,6 +28,20 @@ body {
    padding: 0;
    margin: 0;
 }
+.master-container::-webkit-scrollbar{
+   width: 9px;
+   height: 100%;
+}
+.master-container::-webkit-scrollbar-track {
+   background: transparent url('../img/zz_base.png') no-repeat; 
+}
+.master-container::-webkit-scrollbar-thumb {
+   background: transparent url('../img/zz_thumb.png') no-repeat;
+   background-size: 100% 100%;
+}
+.large-container {
+	top: 10vh !important;
+}
 #indexbody {
 	position: fixed;
 	height: 100%; 
@@ -409,6 +423,23 @@ input
 	height: 18%;
 	margin-bottom: 3%;
 }
+.panel .container-empty {
+	position: relative;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	top: 10%;
+	width: 82.65%;
+	height: 18%;
+	margin-bottom: 3%;
+}
+.panel .container-empty .title{
+	position: absolute;
+	font-family: 'Carter One', cursive; 
+	color: white;	
+	left: 50%;
+	-webkit-transform: translate(-50%);
+	height: 25%;
+}
 .panel .container .title {
 	position: relative;
     text-align: left;
@@ -458,6 +489,15 @@ input
     background-image: url('../img/panel/btn_buy.png');
     background-size: 100% 100%;
 }
+.panel .container .btn-buy2 {
+	position: fixed;
+    width: 30%; /*26.82%;*/
+    height: 36%;
+    top: 45%;
+    right: 4%;
+    background-image: url('../img/panel/btn_buy2.png');
+    background-size: 100% 100%;
+}
 .panel .btn-cost {
 	width: 90%;
 	left: 65%;
@@ -500,6 +540,10 @@ input
 	bottom: 0;
 	right: 20%;
 	width: 20%;
+}
+.story-font {
+	font-family: 'Carter One', cursive !important; 
+	color: white;	
 }
 @media only screen and (min-height: 800px) {
     #game {
