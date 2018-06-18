@@ -28,6 +28,9 @@ body {
    padding: 0;
    margin: 0;
 }
+.absolute {
+	position: absolute;
+}
 .master-container::-webkit-scrollbar{
    width: 9px;
    height: 100%;
@@ -545,6 +548,80 @@ input
 	font-family: 'Carter One', cursive !important; 
 	color: white;	
 }
+.progress-inside {
+	background-image: url(../img/panel/progress_inside.png);
+	background-size: 100% 100%; 
+	position: absolute; 
+	top: 50%; 
+	left: 50%; 
+	-webkit-transform: translate(-50%, -50%); 
+	width: 100%; 
+	height: 40%; 
+	overflow: hidden;
+}
+.progress-bar {
+	position: absolute; 
+	width: 0%; 
+	height: 100%;
+	overflow: hidden;
+}
+.progress-bar img {
+	position: absolute;
+	left: 0;
+	height: 100%;
+	width: 0px;
+}
+#delivered-perc {
+	top: 45%; 
+	left: 50%; 
+	-webkit-transform: translate(-50%, -50%);
+}
+.pastries-story {
+	width: 20%;
+}
+#newpastry {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.zoom-out {
+	width: 0%;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	animation: zoom-out 2s;
+	-webkit-animation: zoom-out 2s;
+}
+@keyframes zoom-out {
+	from {
+		width: 500%;
+	} to {
+		width: 0%;
+	}
+}
+@-webkit-keyframes zoom-out {
+	from {
+		width: 500%;
+	} to {
+		width: 0%;
+	}
+}
+#footer {
+	position: fixed;
+	bottom: 0;
+	width: 90%;
+	-webkit-transform: translate(-50%, -50%); 
+	left: 50%;
+	display: flex;
+    justify-content: space-between;
+}
+#footer img {
+	width: 15%;
+}
 @media only screen and (min-height: 800px) {
     #game {
 	   width: 1600px;
@@ -559,6 +636,10 @@ input
 	   top: 600px;
 	   left: 1200px;
     }
+	#vehiclelevelup {
+	   top: 640px;
+	   left: 100px;
+    }   
 	.alloggi {
 	   top: 630px;
 	   left: 1040px;
@@ -566,11 +647,15 @@ input
 	   height: 540px;
     }
 	.fabbrica {
-	   position: absolute;
 	   top: 300px;
 	   left: 520px;
 	   width: 540px;
 	   height: 540px;
+    }
+	.vehicle {
+	   top: 720px;
+	   left: 100px;
+	   width: 400px;
     }
 }
 @media only screen 
