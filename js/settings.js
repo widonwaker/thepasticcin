@@ -1,8 +1,8 @@
 if (localStorage.getItem("factory")===null) localStorage.setItem("factory","img/edifici/factory1.png");
 if (localStorage.getItem("alloggi")===null) localStorage.setItem("alloggi","img/edifici/alloggi1.png");
-if (localStorage.getItem("vehicle")===null) localStorage.setItem("vehicle","img/trasporti/vehicle1.png");
-if (localStorage.getItem("coins_save")===null || localStorage.getItem("coins_save")=="NaN") localStorage.setItem("coins_save",30000000);
-if (localStorage.getItem("gems_save")===null || localStorage.getItem("gems_save")=="NaN") localStorage.setItem("gems_save",5000);
+if (localStorage.getItem("vehicle")===null) localStorage.setItem("vehicle","img/edifici/vehicle1.png");
+if (localStorage.getItem("coins_save")===null || localStorage.getItem("coins_save")=="NaN") localStorage.setItem("coins_save",1);
+if (localStorage.getItem("gems_save")===null || localStorage.getItem("gems_save")=="NaN") localStorage.setItem("gems_save",0);
 if (localStorage.getItem("delivered")===null || localStorage.getItem("delivered")=="NaN") localStorage.setItem("delivered",0);
 if (localStorage.getItem("pasticcino")===null) localStorage.setItem("pasticcino",1);
 if (localStorage.getItem("fabbrica")===null) localStorage.setItem("fabbrica",1000);
@@ -30,6 +30,12 @@ if (localStorage.getItem("capacity_alloggi_val")===null) localStorage.setItem("c
 /* fine alloggi */
 
 /* inizio veicoli */
+if (localStorage.getItem("speed_vehicleskills")===null) localStorage.setItem("speed_vehicleskills",0);
+if (localStorage.getItem("speed_vehicle")===null) localStorage.setItem("speed_vehicle",1);	
+if (localStorage.getItem("speed_vehicle_val")===null) localStorage.setItem("speed_vehicle_val",30);
+if (localStorage.getItem("capacity_vehicleskills")===null) localStorage.setItem("capacity_vehicleskills",0);
+if (localStorage.getItem("capacity_vehicle")===null) localStorage.setItem("capacity_vehicle",60);	
+if (localStorage.getItem("capacity_vehicle_val")===null) localStorage.setItem("capacity_vehicle_val",40);
 /* fine veicoli */
 
 /* inizio gemme */
@@ -40,8 +46,11 @@ if (localStorage.getItem("gems_powerupsskills")===null) localStorage.setItem("ge
 if (localStorage.getItem("gems_powerups")===null) localStorage.setItem("gems_powerups",0);	
 if (localStorage.getItem("gems_powerups_val")===null) localStorage.setItem("gems_powerups_val",50);
 if (localStorage.getItem("gems_rewardsskills")===null) localStorage.setItem("gems_rewardsskills",0);
-if (localStorage.getItem("gems_rewards")===null) localStorage.setItem("gems_rewards",0);	
+if (localStorage.getItem("gems_rewards")===null) localStorage.setItem("gems_rewards",10);	
 if (localStorage.getItem("gems_rewards_val")===null) localStorage.setItem("gems_rewards_val",20);
+if (localStorage.getItem("gems_levelupskills")===null) localStorage.setItem("gems_levelupskills",0);
+if (localStorage.getItem("gems_levelup")===null) localStorage.setItem("gems_levelup",0);	
+if (localStorage.getItem("gems_levelup_val")===null) localStorage.setItem("gems_levelup_val",20);
 /* fine gemme */
 
 if (localStorage.getItem("bgmusic")===null) localStorage.setItem("bgmusic","On");

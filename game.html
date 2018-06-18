@@ -1,7 +1,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width,  user-scalable=no">
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>  
     <script type="text/javascript" src="js/index.js"></script>
 	<title>I Pasticcini</title>
@@ -115,29 +115,26 @@
 <div id="vehicle-panel" class="panel" style="display:none;">
     <img id="vehicle-rib" class="ribbon" />
     <img class="panel-close" src="img/panel/decline.png" onClick='$("#vehicle-panel").fadeOut();' />
-    <div class="container">
-       <div class="title brown-soft">Bramiti</div>
-       <div class="desc">+25% more bramits </div>
-       <img class="skills" src="img/panel/skills_5.png" />
+    <div id="speed_vehicle" class="container">
+       <img class="icon" src="img/speed.png"/>
+       <div class="title brown-soft"></div>
+       <div class="desc"></div>
+       <img class="skills" src="img/panel/skills_0.png" />
        <div class="btn-buy button green-soft">
-           <div class="btn-cost centered" onclick="">15</div>
-       </div>
-    </div>
-    <div class="container">
-       <div class="title brown-soft">Muggiti</div>
-       <div class="desc">+240% mura rinforzate</div>
-       <img class="skills" src="img/panel/skills_5.png" />
-       <div class="btn-buy button green-soft">
-           <div class="btn-cost centered" onclick="">123456</div>
+           <div class="btn-cost centered" onclick="SingleUpgrade(this, 'speed_vehicle', ' ', 1)"></div>
        </div>
     </div>
     <div id="capacity_vehicle" class="container">
+       <img class="icon" src="img/shield.png"/>
        <div class="title brown"></div>
        <div class="desc"></div>
        <img class="skills" />
        <div class="btn-buy button green-soft">
-           <div class="btn-cost centered" onclick="SingleUpgrade(this, 'capacity_vehicle', ' ', 4)"></div>
+           <div class="btn-cost centered" onclick="SingleUpgrade(this, 'capacity_vehicle', ' ', 74)"></div>
        </div>
+    </div>
+    <div class="container-empty" >
+       <div id="capacitymin" class="story-font brown"></div>
     </div>
     <div class="upgrade button grey">
        <img src="img/panel/btn_locked.png" style="width:60%;"/>
@@ -149,15 +146,19 @@
     <img id="story-rib" class="ribbon" />
     <img class="panel-close" src="img/panel/decline.png" onClick="$('#story-panel').fadeOut();" />
     <div class="container-empty" >
-       <img src="img/panel/progress_base.png" style="position: absolute; left: 0; width: 100%; height: 40%;"/>
-       <img src="img/panel/progress_inside.png" style="position: absolute; left: 0; width: 100%; height: 40%;"/>
-       <img src="img/panel/progress_bar.png" style="position: absolute; left: 0; width: 100%; height: 40%;" />
+       <div style="background-image: url(img/panel/progress_base.png); background-size: 100% 100%; position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); width: 105%; height: 40%; overflow: hidden;"></div>
+       <div class="progress-inside" >
+          <div class="progress-bar" style="">
+             <img src="img/panel/progress_bar.png" />
+          </div>
+       </div>       
        <div class="title green" id="delivered-perc"></div>
     </div>
     <div class="container-empty">
-       <div id="alsecondo" class="story-font brown"></div>
+       <div id="pastries-story"></div>
        <div id="alminuto" class="story-font brown"></div>
        <div id="delivered-pastries" class="story-font brown"></div>
+       <div id="obiettivo" class="story-font brown"></div>
     </div>
     <div class="upgrade button grey">
        <img src="img/panel/btn_locked.png" style="width:60%;"/>
@@ -193,15 +194,15 @@
        <div class="desc"></div>
        <img class="skills" src="img/panel/skills_0.png" />
        <div class="btn-buy2 button green-soft">
-           <div class="btn-cost centered" onclick="GemsUpgrade(this, 'gems_rewards', '+', 5)"></div>
+           <div class="btn-cost centered" onclick="GemsUpgrade(this, 'gems_rewards', '+', 3)"></div>
        </div>
     </div>
-    <div class="container large-container">
-       <div class="title brown-soft">LevelUp</div>
-       <div class="desc">-50% required value</div>
-       <img class="skills" src="img/panel/skills_5.png" />
+    <div id="gems_levelup" class="container large-container">
+       <div class="title brown-soft"></div>
+       <div class="desc"></div>
+       <img class="skills" src="img/panel/skills_0.png" />
        <div class="btn-buy button green-soft">
-           <div class="btn-cost centered" onclick="">123456</div>
+           <div class="btn-cost centered" onclick="GemsUpgrade(this, 'gems_levelup', '-', 5)"></div>
        </div>
     </div>
     <div class="container large-container">
@@ -234,9 +235,25 @@
    <img class="accept" src="img/panel/accept.png" onClick="startReward()" />
 </div>
 
+<div id="footer">
+   <img class="absolute" src="img/back.png" />
+   <img src="img/empty_circle_button.png" />
+   <img class="absolute" src="img/gems_btn.png" onClick="GemsPanel()" />
+   <img src="img/empty_circle_button.png" />
+   <img class="absolute" src="img/up.png" onClick="story()" />
+   <img src="img/empty_circle_button.png" />
+   <img class="absolute" src="img/missions.png" />
+   <img src="img/empty_circle_button.png" />
+</div>
+
 <p id="callbackContainer" onClick="story()" style="position:fixed; left: 10%; top: 30%;">CallBack COntainer</p>
 <p id="aprilegemme" onClick="GemsPanel()" style="position:fixed; left: 10%; top: 40%;">Gems Panel</p>
 <a onclick="canc()" style="position:fixed; left: 10%; top: 50%;">cancella</a>
+
+<div id="newpastry" class="none">
+   <img class="zoom-out" />
+</div>
+
 <script>
 function canc() {
 	var music = localStorage.getItem("bgmusic");
@@ -258,12 +275,20 @@ var orsettini = parseInt(localStorage.getItem("capacity")) > 0 ? parseInt(localS
 var start = parseInt(localStorage.getItem("coins_save"));
 var speed = parseInt(localStorage.getItem("fabbrica"))*(1-energy)*(1-machinery)*(1-comfort);
 
+var delivery_limit_min = parseInt(localStorage.getItem("speed_vehicle"))*parseInt(localStorage.getItem("capacity_vehicle"));
+var delivery_limit_sec = delivery_limit_min/60;
+
 var del_start = parseInt(localStorage.getItem("delivered"));
 var alsecondo = Math.round(1000/speed*10)/10*orsettini;
 var alminuto = alsecondo*60;
 var del_speed = 1000;
 
 $(document).ready(function () {
+	$('#newpastry').removeClass('none');
+	$('.zoom-out').attr("src",'img/loading/loading'+localStorage.getItem("pasticcino")+'.png');
+	setInterval(function() {
+		$('#newpastry').addClass('none');
+	}, 2000);
 	document.getElementById('gems').innerHTML = localStorage.getItem("gems_save");
 	document.getElementById("factory").src = localStorage.getItem("factory");
 	document.getElementById("alloggi").src = localStorage.getItem("alloggi");
@@ -321,8 +346,16 @@ function delivered(n) {
            delivered(n);
         }, del_speed, del_speed);
     }
-	$("#delivered-pastries").html(del_start.toLocaleString()+" pasticcini consegnati");
-    del_start += Math.round(1000/speed*10)/10*orsettini;
+	
+	//console.log(alsecondo+ ' con limite '+delivery_limit_sec);
+	if (alsecondo < delivery_limit_sec) {
+		del_start += parseInt(Math.round(1000/speed*10)/10*orsettini);
+	} else {
+		del_start += parseInt(delivery_limit_sec);
+	}
+	
+	$("#delivered-pastries").html("Delivered "+del_start.toLocaleString()+" \/ ");
+    
 }
 </script>
 
@@ -383,6 +416,12 @@ function fontSize () {
 	var divs = document.getElementsByClassName("btn-upgrade");
     for(var i = 0; i < divs.length; i++) {
         var relFontsize = divs[i].offsetWidth*0.08;
+        divs[i].style.fontSize = relFontsize+'px';	
+    }
+	
+	var divs = document.getElementsByClassName("story-font");
+    for(var i = 0; i < divs.length; i++) {
+        var relFontsize = divs[i].offsetWidth*0.06;
         divs[i].style.fontSize = relFontsize+'px';	
     }
 	

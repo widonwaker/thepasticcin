@@ -23,6 +23,32 @@ function CheckUpgradeAvailable(panel) {
 	return false;
 }
 
+function NextLevel() {
+	if (document.getElementsByClassName("pastries-story")[0].src.indexOf('dolce5') !== -1) return false;
+	var consegnati = $("#delivered-pastries").html().match(/\d+/g, "")+'';
+	var c = consegnati.split(',').join('');
+	var obiettivo = $("#obiettivo").html().match(/\d+/g, "")+'';
+	var o = obiettivo.split(',').join('');
+	if(Number(c) >= Number(o)) {
+		var music = localStorage.getItem("bgmusic");
+	    var sound = localStorage.getItem("sound");
+		var lang = localStorage.getItem("deflang");
+		var pastrynow = parseInt(localStorage.getItem("pasticcino"));
+		var gemmenow = parseInt(localStorage.getItem("gems_save"));
+	    localStorage.clear();
+		window.localStorage.clear();
+	    del_start = 0;
+		start = 0;
+		localStorage.setItem("deflang",lang);
+	    localStorage.setItem("bgmusic",music);
+	    localStorage.setItem("sound",sound);
+		localStorage.setItem("pasticcino", pastrynow+1);
+		localStorage.setItem("gems_save",gemmenow);
+		location.reload(); 
+
+	}
+}
+
 function ClearUpgrade (id) {
 	var resetskills = id.parentElement.parentElement.getElementsByClassName("skills");
 	var container = id.parentElement.parentElement.getElementsByClassName("container");
@@ -86,6 +112,7 @@ function rewardChance() {
 	}
 }
 
+
 function story() {
 	if ( $( "#story-panel" ).is( ":hidden" ) ) {
         $( "#story-panel" ).fadeIn( "fast" );
@@ -95,17 +122,31 @@ function story() {
 	} else if (localStorage.getItem("deflang") == "ita") {
 		$('#story-rib').attr('src', 'img/panel/progress_ita.png'); 
 	}
+	
 	alsecondo = Math.round(1000/speed*10)/10*orsettini;
     alminuto = alsecondo*60;
-	var deliveredperc = parseInt(100*del_start/100000);
+	var levelup = 1 - parseInt(localStorage.getItem("gems_levelup")) / 100;
+	var divisore = parseInt(localStorage.getItem("pasticcino"))*2*200000*levelup;
+	var deliveredperc = parseInt(100*del_start/divisore);
+	if (deliveredperc >= 100) deliveredperc = 100;	
+	var barlength = document.getElementsByClassName("progress-inside")[0].offsetWidth;
+	document.getElementsByClassName("progress-bar")[0].querySelector('img').style.width = barlength+'px';
+	document.getElementsByClassName("progress-bar")[0].style.width = deliveredperc+'%';
+	$("#obiettivo").html(divisore.toLocaleString());
 	$('#delivered-perc').html(deliveredperc+'%');
-	//$('#alsecondo').html(alsecondo+" pasticcini \/ sec");
-	$('#alminuto').html(parseInt(alminuto)+" pasticcini \/ min");
-	var divs = document.getElementsByClassName("story-font");
-    for(var i = 0; i < divs.length; i++) {
-        var relFontsize = divs[i].offsetWidth*0.08;
-        divs[i].style.fontSize = relFontsize+'px';	
-    }
+	$('#pastries-story').html("<img class='pastries-story' src='img/dolci/dolce"+localStorage.getItem("pasticcino")+".png' />");
+	$('#alminuto').html("Production: "+parseInt(alminuto)+" \/ min");
+	if (deliveredperc >= 100) {
+		if (document.getElementsByClassName("pastries-story")[0].src.indexOf('dolce5') === -1) {
+		    var id = document.getElementById('story-panel');
+		    var newimg = id.getElementsByClassName("upgrade")[0].querySelector('img');
+		    newimg.src="img/btn_green.png";
+		    id.getElementsByClassName("upgrade")[0].classList.remove("grey");
+		    id.getElementsByClassName("upgrade")[0].classList.add("green");
+		    id.getElementsByClassName("btn-upgrade")[0].style.top="45%";
+		    id.getElementsByClassName("btn-upgrade")[0].style.left="50%";
+		}
+	}
 	fontSize();
 }
 
@@ -130,9 +171,14 @@ document.getElementById("gems_powerups").getElementsByClassName("skills")[0].src
 document.getElementById("gems_powerups").getElementsByClassName("btn-cost")[0].innerHTML = parseInt(localStorage.getItem("gems_powerups_val"));
 
 document.getElementById("gems_rewards").getElementsByClassName("title")[0].innerHTML = gems_rewards_title;
-document.getElementById("gems_rewards").getElementsByClassName("desc")[0].innerHTML = '-'+localStorage.getItem("gems_rewards")+'% '+gems_rewards_desc;
+document.getElementById("gems_rewards").getElementsByClassName("desc")[0].innerHTML = '+'+localStorage.getItem("gems_rewards")+'% '+gems_rewards_desc;
 document.getElementById("gems_rewards").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("gems_rewardsskills")+'.png';
 document.getElementById("gems_rewards").getElementsByClassName("btn-cost")[0].innerHTML = parseInt(localStorage.getItem("gems_rewards_val"));
+
+document.getElementById("gems_levelup").getElementsByClassName("title")[0].innerHTML = gems_levelup_title;
+document.getElementById("gems_levelup").getElementsByClassName("desc")[0].innerHTML = '-'+localStorage.getItem("gems_levelup")+'% '+gems_levelup_desc;
+document.getElementById("gems_levelup").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("gems_levelupskills")+'.png';
+document.getElementById("gems_levelup").getElementsByClassName("btn-cost")[0].innerHTML = parseInt(localStorage.getItem("gems_levelup_val"));
 	
 	var divs = document.getElementById("gems-panel").getElementsByClassName("btn-cost");
 	for(var i = 0; i < divs.length; i++) {
@@ -220,6 +266,14 @@ function VehiclePanel() {
 		$('#vehicle-rib').attr('src', 'img/panel/vehicle_ita.png'); 
 	}
 	
+	delivery_limit = parseInt(localStorage.getItem("speed_vehicle"))*parseInt(localStorage.getItem("capacity_vehicle"));
+	$('#capacitymin').html("Your vehicle will carry "+delivery_limit_min+" pasticcini \/ min");
+	
+	document.getElementById("speed_vehicle").getElementsByClassName("title")[0].innerHTML = speed_title;
+	document.getElementById("speed_vehicle").getElementsByClassName("desc")[0].innerHTML = '+'+localStorage.getItem("speed_vehicle")+' '+speed_vehicle_desc;
+	document.getElementById("speed_vehicle").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("speed_vehicleskills")+'.png';
+	document.getElementById("speed_vehicle").getElementsByClassName("btn-cost")[0].innerHTML = parseInt(localStorage.getItem("speed_vehicle_val"));
+	
 	document.getElementById("capacity_vehicle").getElementsByClassName("title")[0].innerHTML = capacity_title;
 	document.getElementById("capacity_vehicle").getElementsByClassName("desc")[0].innerHTML = '+'+localStorage.getItem("capacity_vehicle")+' '+capacity_vehicle_desc;
 	document.getElementById("capacity_vehicle").getElementsByClassName("skills")[0].src = 'img/panel/skills_'+localStorage.getItem("capacity_vehicleskills")+'.png';
@@ -300,6 +354,10 @@ function SingleUpgrade(elem, skill, type, amount) {
 	}
 	if (skill == "capacity") {
 		orsettini = parseInt(localStorage.getItem("capacity"));
+	}
+	if (skill == "speed_vehicle" || skill == "capacity_vehicle") {
+		delivery_limit_min = parseInt(localStorage.getItem("speed_vehicle"))*parseInt(localStorage.getItem("capacity_vehicle"));
+		delivery_limit_sec = delivery_limit_min/60;
 	}
 	CheckSingleUpgrade(elem);
 }
