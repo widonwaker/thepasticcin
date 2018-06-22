@@ -1,4 +1,6 @@
 // FUNZIONI
+var newDB = JSON.parse(localStorage.getItem("achievements_db"));
+
 function CheckUpgradeAvailable(panel) {
 	var matches = panel.match(/\S+(?=-)/g);
 	if (document.getElementById(matches).src.indexOf(matches+'5') === -1) {
@@ -19,6 +21,7 @@ function CheckUpgradeAvailable(panel) {
 	
 	} else {
 		$('.btn-upgrade').html(btn_upgrade_max);
+		achievementsCheck(5);
 	}
 	return false;
 }
@@ -44,6 +47,7 @@ function NextLevel() {
 	    localStorage.setItem("sound",sound);
 		localStorage.setItem("pasticcino", pastrynow+1);
 		localStorage.setItem("gems_save",gemmenow);
+		achievementsCheck(6);
 		location.reload(); 
 
 	}
@@ -92,6 +96,7 @@ function CheckSingleUpgrade(elem) {
 	}
 	if (elem.parentElement.parentElement.getElementsByClassName("skills")[0].src.indexOf('skills_5') !== -1) {
 		elem.innerHTML = 'Max';
+		achievementsCheck(1);
 	}
 	CheckUpgradeAvailable(elem.parentElement.parentElement.parentElement.id);
 	localStorage.setItem("coins_save",start);
@@ -148,6 +153,60 @@ function story() {
 		}
 	}
 	fontSize();
+}
+
+function achievementsCheck(index) {
+	if (newDB[index]["completed"] === "no") {
+		rewardType = newDB[index]["type"];
+		plus = newDB[index]["reward"];
+		assignReward(1);
+		newDB[index]["completed"] = "yes";
+		localStorage.setItem("achievements_db", JSON.stringify(newDB));
+		newDB = JSON.parse(localStorage.getItem("achievements_db"));
+		return true;
+	}
+}
+
+function achievements() {
+	if ( $( "#mission-panel" ).is( ":hidden" ) ) {
+        $( "#mission-panel" ).fadeIn( "fast" );
+    }
+	if (localStorage.getItem("deflang") == "eng") {
+	    $('#mission-rib').attr('src', 'img/panel/mission_eng.png'); 
+	} else if (localStorage.getItem("deflang") == "ita") {
+		$('#mission-rib').attr('src', 'img/panel/mission_ita.png'); 
+	}
+	//newDB = JSON.parse(localStorage.getItem("achievements_db"));
+	//localStorage.removeItem("achievements_db");
+		var onoff;
+		var tempclass;
+		var tempcolor; 
+		//if( $.trim( $('#master-container2').html() ).length > 39 ) return false;
+		
+		$('#master-container2').empty();
+		
+    for (var i = 0; i < newDB.length; i++) {
+        var info = newDB[i];
+		if (info.completed === 'yes') { 
+		    onoff = 'img/panel/checked_on.png';
+			info.reward = "";
+			tempclass = "container";
+			tempcolor = "brown";
+		}
+		else {
+			 onoff = 'img/'+info.type+'_icon.png';
+			 tempclass = "container-off";
+			 tempcolor = "grey";
+		}
+        $('#master-container2').append($('<div  class="'+tempclass+' large-container">')
+		                       .append('<img src="'+onoff+'" class="mission-icon" />')
+							   .append('<p class="mission-txt '+tempcolor+'">'+info.title+'</p>'));
+    }
+	
+	var divs = document.getElementById("master-container2");
+        var relFontsize = divs.offsetHeight*0.05;
+        divs.style.fontSize = relFontsize+'px';	
+
 }
 
 function GemsPanel() {
@@ -313,6 +372,7 @@ function GemsUpgrade(elem, skill, sign, amount) {
 		var desc = elem.parentElement.parentElement.getElementsByClassName("desc")[0];
 		desc.innerHTML = sign+localStorage.getItem(skill)+'% '+window[skill+'_desc'];
 		checkSound("skillup");
+		achievementsCheck(4);
 	}
 	if (skill == "gems_powerups") {
 		// loop tutti i locastorage contenenti '_val' tranne contenenti 'gems_'
@@ -351,6 +411,7 @@ function SingleUpgrade(elem, skill, type, amount) {
 		checkSound("skillup");
 		rewardChance();
         speed = parseInt(localStorage.getItem("fabbrica"))*(1-(parseInt(localStorage.getItem("energy")) / 100))*(1-(parseInt(localStorage.getItem("machinery")) / 100))*(1-(parseInt(localStorage.getItem("comfort")) / 100));
+		achievementsCheck(0);
 	}
 	if (skill == "capacity") {
 		orsettini = parseInt(localStorage.getItem("capacity"));
@@ -378,6 +439,7 @@ function BuildingNext(elem) {
 	        setTimeout(function() {
                 $('#'+matches+'levelup').fadeOut();
             }, 1000);
+		achievementsCheck(2);	
 	    }
 }
 
@@ -458,6 +520,7 @@ function assignReward(divisor) {
             if(container.event == 'onClosed') {
                 //document.getElementById("callbackContainer").innerHTML = "Appodeal. Onclosed Rewarded. " + plus + ", finished: " + rewardType;
 				assignReward(1);
+				achievementsCheck(3);
 			}
             else if(container.event == 'onFinished') {
                 //document.getElementById("callbackContainer").innerHTML = "Appodeal. OnFinished Rewarded. " + plus + ", amount: " + rewardType;

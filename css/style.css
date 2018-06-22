@@ -31,6 +31,12 @@ body {
 .absolute {
 	position: absolute;
 }
+.master-container {
+	margin-top: 5%; 
+	width: 95%; 
+	max-height: 68%; 
+	overflow: auto;
+}
 .master-container::-webkit-scrollbar{
    width: 9px;
    height: 100%;
@@ -426,6 +432,35 @@ input
 	height: 18%;
 	margin-bottom: 3%;
 }
+.panel .container-off {
+	background-image:url(../img/panel/container_off.png);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	position: relative;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	top: 10%;
+	width: 82.65%;
+	height: 18%;
+	margin-bottom: 3%;
+}
+.mission-txt {
+	width: 70%;
+	font-family: 'Carter One', cursive; 
+	color: white;
+	position: absolute; 
+	left: 60%; 
+	top: 30%; 
+	-webkit-transform: translate(-50%, -50%);
+}
+.mission-desc {
+	font-family: 'Skranji', cursive; 
+	color: white;
+	position: absolute; 
+	left: 9%; 
+	top: 50%;
+	-webkit-transform: translate(0, -50%);
+}
 .panel .container-empty {
 	position: relative;
 	left: 50%;
@@ -595,6 +630,13 @@ input
 	-webkit-transform: translate(-50%, -50%);
 	animation: zoom-out 2s;
 	-webkit-animation: zoom-out 2s;
+}
+.mission-icon {
+	position: absolute; 
+	left: 5%; 
+	top: 50%; 
+	width: 20%;
+	-webkit-transform: translate(0, -50%);
 }
 @keyframes zoom-out {
 	from {

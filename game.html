@@ -7,6 +7,10 @@
 	<title>I Pasticcini</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/jquery.min.js"></script>
+    <script>
+var src = 'js/' + localStorage.getItem("deflang") + '.js';
+var script = jQuery('<script/>').attr('src', src).appendTo('head');
+</script>
     <script src="js/settings.js"></script>
     <script>
 	// DA RIMUOVERE
@@ -169,7 +173,7 @@
 <div id="gems-panel" class="panel" style="display:none;">
     <img id="gems-rib" class="ribbon" />
     <img class="panel-close" src="img/panel/decline.png" onClick='$("#gems-panel").fadeOut();' />
-    <div id="master-container" class="master-container" style="margin-top: 5%; width: 95%; max-height: 68%; overflow: auto;">
+    <div id="master-container" class="master-container">
     <div id="gems_video1" class="container large-container">
        <img class="icon" src="img/play.png"/>
        <div class="title brown-soft"></div>
@@ -224,6 +228,14 @@
     </div> <!-- fine master container -->
 </div>
 
+<div id="mission-panel" class="panel" style="display:none;">
+    <img id="mission-rib" class="ribbon" />
+    <img class="panel-close" src="img/panel/decline.png" onClick='$("#mission-panel").fadeOut();' />
+    <div id="master-container2" class="master-container">
+        <!-- foreach con array localstorage -->
+    </div> <!-- fine master container -->
+</div>
+
 <div id="warning-info" class="warning_info none">
    <span class="brown"></span>
    <img class="accept" src="img/panel/accept.png" onClick="dismiss(this)" />
@@ -236,18 +248,18 @@
 </div>
 
 <div id="footer">
-   <img class="absolute" src="img/back.png" />
+   <img class="absolute" src="img/back.png" onClick="location.href='index.html'" />
    <img src="img/empty_circle_button.png" />
    <img class="absolute" src="img/gems_btn.png" onClick="GemsPanel()" />
    <img src="img/empty_circle_button.png" />
    <img class="absolute" src="img/up.png" onClick="story()" />
    <img src="img/empty_circle_button.png" />
-   <img class="absolute" src="img/missions.png" />
+   <img class="absolute" src="img/missions.png" onClick="achievements()" />
    <img src="img/empty_circle_button.png" />
 </div>
 
-<p id="callbackContainer" onClick="story()" style="position:fixed; left: 10%; top: 30%;">CallBack COntainer</p>
-<p id="aprilegemme" onClick="GemsPanel()" style="position:fixed; left: 10%; top: 40%;">Gems Panel</p>
+<!--<p id="callbackContainer" onClick="story()" style="position:fixed; left: 10%; top: 30%;">CallBack COntainer</p>
+<p id="aprilegemme" onClick="GemsPanel()" style="position:fixed; left: 10%; top: 40%;">Gems Panel</p>-->
 <a onclick="canc()" style="position:fixed; left: 10%; top: 50%;">cancella</a>
 
 <div id="newpastry" class="none">
@@ -374,11 +386,6 @@ window.onunload = function () {
 	localStorage.setItem("coins_save",start);
 	localStorage.setItem("delivered",del_start);
 }
-</script>
-
-<script>
-var src = 'js/' + localStorage.getItem("deflang") + '.js';
-var script = jQuery('<script/>').attr('src', src).appendTo('head');
 </script>
 
 <script>

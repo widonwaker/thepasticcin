@@ -29,3 +29,12 @@ var gems_rewards_title = "Rewards";
 var gems_rewards_desc = "reward chance";
 var gems_levelup_title = "LevelUp";
 var gems_levelup_desc = "required value";
+
+/* missioni */
+var m1 = "Do your first upgrade";
+var m2 = "Bring an upgrade to 5";
+var m3 = "Upgrade a building";
+var m4 = "Watch a video";
+var m5 = "Do an upgrade with gems";
+var m6 = "Upgrade a building to max level";
+var m7 = "Move to the next pastry";

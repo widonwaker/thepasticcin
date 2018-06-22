@@ -29,3 +29,12 @@ var gems_rewards_title = "Ricompense";
 var gems_rewards_desc = "chance ricompensa";
 var gems_levelup_title = "Livello+";
 var gems_levelup_desc = "valore richiesto";
+
+/* missioni */
+var m1 = "Esegui il primo potenziamento";
+var m2 = "Porta un potenziamento al 5";
+var m3 = "Potenzia una struttura";
+var m4 = "Guarda un video";
+var m5 = "Usa le gemme per un potenziamento";
+var m6 = "Porta una struttura al massimo";
+var m7 = "Passa al pasticcino successivo";
