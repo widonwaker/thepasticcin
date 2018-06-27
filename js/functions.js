@@ -38,6 +38,7 @@ function NextLevel() {
 		var lang = localStorage.getItem("deflang");
 		var pastrynow = parseInt(localStorage.getItem("pasticcino"));
 		var gemmenow = parseInt(localStorage.getItem("gems_save"));
+		var achievements = localStorage.getItem("achievementsdb");
 	    localStorage.clear();
 		window.localStorage.clear();
 	    del_start = 0;
@@ -47,6 +48,7 @@ function NextLevel() {
 	    localStorage.setItem("sound",sound);
 		localStorage.setItem("pasticcino", pastrynow+1);
 		localStorage.setItem("gems_save",gemmenow);
+		localStorage.setItem("achievementsdb",achievements);
 		achievementsCheck(6);
 		location.reload(); 
 
@@ -131,7 +133,7 @@ function story() {
 	alsecondo = Math.round(1000/speed*10)/10*orsettini;
     alminuto = alsecondo*60;
 	var levelup = 1 - parseInt(localStorage.getItem("gems_levelup")) / 100;
-	var divisore = parseInt(localStorage.getItem("pasticcino"))*2*200000*levelup;
+	var divisore = parseInt(localStorage.getItem("pasticcino"))*2*250000*levelup;
 	var deliveredperc = parseInt(100*del_start/divisore);
 	if (deliveredperc >= 100) deliveredperc = 100;	
 	var barlength = document.getElementsByClassName("progress-inside")[0].offsetWidth;
@@ -326,7 +328,7 @@ function VehiclePanel() {
 	}
 	
 	delivery_limit = parseInt(localStorage.getItem("speed_vehicle"))*parseInt(localStorage.getItem("capacity_vehicle"));
-	$('#capacitymin').html("Your vehicle will carry "+delivery_limit_min+" pasticcini \/ min");
+	$('#capacitymin').html(vehicle_carry_info+delivery_limit_min);
 	
 	document.getElementById("speed_vehicle").getElementsByClassName("title")[0].innerHTML = speed_title;
 	document.getElementById("speed_vehicle").getElementsByClassName("desc")[0].innerHTML = '+'+localStorage.getItem("speed_vehicle")+' '+speed_vehicle_desc;
@@ -358,7 +360,7 @@ function attenzione() {
 
 function GemsUpgrade(elem, skill, sign, amount) {
 	var gems = parseInt(localStorage.getItem("gems_save"));
-	if (parseInt(elem.innerHTML) < gems && elem.parentElement.parentElement.getElementsByClassName("skills")[0].src.indexOf('skills_5') === -1) {
+	if (parseInt(elem.innerHTML) <= gems && elem.parentElement.parentElement.getElementsByClassName("skills")[0].src.indexOf('skills_5') === -1) {
 		var current = parseInt(localStorage.getItem(skill+"_val"));
 		localStorage.setItem("gems_save",gems - current); // scala costo upgrade
 		document.getElementById('gems').innerHTML = localStorage.getItem("gems_save"); // aggiorna gemme rimanenti
@@ -399,7 +401,7 @@ function SingleUpgrade(elem, skill, type, amount) {
 	if (parseInt(elem.innerHTML) < start && elem.parentElement.parentElement.getElementsByClassName("skills")[0].src.indexOf('skills_5') === -1) {
 		var current = parseInt(localStorage.getItem(skill+"_val"));
 		start = start - current; // scala costo upgrade
-		localStorage.setItem(skill+"_val", current*1.5); // setta nuovo costo upgrade
+		localStorage.setItem(skill+"_val", current*1.6); // setta nuovo costo upgrade
 		var up = parseInt(localStorage.getItem(skill+"skills"))+1;
 		localStorage.setItem(skill+"skills",up); // aggiungi skill in skillbar
 		elem.innerHTML = parseInt(localStorage.getItem(skill+"_val")); 

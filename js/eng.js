@@ -19,6 +19,7 @@ var soundOn = 'Sounds On';
 var soundOff = 'Sounds Off';
 var rewardMessage = 'Watch this video to earn';
 var capacityWarning = 'You must upgrade apartments capacity first!';
+var vehicle_carry_info = "Pastries / min carried by your vehicle: ";
 
 /* gems */
 var gems_video1_title = "Videos";
@@ -38,3 +39,6 @@ var m4 = "Watch a video";
 var m5 = "Do an upgrade with gems";
 var m6 = "Upgrade a building to max level";
 var m7 = "Move to the next pastry";
+
+/* other */
+var infos = "Developed by Stefano Iodice<br><br>Version 1.0<br><br>Contacts / Bug report: <a href='mailto:ipasticcini@apploadin.com'>ipasticcini@apploadin.com</a>";

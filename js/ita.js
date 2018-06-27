@@ -19,6 +19,7 @@ var soundOn = 'Suoni Attivati';
 var soundOff = 'Suoni Disattivati';
 var rewardMessage = 'Guarda questo video e guadagna';
 var capacityWarning = 'Devi prima aumentare la capienza degli alloggi!';
+var vehicle_carry_info = "Pasticcini / min trasportati dal tuo veicolo: ";
 
 /* gems */
 var gems_video1_title = "Video";
@@ -38,3 +39,6 @@ var m4 = "Guarda un video";
 var m5 = "Usa le gemme per un potenziamento";
 var m6 = "Porta una struttura al massimo";
 var m7 = "Passa al pasticcino successivo";
+
+/* other */
+var infos = "Creata da Stefano Iodice<br><br>Versione 1.0<br><br>Contatti / Segnalazioni: <a href='mailto:ipasticcini@apploadin.com'>ipasticcini@apploadin.com</a>";;
