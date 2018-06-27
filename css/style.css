@@ -28,6 +28,10 @@ body {
    padding: 0;
    margin: 0;
 }
+a {
+   color: inherit;	
+   text-decoration: none;
+}
 .absolute {
 	position: absolute;
 }
@@ -231,13 +235,13 @@ input
 	-webkit-transform: translate(-50%, -50%);
 	width: 90%;
 }
-.panel_info span {
+.panel_info div {
 	z-index: 9;
 	font-family: 'Carter One', cursive !important; 
 	color: white;	
 	position: absolute;
 	left: 50%;
-	top: 20%;
+	top: 50%;
 	-webkit-transform: translate(-50%, -50%);
 	width: 90%;
 }
