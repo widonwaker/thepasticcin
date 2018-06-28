@@ -482,6 +482,7 @@ function dismiss(elem) {
 }
 
 function startReward() {
+	registerAdEvents();
 	Appodeal.show(Appodeal.REWARDED_VIDEO);
 }
 
