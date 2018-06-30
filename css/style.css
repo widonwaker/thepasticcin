@@ -531,6 +531,9 @@ input
     background-image: url('../img/panel/btn_buy.png');
     background-size: 100% 100%;
 }
+.btn-buy:active{
+	background-image: url('../img/panel/btn_buy_pressed.png') !important;
+}
 .panel .container .btn-buy2 {
 	position: fixed;
     width: 30%; /*26.82%;*/
