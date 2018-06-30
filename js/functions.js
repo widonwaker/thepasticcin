@@ -398,7 +398,7 @@ function SingleUpgrade(elem, skill, type, amount) {
 		    return false;
 		}
 	}
-	elem.parentElement.style.setProperty("background-image","url('img/panel/btn_buy_pressed.png')",""); // effetto bottone premuto
+	elem.parentElement.style.backgroundImage = "url('img/panel/btn_buy_pressed.png')"; // effetto bottone premuto
 	if (parseInt(elem.innerHTML) < start && elem.parentElement.parentElement.getElementsByClassName("skills")[0].src.indexOf('skills_5') === -1) {
 		var current = parseInt(localStorage.getItem(skill+"_val"));
 		start = start - current; // scala costo upgrade
