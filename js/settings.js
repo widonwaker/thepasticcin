@@ -1,8 +1,8 @@
 if (localStorage.getItem("factory")===null) localStorage.setItem("factory","img/edifici/factory1.png");
 if (localStorage.getItem("alloggi")===null) localStorage.setItem("alloggi","img/edifici/alloggi1.png");
 if (localStorage.getItem("vehicle")===null) localStorage.setItem("vehicle","img/edifici/vehicle1.png");
-if (localStorage.getItem("coins_save")===null || localStorage.getItem("coins_save")=="NaN") localStorage.setItem("coins_save",90000000);
-if (localStorage.getItem("gems_save")===null || localStorage.getItem("gems_save")=="NaN") localStorage.setItem("gems_save",50000);
+if (localStorage.getItem("coins_save")===null || localStorage.getItem("coins_save")=="NaN") localStorage.setItem("coins_save",1);
+if (localStorage.getItem("gems_save")===null || localStorage.getItem("gems_save")=="NaN") localStorage.setItem("gems_save",0);
 if (localStorage.getItem("delivered")===null || localStorage.getItem("delivered")=="NaN") localStorage.setItem("delivered",0);
 if (localStorage.getItem("pasticcino")===null) localStorage.setItem("pasticcino",1);
 if (localStorage.getItem("fabbrica")===null) localStorage.setItem("fabbrica",1000);
