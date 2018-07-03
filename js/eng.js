@@ -1,4 +1,5 @@
 if (document.getElementById("play") !== null) { document.getElementById("play").innerHTML = 'Play'; }
+if (document.getElementById("restart") !== null) { document.getElementById("restart").innerHTML = 'Restart'; }
 var energy_title = 'Power';
 var energy_desc = 'power';
 var machinery_title = 'Machinery';
@@ -19,6 +20,7 @@ var soundOn = 'Sounds On';
 var soundOff = 'Sounds Off';
 var rewardMessage = 'Watch this video to earn';
 var capacityWarning = 'You must upgrade apartments capacity first!';
+var endgameWarning = 'Well done! You completed the game! Go back to home menu to start a new game.';
 var vehicle_carry_info = "Pastries / min carried by your vehicle: ";
 
 /* gems */

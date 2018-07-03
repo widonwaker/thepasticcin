@@ -28,7 +28,7 @@ document.addEventListener('deviceready', function () {
 		    var appKey = "40c249b6e217dbb8b8babe1860d544c9e1c59d9d6584a75a";
 	}
   Appodeal.disableLocationPermissionCheck();
-  Appodeal.initialize(appKey, Appodeal.REWARDED_VIDEO | Appodeal.INTERSTITIAL | Appodeal.BANNER);
+  Appodeal.initialize(appKey, Appodeal.REWARDED_VIDEO | Appodeal.INTERSTITIAL);
   Appodeal.muteVideosIfCallsMuted(true);
   //registerAdEvents();	
 	

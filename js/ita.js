@@ -1,4 +1,5 @@
 if (document.getElementById("play") !== null) { document.getElementById("play").innerHTML = 'Gioca'; }
+if (document.getElementById("restart") !== null) { document.getElementById("restart").innerHTML = 'Ricomincia'; }
 var energy_title = 'Energia';
 var energy_desc = 'energia';
 var machinery_title = 'Macchinari';
@@ -19,6 +20,7 @@ var soundOn = 'Suoni Attivati';
 var soundOff = 'Suoni Disattivati';
 var rewardMessage = 'Guarda questo video e guadagna';
 var capacityWarning = 'Devi prima aumentare la capienza degli alloggi!';
+var endgameWarning = 'Congratulazioni! Hai terminato il gioco! Torna nel menu iniziale per ricominciare.';
 var vehicle_carry_info = "Pasticcini / min trasportati dal tuo veicolo: ";
 
 /* gems */

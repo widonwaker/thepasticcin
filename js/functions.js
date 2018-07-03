@@ -1,5 +1,6 @@
 // FUNZIONI
 var newDB = JSON.parse(localStorage.getItem("achievements_db"));
+console.log(newDB);
 
 function CheckUpgradeAvailable(panel) {
 	var matches = panel.match(/\S+(?=-)/g);
@@ -27,7 +28,9 @@ function CheckUpgradeAvailable(panel) {
 }
 
 function NextLevel() {
-	if (document.getElementsByClassName("pastries-story")[0].src.indexOf('dolce5') !== -1) return false;
+	if (document.getElementsByClassName("pastries-story")[0].src.indexOf('dolce5') !== -1) {
+		return false;
+	}
 	var consegnati = $("#delivered-pastries").html().match(/\d+/g, "")+'';
 	var c = consegnati.split(',').join('');
 	var obiettivo = $("#obiettivo").html().match(/\d+/g, "")+'';
@@ -37,18 +40,26 @@ function NextLevel() {
 	    var sound = localStorage.getItem("sound");
 		var lang = localStorage.getItem("deflang");
 		var pastrynow = parseInt(localStorage.getItem("pasticcino"));
-		var gemmenow = parseInt(localStorage.getItem("gems_save"));
-		var achievements = localStorage.getItem("achievementsdb");
+		var achievements = localStorage.getItem("achievements_db");
+		var gemupgrades = [];
+		for (i = 0; i < localStorage.length; i++)    {    
+            key = localStorage.key(i);
+			if (key.indexOf('gems_') !== -1) {
+				gemupgrades[key] = parseInt(localStorage.getItem(key));
+			}
+        }
 	    localStorage.clear();
 		window.localStorage.clear();
 	    del_start = 0;
 		start = 0;
+		Object.keys(gemupgrades).forEach(function(key) {
+			localStorage.setItem(key,gemupgrades[key]);
+        });
 		localStorage.setItem("deflang",lang);
 	    localStorage.setItem("bgmusic",music);
 	    localStorage.setItem("sound",sound);
 		localStorage.setItem("pasticcino", pastrynow+1);
-		localStorage.setItem("gems_save",gemmenow);
-		localStorage.setItem("achievementsdb",achievements);
+		localStorage.setItem("achievements_db",achievements);
 		achievementsCheck(6);
 		location.reload(); 
 
@@ -152,7 +163,10 @@ function story() {
 		    id.getElementsByClassName("upgrade")[0].classList.add("green");
 		    id.getElementsByClassName("btn-upgrade")[0].style.top="45%";
 		    id.getElementsByClassName("btn-upgrade")[0].style.left="50%";
-		}
+		} else 	if (document.getElementsByClassName("pastries-story")[0].src.indexOf('dolce5') !== -1) {
+		    attenzione(endgameWarning);
+			localStorage.setItem("newgame","available");
+	    }
 	}
 	fontSize();
 }
@@ -348,9 +362,9 @@ function VehiclePanel() {
 	fontSize();
 }
 
-function attenzione() {
+function attenzione(msg) {
 	$('#warning-info').show();
-	$("#warning-info > span").html(capacityWarning);
+	$("#warning-info > span").html(msg);
 	var divs = document.getElementsByClassName("warning_info");
     for(var i = 0; i < divs.length; i++) {
         var relFontsize = divs[i].offsetHeight*0.11;
@@ -393,11 +407,12 @@ function SingleUpgrade(elem, skill, type, amount) {
 		if (parseInt(localStorage.getItem("capacity")) === parseInt(localStorage.getItem("capacity_alloggi")) ) {
 			$('#factory-panel').fadeOut();
 			if ($('#warning').length === 0) {
-			    $('#right-screen').append('<img src="img/warning.png" id="warning" class="right-icon" onClick="attenzione()" />');
+			    $('#right-screen').append('<img src="img/warning.png" id="warning" class="right-icon" onClick="attenzione(capacityWarning)" />');
 			}
 		    return false;
 		}
 	}
+	
 	if (parseInt(elem.innerHTML) < start && elem.parentElement.parentElement.getElementsByClassName("skills")[0].src.indexOf('skills_5') === -1) {
 		var current = parseInt(localStorage.getItem(skill+"_val"));
 		start = start - current; // scala costo upgrade

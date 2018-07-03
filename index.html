@@ -14,6 +14,10 @@
    <img src="img/btn_green.png" style="width: 100%;"/>
    <div class="centered" id="play" onclick="location.href='game.html'"></div>
 </div>
+<div id="restartbtn" class="button red none">
+   <img src="img/btn_red.png" style="width: 100%;"/>
+   <div class="centered" id="restart" onclick="newGame()"></div>
+</div>
 <div id="settings">
   <div id="pre-inner" class="pre-inner">
     <div id="settings_inner" class="settings_inner none">
@@ -35,6 +39,7 @@
 </div>
 
 <script>
+if (localStorage.getItem("newgame") === "available" ) $('#restartbtn').show();
 function fontSize() {
 	
 	var divs = document.getElementsByClassName("button");
@@ -51,7 +56,7 @@ function fontSize() {
 	
 	var divs = document.getElementsByClassName("panel_info");
     for(var i = 0; i < divs.length; i++) {
-        var relFontsize = divs[i].offsetWidth*0.06;
+        var relFontsize = divs[i].offsetWidth*0.065;
         divs[i].style.fontSize = relFontsize+'px';	
     }
 }
@@ -126,6 +131,30 @@ window.onload = function(event) {
 window.onresize = function(event) {
     fontSize();
 };	
+
+function newGame() {
+		var music = localStorage.getItem("bgmusic");
+	    var sound = localStorage.getItem("sound");
+		var lang = localStorage.getItem("deflang");
+		var gemupgrades = [];
+		for (i = 0; i < localStorage.length; i++)    {    
+            key = localStorage.key(i);
+			if (key.indexOf('gems_') !== -1) {
+				gemupgrades[key] = parseInt(localStorage.getItem(key));
+			}
+        }
+	    localStorage.clear();
+		window.localStorage.clear();
+	    del_start = 0;
+		start = 0;
+		Object.keys(gemupgrades).forEach(function(key) {
+			localStorage.setItem(key,gemupgrades[key]);
+        });
+		localStorage.setItem("deflang",lang);
+	    localStorage.setItem("bgmusic",music);
+	    localStorage.setItem("sound",sound);
+		location.href='game.html';
+}
 </script>
 
 <script>
