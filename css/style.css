@@ -112,6 +112,11 @@ input
 	left: 50%; 
 	-webkit-transform: translate(-50%);
 }
+#restartbtn {
+	width: 50%; 
+	left: 50%; 
+	-webkit-transform: translate(-50%);
+}
 #settings {
 	position:absolute; 
 	bottom: 5%; 
@@ -267,6 +272,9 @@ input
     -moz-transition: all 0.4s ease-in;
     -o-transition: all 0.4s ease-in;
     transition: all 0.4s ease-in;
+}
+.red {
+	text-shadow: 3px 0 0 #860700, -3px 0 0 #860700, 0 3px 0 #860700, 0 -3px 0 #860700, 2px 2px #860700, -2px -2px 0 #860700, 2px -2px 0 #860700, -2px 2px 0 #860700;
 }
 .green {
 	text-shadow: 3px 0 0 #157506, -3px 0 0 #157506, 0 3px 0 #157506, 0 -3px 0 #157506, 2px 2px #157506, -2px -2px 0 #157506, 2px -2px 0 #157506, -2px 2px 0 #157506;
@@ -522,7 +530,7 @@ input
 	left: 52%;
 	width: 100%;
 }
-.panel .container .btn-buy {
+.btn-buy {
 	position: fixed;
     width: 30%; /*26.82%;*/
     height: 36%;
