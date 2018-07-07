@@ -44,3 +44,7 @@ var m7 = "Move to the next pastry";
 
 /* other */
 var infos = "Developed by Stefano Iodice<br><br>Version 1.0<br><br>Contacts / Bug report: <a href='mailto:ipasticcini@apploadin.com'>ipasticcini@apploadin.com</a>";
+var production = "Production:";
+var delivered_info = "Delivered";
+var nointernet = "You need an internet connection to use this application correctly.";
+var nointernetitle = "Warning!";

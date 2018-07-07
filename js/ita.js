@@ -43,4 +43,8 @@ var m6 = "Porta una struttura al massimo";
 var m7 = "Passa al pasticcino successivo";
 
 /* other */
-var infos = "Creata da Stefano Iodice<br><br>Versione 1.0<br><br>Contatti / Segnalazioni: <a href='mailto:ipasticcini@apploadin.com'>ipasticcini@apploadin.com</a>";;
+var infos = "Creata da Stefano Iodice<br><br>Versione 1.0<br><br>Contatti / Segnalazioni: <a href='mailto:ipasticcini@apploadin.com'>ipasticcini@apploadin.com</a>";
+var production = "Produzione:";
+var delivered_info = "Consegnati";
+var nointernet = "Per il corretto funzionamento dell'applicazione, è necessaria una connessione ad internet.";
+var nointernetitle = "Attenzione!";
