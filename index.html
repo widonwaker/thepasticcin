@@ -166,5 +166,19 @@ if (localStorage.getItem("deflang")===null) {
 var src = 'js/' + localStorage.getItem("deflang") + '.js';
 var script = jQuery('<script/>').attr('src', src).appendTo('head');
 </script>
+<script>
+document.addEventListener("offline", onOffline, false);
+function offlineAppreso() {
+   //
+}	
+function onOffline() {
+navigator.notification.alert(
+    nointernet,  // message
+    offlineAppreso,         // callback
+    nointernetitle,            // title
+    'Ok'                  // buttonName
+);
+}
+</script>	
 </body>
 </html>

@@ -347,7 +347,7 @@ function delivered(n) {
 		del_start += parseInt(delivery_limit_sec);
 	}
 	
-	$("#delivered-pastries").html("Delivered "+del_start.toLocaleString()+" \/ ");
+	$("#delivered-pastries").html(delivered_info+" "+del_start.toLocaleString()+" \/ ");
     
 }
 </script>
@@ -423,5 +423,19 @@ window.onresize = function(event) {
 };
 </script>
 <script src="js/functions.js"></script>
+<script>
+document.addEventListener("offline", onOffline, false);
+function offlineAppreso() {
+   //
+}	
+function onOffline() {
+navigator.notification.alert(
+    nointernet,  // message
+    offlineAppreso,         // callback
+    nointernetitle,            // title
+    'Ok'                  // buttonName
+);
+}
+</script>	
 </body>
 </html>
