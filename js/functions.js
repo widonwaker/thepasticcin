@@ -153,7 +153,7 @@ function story() {
 	$("#obiettivo").html(divisore.toLocaleString());
 	$('#delivered-perc').html(deliveredperc+'%');
 	$('#pastries-story').html("<img class='pastries-story' src='img/dolci/dolce"+localStorage.getItem("pasticcino")+".png' />");
-	$('#alminuto').html("Production: "+parseInt(alminuto)+" \/ min");
+	$('#alminuto').html(production+" "+parseInt(alminuto)+" \/ min");
 	if (deliveredperc >= 100) {
 		if (document.getElementsByClassName("pastries-story")[0].src.indexOf('dolce5') === -1) {
 		    var id = document.getElementById('story-panel');
