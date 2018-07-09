@@ -684,7 +684,7 @@ input
     background-repeat: no-repeat;
 }
 #footer div img {
-	height: 100%;
+	width: 100%;
 }
 @media only screen and (min-height: 800px) {
     #game {
