@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.apploadin.pasticcini" 
+        id        = "com.apploadin.pasticciniGP" 
         version   = "1.0.0"
 	ios-CFBundleVersion = "1.0.0"> 
 
     <name>I Pasticcini</name>
 
     <description>
-        I Pasticcini degli orsettini
+        Arruola più orsettini che puoi ed esporta i tuoi deliziosi pasticcini in tutto il mondo!
     </description>
 
     <author href="http://www.stefanoiodice.it/" email="stefano.iodice.na@gmail.com">
