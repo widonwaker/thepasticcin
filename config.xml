@@ -15,7 +15,7 @@
         Stefano Iodice
     </author>
     
-	 <preference name="phonegap-version" value="cli-8.0.0" /> 
+	 <preference name="phonegap-version" value="cli-6.5.0" /> 
 	
 	<preference name="permissions"                value="none"/>
 
@@ -52,7 +52,6 @@
 	
 	<!-- <plugin name="onesignal-cordova-plugin" spec="^2.1.1" source="npm" />-->
 	   <plugin spec="https://github.com/appodeal/Appodeal-PhoneGap-plugin.git" source="git"/> <!-- Android -->
-	 <plugin spec="https://github.com/dpa99c/cordova-android-support-gradle-release.git" source="git"/> <!-- Android -->
 	<!--<plugin spec="https://github.com/appodeal/appodeal-cordova-plugin.git" source="git"/>--> <!-- iOS -->
 
    <access origin="*"/>
