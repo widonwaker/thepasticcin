@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.apploadin.pasticciniGP" 
+        id        = "com.apploadin.pasticcini" 
         version   = "1.0.2"
 	ios-CFBundleVersion = "1.0.2"> 
 
@@ -65,10 +65,10 @@
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
     <platform name="android">
-    <icon src="res/icon/android/icon-36-ldpi.png"   gap:platform="android"    gap:qualifier="ldpi" />
-    <icon src="res/icon/android/icon-48-mdpi.png"   gap:platform="android"    gap:qualifier="mdpi" />
-    <icon src="res/icon/android/icon-72-hdpi.png"   gap:platform="android"    gap:qualifier="hdpi" />
-    <icon src="res/icon/android/icon-96-xhdpi.png"  gap:platform="android"    gap:qualifier="xhdpi" />
+    <icon src="res/icon/android/icon-36-ldpi.png"   density="ldpi" />
+    <icon src="res/icon/android/icon-48-mdpi.png"   density="mdpi" />
+    <icon src="res/icon/android/icon-72-hdpi.png"   density="hdpi" />
+    <icon src="res/icon/android/icon-96-xhdpi.png"  density="xhdpi" />
 	
 	<splash src="res/screen/android/screen-ldpi-portrait.png"               density="ldpi" />
     <splash src="res/screen/android/screen-mdpi-portrait.png"               density="mdpi" />
@@ -117,8 +117,8 @@
    <splash src="res/screen/ios/Default-736h.png" width="1242" height="2208"/>
    <splash src="res/screen/ios/Default-Landscape-736h.png" width="2208" height="1242"/>
    <splash height="1242" platform="ios" src="res/screen/ios/Default-Landscape-736h.png" width="2208" />  
-   <splash height="1536" platform="ios" src="res/screen/ios/Default-Landscape@2x~ipad.png" width="2048" />  
-   <splash height="768" platform="ios" src="res/screen/ios/Default-Landscape~ipad.png" width="1024" />  
+   <splash height="1536" platform="ios" src="res/screen/ios/Default-Landscape@2x-ipad.png" width="2048" />  
+   <splash height="768" platform="ios" src="res/screen/ios/Default-Landscape-ipad.png" width="1024" />  
 	    <!-- 2732x2732 -->
    <splash src="res/screen/ios/Default@2x~universal~anyany.png" />
    
