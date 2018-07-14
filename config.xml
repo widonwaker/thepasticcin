@@ -2,8 +2,8 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.apploadin.pasticcini" 
-        version   = "1.0.1"
-	ios-CFBundleVersion = "1.0.1"> 
+        version   = "1.0.2"
+	ios-CFBundleVersion = "1.0.2"> 
 
     <name>I Pasticcini</name>
 
@@ -15,7 +15,7 @@
         Stefano Iodice
     </author>
     
-	 <preference name="phonegap-version" value="cli-6.5.0" /> 
+	 <preference name="phonegap-version" value="cli-7.1.0" /> 
 	
 	<preference name="permissions"                value="none"/>
 
@@ -52,12 +52,12 @@
 	
 	<!-- <plugin name="onesignal-cordova-plugin" spec="^2.1.1" source="npm" />-->
 	   <plugin spec="https://github.com/widonwaker/Appodeal-PhoneGap-plugin.git" source="git"/> <!-- senza Yandex -->
-	<!--<plugin spec="https://github.com/appodeal/appodeal-cordova-plugin.git" source="git"/>--> <!-- old -->
+<!--<plugin spec="https://github.com/appodeal/appodeal-cordova-plugin.git" source="git"/>--> <!-- old -->
 
    <access origin="*"/>
     <!-- Added the following intents to support the removal of whitelist code from base cordova to a plugin -->
     <!-- Whitelist configuration. Refer to https://cordova.apache.org/docs/en/edge/guide_appdev_whitelist_index.md.html -->
-    <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
+    <plugin name="cordova-plugin-whitelist" source="npm" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -104,6 +104,8 @@
         <icon src="res/icon/ios/icon-50.png" width="50" height="50" />
         <icon src="res/icon/ios/icon-50@2x.png" width="100" height="100" />
 		
+		<icon src="res/icon/icon-1024.png" width="1024" height="1024" />
+		
    <splash src="res/screen/ios/Default-iphone.png" width="320" height="480"/>
    <splash src="res/screen/ios/Default@2x-iphone.png" width="640" height="960"/>
    <splash src="res/screen/ios/Default-Portrait-ipad.png" width="768" height="1024"/>
@@ -134,10 +136,10 @@
         <false/>
         </gap:config-file>
 	<gap:config-file platform="ios" parent="CFBundleVersion">
-                <string>1.0.1</string>
+                <string>1.0.2</string>
         </gap:config-file>
 	<gap:config-file platform="ios" parent="CFBundleShortVersionString">
-                <string>1.0.1</string>
+                <string>1.0.2</string>
         </gap:config-file>
     </platform>
 
